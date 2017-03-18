@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_color">#FEA248</color>
+    
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#0000FF</color>
+    <color name="brown">#895307</color>
+    <color name="orange">#FF8000</color>
+    <color name="transparent">#00000000</color>
+    <color name="background_dark">#FF000000</color>
+    <color name="gray">#888888</color>
+    <color name="gray_dark">#444444</color>
+    <color name="gray_medium">#787878</color>
+    <color name="gray_light">#DEDEDE</color>
+    
+    
+    
+    <color name="sub_item_line">#CCCCCC</color>
+    <color name="sub_item_text">#4C4C4C</color>
+    
+    <color name="title_btn_normal">#00000000</color>
+    <color name="title_btn_pressed">#44000000</color>
+    
+    <color name="translucent">#88000000</color>
+    <color name="translucent_light_gray">#DDBABABA</color>
+    
+    
+    <color name="window_bg">#FFF0F0F0</color>
+    
+    
+    <!-- Button -->
+    <drawable name="btn_white_normal">#FFFFFF</drawable>
+    <drawable name="btn_white_pressed">#FDFDFD</drawable>
+    
+    <!-- EditText -->
+    <color name="edit_text">#888888</color>
+   	<color name="edit_text_hint">#C3C3C3</color>
+    
+    <!-- Title color configure -->
+    <color name="title_bar_text">#FFFFFFFF</color>
+    <color name="title_bg">#FF61C6A4</color>
+	
+	<!-- Tab Home -->
+	<color name="tag">#3670E9</color>
+	
+	
+	<!-- Item -->
+    <drawable name="item_bg_normal">#FFFFFF</drawable>
+    <drawable name="item_bg_pressed">#E2E2E2</drawable>
+    <color name="item_line">#E2E2E2</color>
+    
+    <!-- user info -->
+    <drawable name="item_bg_white_normal">#FFFFFF</drawable>
+    <drawable name="item_bg_white_pressed">#E2E2E2</drawable>
+    
+    <!-- Familay Income -->
+    <color name="income_total_bg">#D6FFCCCC</color>
+    <color name="income_text">#FFB91E1E</color>
+    
+    <!-- Familay Spending -->
+    <color name="spending_total_bg">#D6CCFFDF</color>
+    <color name="spending_text">#FF1EB959</color>
+    
+    <!-- Preview -->
+    <color name="preview_line">#888888</color>
+    
+</resources>

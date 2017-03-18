@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="synjoneshandsetlib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/synjoneshandsetlib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

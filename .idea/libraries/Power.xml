@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Power">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/Power.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

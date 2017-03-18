@@ -1,0 +1,214 @@
+[
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/id_recognize_simple.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/id_recognize_simple.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_download.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_download.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/radio_tow.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/radio_tow.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/id_input.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/id_input.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_list_item.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_list_item.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/radio_four.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/radio_four.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/search.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/search.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/tab.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/tab.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/technical_support.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/technical_support.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/id_manual.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/id_manual.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/tab_record.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/tab_record.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/bottom_tabs_activity.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/bottom_tabs_activity.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/user_info.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/user_info.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_income_item_first_input.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_income_item_first_input.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/signature.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/signature.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/list_item_user_info.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/list_item_user_info.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_message.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_message.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_property.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_property.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_situation.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_situation.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/password.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/password.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/attachment.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/attachment.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/tab_check.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/tab_check.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_income_item_first.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_income_item_first.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_income.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_income.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/attach_item.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/attach_item.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/tab_settings.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/tab_settings.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/login.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/login.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/fingerprint.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/fingerprint.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_progress.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_progress.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_spending.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_spending.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_bottom.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_bottom.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_income_item_second_input.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_income_item_second_input.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_alert.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_alert.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_situation_item_input.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_situation_item_input.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/preview.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/preview.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/fingerprint_simple.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/fingerprint_simple.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/title_bar.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/title_bar.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/signature_panel.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/signature_panel.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_add_photo.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_add_photo.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/feedback.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/feedback.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/dialog_list.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/dialog_list.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/title_bar_frame.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/title_bar_frame.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/year_photo.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/year_photo.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/settings_item.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/settings_item.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/district.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/district.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/about.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/about.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/profile.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/profile.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/family_income_item_second.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/family_income_item_second.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/id_recognize.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/id_recognize.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/base_info_item.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/base_info_item.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/check_user_info.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/check_user_info.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/layout/splash.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/layout/splash.xml"
+    }
+]

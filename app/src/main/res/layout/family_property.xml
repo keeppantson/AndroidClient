@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="30dp"
+    android:orientation="vertical" >
+    
+	<TextView
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:text="@string/family_property_housing"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<include
+	    android:id="@+id/code2001"
+	    layout="@layout/radio_tow"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+	
+	<include
+	    android:id="@+id/code2002"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2003"
+	    layout="@layout/radio_four"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+	
+	<TextView
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:text="@string/family_property_land"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<include
+	    android:id="@+id/code2004"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2005"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+
+	
+	<include
+	    android:id="@+id/code2006"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<TextView
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:text="@string/family_property_durable_consumer_goods"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<include
+	    android:id="@+id/code2007"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2008"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2009"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2010"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2011"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2012"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/code2013"
+	    layout="@layout/family_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,91 @@
+# To enable ProGuard in your project, edit project.properties
+# to define the proguard.config property as described in that file.
+#
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the ProGuard
+# include property in project.properties.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+
+-libraryjars libs/AMap_Location_V2.5.0_20160526.jar
+-libraryjars libs/android-support-v4.jar
+-libraryjars libs/ElectronSwitch.jar
+-libraryjars libs/EmGpio.jar
+-libraryjars libs/multireaderlib.jar
+-libraryjars libs/Power.jar
+-libraryjars libs/SerialPort.jar
+-libraryjars libs/synjoneshandsetlib.jar
+
+-dontwarn android_serialport_api.**
+-dontwarn com.lenwotion.**
+-dontwarn com.synjones.**
+-dontwarn android.support.**
+-dontwarn com.android.charger.** 
+-dontwarn com.amap.api.**
+
+-keep class android_serialport_api.**{*;}
+-keep class com.lenwotion.**{*;}
+-keep class com.synjones.**{*;}
+-keep class com.android.charger.**{*;}
+-keep class com.amap.api.mapcore.**{*;} 
+-keep class com.amap.api.maps.**{*;} 
+-keep class com.autonavi.amap.mapcore.*{*;} 
+
+#定位
+-keep class com.amap.api.location.**{*;}
+-keep class com.amap.api.fence.**{*;}
+-keep class com.autonavi.aps.amapapi.model.**{*;}
+
+-keepattributes *Annotation*
+-keepattributes Signature
+
+-keep public class * extends android.app.Fragment  
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.Context
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.support.v4.**
+-keep public class com.android.vending.licensing.ILicensingService
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context);
+}
+

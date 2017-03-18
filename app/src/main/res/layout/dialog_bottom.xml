@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+	android:layout_gravity="center"
+	android:orientation="vertical"
+	android:background="@color/gray_light"
+   	android:layout_width="match_parent" 
+   	android:layout_height="wrap_content">
+				
+	<FrameLayout 
+		android:id="@+id/content"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		
+		
+	</FrameLayout>
+	
+ 	<LinearLayout
+		android:id="@+id/btn_frame"
+		android:visibility="gone"
+		android:orientation="vertical"
+		android:paddingTop="@dimen/dialog_btn_frame_padding_top"
+		android:paddingBottom="@dimen/dialog_btn_frame_padding_bottom"
+		android:gravity="center_horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+ 	        
+ 		<Button
+			android:id="@+id/positive"
+			android:visibility="gone"
+			android:text="@string/ok"
+			style="@style/Button.DialogPositive"
+			android:layout_width="@dimen/dialog_btn_width"
+			android:layout_height="@dimen/dialog_btn_height"/>
+ 	        
+ 		<Button
+			android:id="@+id/negative"
+			android:visibility="gone"
+			android:text="@string/cancel"
+			style="@style/Button.DialogNegative"
+			android:layout_marginTop="@dimen/dialog_btn_gap"
+			android:layout_width="@dimen/dialog_btn_width"
+			android:layout_height="@dimen/dialog_btn_height"/>
+ 		    
+	</LinearLayout> 
+          
+</LinearLayout>

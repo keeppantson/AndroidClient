@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/signature_padding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<TextView
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:text="@string/year_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<ImageButton
+	    android:id="@+id/photo"
+	    android:padding="12dp"
+	    android:scaleType="fitCenter"
+	    android:background="@color/white"
+	    android:layout_width="match_parent"
+        android:layout_height="560dp"/>
+	
+	<Button 
+	    android:id="@+id/btn_complete"
+	    android:text="@string/compele"
+	    style="@style/Button"
+	    android:layout_marginTop="60dp"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"/>
+</LinearLayout>

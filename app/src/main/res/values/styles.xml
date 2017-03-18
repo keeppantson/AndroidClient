@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="Button">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/btn_text_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    
+    <style name="Text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_normal_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+    <style name="EditText">
+        <item name="android:background">@drawable/edit_text</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textColorHint">@color/edit_text_hint</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+        <item name="android:gravity">center_vertical|left</item>
+    </style>
+    
+    <style name="EditText.Password">
+        <item name="android:password">true</item>
+        <item name="android:maxLength">24</item>
+    </style>
+    
+    <!-- Toast -->
+    <style name="Text.Toast">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_normal_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+    <!-- Dialog --> 
+    <style name="Text.DialogTitle">
+        <item name="android:textSize">@dimen/dialog_title_text_size</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style> 
+    
+    <style name="Button.DialogPositive">
+        <item name="android:textSize">@dimen/dialog_button_text_size</item>
+    </style>
+        
+    <style name="Button.DialogNegative">
+        <item name="android:textSize">@dimen/dialog_button_text_size</item>
+    </style>
+    
+    <style name="Text.DialogMessage">
+        <item name="android:textSize">@dimen/dialog_message_text_size</item>
+        <item name="android:textColor">@color/gray_dark</item>
+    </style>
+    
+    <style name="Text.DialogListItem">
+        <item name="android:textSize">@dimen/dialog_list_item_text_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style> 
+    
+	<!-- Title Bar -->
+    <style name="Text.TitleBar">
+        <item name="android:textColor">@color/title_bar_text</item>
+        <item name="android:textSize">@dimen/title_bar_text_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="Button.TitleBar">
+        <item name="android:background">@drawable/title_bar_btn</item>
+        <item name="android:textColor">@color/title_btn_text</item>
+        <item name="android:textSize">@dimen/title_bar_btn_text_size</item>
+    </style>    
+    
+    
+    <!-- Tab -->
+    <style name="Text.Tab">
+        <item name="android:textColor">@color/tab_text</item>
+        <item name="android:textSize">@dimen/tab_text_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+    
+    
+   	<!-- PreView -->
+	<style name="Text.PreviewTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/preview_title_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+	<style name="Text.PreviewTitleTow">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/preview_title_tow_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+	<style name="Text.PreviewTitleThree">
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/preview_title_three_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+	<style name="Text.PreviewContent">
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/preview_content_size</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+        <item name="android:minLines">2</item>
+    </style>
+    
+    
+
+    
+</resources>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">"低保核查"</string>
+    <string name="action_main">com.zgmz.ls.action.MAIN</string>
+    
+    <string name="prompt_pressed_back_key_quit">"再次按返回退出程序"</string>
+    
+    
+    <!-- Dialog -->
+    <string name="ok">"确认"</string>
+    <string name="cancel">"取消"</string>
+    <string name="agree">"同意"</string>
+    <string name="dialog_tilte_important_note">"重要提示"</string>
+    <string name="dialog_tilte_warm_tips">"温馨提示"</string>
+    <string name="dialog_tilte_upgrade_tips">"升级提示"</string>
+    <string name="dialog_tilte_service_terms">"服务条款"</string>
+    
+    <!-- Dialog add Photo -->
+    <string name="album">"相册"</string>
+    <string name="camera">"拍照"</string>
+    <string name="album_or_camera_prompt">"相册/拍照获取图片"</string>
+
+    <!-- Splash -->
+    <string name="splash_app_name">"低保核查及信息采集终端"</string>
+    <string name="splash_company_name">""</string>
+    
+    
+    <!-- Login -->
+    <string name="title_login">"登录"</string>
+    <string name="login">"登录"</string>
+    <string name="login_app_name">"低保核查及信息采集终端"</string>
+    
+    <!-- Main  -->
+    <string name="tab_check">"核查"</string>
+    <string name="tab_record">"录入"</string>
+    <string name="tab_settings">"设置"</string>
+    
+    <!-- Check -->
+    <string name="title_tab_check">"核查"</string>
+    <string name="uncheck">"待核查"</string>
+    <string name="checked">"已核查"</string>
+    <string name="no_uncheck_data">"暂无待核查数据"</string>
+    <string name="no_checked_data">"暂无已核查数据"</string>
+    
+    <!-- Record -->
+    <string name="title_tab_record">"录入"</string>
+    <string name="recognize_input_id">"扫二代证录入"</string>
+    <string name="manual_input_id">"手动录入"</string>
+    <string name="no_record_data">"暂无录入记录"</string>
+    
+    
+    <!-- Settings -->
+    <string name="title_tab_settings">"设置"</string>
+    <string name="setting_item_profile">"个人信息"</string>
+    <string name="setting_item_password">"离线密码"</string>
+    <string name="setting_item_feedback">"用户反馈"</string>
+    <string name="setting_item_technical_support">"技术支持"</string>
+    <string name="setting_item_about">"关于我们"</string>
+    
+    <!-- Settings -->
+	<string name="my_item_update">"检测更新"</string>
+	<string name="my_item_feedback">"意见反馈"</string>
+	
+	<!-- ID Manual -->
+	<string name="title_id_manual">"新建用户"</string>
+	<string name="user_name">"姓名"</string>
+	<string name="user_id_number">"身份证号"</string>
+	
+	<!-- IDRecoginzeActivity -->
+	<string name="title_id_recognize">"身份证识别"</string>
+	<string name="prompt_reconginze_id_ready">"请点击“开始识别”\n然后将身份证紧贴设备背面"</string>
+	<string name="prompt_reconginze_id_failure">"身份证识别失败"</string>
+	<string name="start_reconginze">"开始识别"</string>
+	<string name="again_reconginze">"重新识别"</string>
+	<string name="btn_ok">"确定"</string>
+	<string name="id_card_a">"身份证正面"</string>
+	<string name="id_card_b">"身份证反面"</string>
+	
+	<!-- User Info -->
+	<string name="title_user_info">"个人信息"</string>
+	<string name="name">"姓    名："</string>
+	<string name="id_number">"身份证："</string>
+	
+	<string name="user_info">"个人信息"</string>
+	<string name="id_recognize">"身份证识别"</string>
+	<string name="fingerprint_input">"指纹录入"</string>
+	<string name="district_area">"行政区划"</string>
+	
+	<string name="family_info">"家庭信息"</string>
+	<string name="family_situation">"家庭情况"</string>
+	<string name="family_property">"家庭财产"</string>
+	<string name="family_income">"家庭收入"</string>
+	<string name="family_spending">"家庭支出"</string>
+	
+	<string name="other">"其他"</string>
+	<string name="signature">"签名"</string>
+	<string name="attachment">"其他相关照片"</string>
+	
+	<!-- Check User Info -->
+	<string name="title_check_user_info">"个人信息"</string>
+	
+	<string name="check_user_info">"个人信息"</string>
+	<string name="check_preview">"预览"</string>
+	<string name="check_id_recognize">"二代证核查"</string>
+	<string name="check_fingerprint_input">"指纹比对"</string>
+	<string name="check_year_photo">"年度拍照"</string>
+	<string name="check_district_area">"行政区划"</string>
+	
+	<string name="check_family_info">"家庭信息"</string>
+	<string name="check_family_situation">"家庭情况"</string>
+	<string name="check_family_property">"家庭财产"</string>
+	<string name="check_family_income">"家庭收入"</string>
+	<string name="check_family_spending">"家庭支出"</string>
+	
+	<string name="check_other">"其他"</string>
+	<string name="check_signature">"签名"</string>
+	<string name="check_attachment">"其他相关照片"</string>
+	
+	
+	<!-- Fingerprint -->
+	<string name="title_fingerprint">"指纹录入"</string>
+	<string name="fingerprint_prompt">"请将右手大拇指\n放置在指纹模块上"</string>
+	<string name="fingerprint_success">"指纹录入成功"</string>
+	<string name="fingerprint_input_again">"重新录入"</string>
+	<string name="fingerprint_input_waiting">"等待指纹录入"</string>
+	<string name="fingerprint_input_first">"开始录入"</string>
+	<string name="fingerprint_input_second">"第二次录入"</string>
+	<string name="fingerprint_input_third">"第三次录入"</string>
+	<string name="fingerprint_input_fourth">"最后录入确认"</string>
+	
+	<!-- Fingerprint Check-->
+	<string name="title_fingerprint_check">"指纹核查"</string>
+	<string name="fingerprint_check_prompt">"请将右手大拇指\n放置在指纹模块上"</string>
+	<string name="fingerprint_check_success">"指纹比对成功"</string>
+	<string name="fingerprint_check_input_again">"重新比对"</string>
+	<string name="fingerprint_check_input_waiting">"等待指纹录入"</string>
+	<string name="fingerprint_check_input_first">"开始比对"</string>
+	<string name="fingerprint_re_check">"重新比对"</string>
+	
+	<!-- PreView -->
+	<string name="title_preview">"预览"</string>
+	<string name="preview_title_base_info">"基本信息"</string>
+	<string name="preview_title_id_card">"身份证信息"</string>
+	<string name="preview_title_finger">"指纹信息"</string>
+	<string name="preview_title_year_photo">"年度照片"</string>
+	<string name="preview_title_district">"区域信息"</string>
+	
+	<string name="preview_title_family_info">"家庭信息"</string>
+	<string name="preview_title_family_situation">"家庭状况"</string>
+	<string name="preview_title_family_property">"家庭财产"</string>
+	<string name="preview_title_family_income">"家庭收入"</string>
+	<string name="preview_title_family_spending">"家庭支出"</string>
+	
+	<string name="preview_title_other">"其他"</string>
+	<string name="preview_title_signature">"签名"</string>
+	<string name="preview_title_user_signature">"用户签名"</string>
+	<string name="preview_title_manager_signature">"管理员签名"</string>
+	<string name="preview_title_attachment">"附件"</string>
+	
+	<!-- Year Photo -->
+	<string name="title_year_photo">"年度拍照"</string>
+	<string name="year_photo">"年度拍照"</string>
+	
+	<!-- District -->
+	<string name="title_district">"行政区域"</string>
+	<string name="provice">"省 份"</string>
+	<string name="city_and_district">"市、县或区"</string>
+	<string name="address_detail">"详细地址"</string>
+	<string name="current_location">"当前位置"</string>
+	<string name="btn_obatin_location">"获取当前位置"</string>
+	<string name="compele">"完成"</string>
+	
+	<!-- Family Situation -->
+	<string name="title_family_situation">"家庭情况"</string>
+	<string name="save">"保存"</string>
+	<string name="unit_ge">"个"</string>
+	<string name="unit_ren">"人"</string>
+	<string name="unit_hu">"户"</string>
+	<string name="unit_tai">"台"</string>
+	<string name="unit_mu">"亩"</string>
+	<string name="unit_bu">"部"</string>
+	<string name="unit_liang">"辆"</string>
+	<string name="unit_yuan">"元"</string>
+	
+	<string name="family_situation_base">" 一、家庭基本情况"</string>
+	<string name="name_code1001">"1. 是否“三无人员？”"</string>
+	<string name="name_code1002">"2. 是否独生子女家庭？"</string>
+	<string name="name_code1003">"3. 是否单亲家庭？"</string>
+	<string name="name_code1004">"4. 有分户赡（扶、抚）养人户数"</string>
+	<string name="name_code1005">"    其中：有赡（扶、抚）养能力"</string>
+	
+	<string name="family_situation_members">"二、共同生活的家庭成员基本情况"</string>
+	<string name="name_code1006">"1. 家庭户籍人口数 "</string>
+	<string name="name_code1007">"2. 共同生活的家庭成员人数 "</string>
+	<string name="name_code1008">"3. 女性"</string>
+	<string name="name_code1009">"4. 家庭劳动力人数"</string>
+	<string name="name_code1010">"5. 18岁以下人口"</string>
+	<string name="name_code1011">"6. 家庭在校学生人数"</string>
+	<string name="name_code1012">"7. 符合计生政策纯女户的女孩"</string>
+	<string name="name_code1013">"8. 60岁以上人口"</string>
+	<string name="name_code1014">"9. 残疾人数    "</string>
+	<string name="name_code1015">"    其中：重残人员"</string>
+	<string name="name_code1016">"10. 常年患病人数"</string>
+	<string name="name_code1017">"    其中：患重大疾病人数"</string>
+
+	
+	<!-- Family Property -->
+	<string name="title_family_property">"家庭财产"</string>
+	<string name="unit_sq_m">"平方米"</string>
+	
+	<string name="wood">"木"</string>
+	<string name="brick_and_wood">"砖木"</string>
+	<string name="brick_and_concrete">"砖混"</string>
+	<string name="thatch">"茅草"</string>
+	
+	<string name="family_property_housing">"一、住房情况"</string>
+	<string name="name_code2001">"1. 是否无房户"</string>
+	<string name="name_code2002">"2. 住房面积"</string>
+	<string name="name_code2003">"3. 住房结构"</string>
+	
+	<string name="family_property_land">"二、土地情况"</string>
+	<string name="name_code2004">"1. 田"</string>
+	<string name="name_code2005">"2. 土"</string>
+	<string name="name_code2006">"3. 山林"</string>
+	
+	<string name="family_property_durable_consumer_goods">"三、耐用消费品拥有情况"</string>
+	<string name="name_code2007">"1. 空调"</string>
+	<string name="name_code2008">"2. 冰箱 "</string>
+	<string name="name_code2009">"3. 电视机"</string>
+	<string name="name_code2010">"4. 洗衣机"</string>
+	<string name="name_code2011">"5. 固定电话"</string>
+	<string name="name_code2012">"6. 移动电话"</string>
+	<string name="name_code2013">"7. 摩托车"</string>
+	
+	<!-- Family Income -->
+	<string name="title_family_income">"家庭收入"</string>
+	
+	<string name="income_total">"家庭总收入"</string>
+	<string name="name_code3001">"一、工资性收入"</string>
+	<string name="name_code3002">"二、家庭经营收入"</string>
+	<string name="name_code3003">"（一）农业收入"</string>
+	<string name="name_code3004">"（二）林业收入"</string>
+	<string name="name_code3005">"（三）牧业收入"</string>
+	<string name="name_code3006">"（四）渔业收入"</string>
+	<string name="name_code3007">"（五）工业收入.建筑业收入 "</string>
+	<string name="name_code3008">"（六）第三产业收入"</string>
+	<string name="name_code3009">"三、转移性收入"</string>
+	<string name="name_code3010">"四、财产性收入"</string>
+	
+	
+	
+	<!-- Family Spending -->
+	<string name="title_family_spending">"家庭支出"</string>
+	
+	<string name="spending_total">"家庭总支出"</string>
+	<string name="name_code4001">"一、家庭经营费用支出"</string>
+	<string name="name_code4002">"（一）农业生产费用支出"</string>
+	<string name="name_code4003">"（二）林业费用支出"</string>
+	<string name="name_code4004">"（三）牧业费用支出"</string>
+	<string name="name_code4005">"（四）渔业费用支出"</string>
+	<string name="name_code4006">"（五）工业、建筑业费用支出"</string>
+	<string name="name_code4007">"（六）第三产业经营费用支出"</string>
+	<string name="name_code4008">"二、税费支出"</string>
+	<string name="name_code4009">"三、生产性固定资产折旧"</string>
+	
+	<!-- Signature -->
+	<string name="title_signature">"签名"</string>
+	<string name="user_signature">"用户签名"</string>
+	<string name="manager_signature">"管理员签名"</string>
+	
+	<!-- Signature Panel -->
+	<string name="title_signature_panel">"签名"</string>
+	<string name="signature_prompt">"请在空白处签名"</string>
+	<string name="clear">"清除"</string>
+	
+	
+	<!-- Attachment -->
+	<string name="title_attachment">"附件"</string>
+	
+	<!-- Profile -->
+	<string name="title_profile">"个人信息"</string>
+	
+	<!-- Password -->
+	<string name="title_offline_password">"离线密码"</string>
+	
+	<!-- Feedback -->
+	<string name="title_feedback">"用户反馈"</string>
+	
+	<!-- Technical Support -->
+	<string name="title_technical_support">"技术支持"</string>
+	
+	<!-- About -->
+	<string name="title_about">"关于我们"</string>
+	
+	<!-- Search -->
+	<string name="title_search">"搜索"</string>
+	<string name="title_search_result">"搜索结果"</string>
+	<string name="no_search_data">"未找到相关数据"</string>
+	
+	
+</resources>

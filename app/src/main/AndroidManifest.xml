@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zgmz.ls"
+    android:versionCode="10"
+    android:versionName="0.8.10" >
+
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="21" />
+    
+    
+    <!--使用网络功能所需权限 -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	
+	<!-- 使用定位功能所需权限-->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+	
+	<uses-permission android:name="android.permission.VIBRATE" />  
+	
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:name="com.zgmz.ls.AppContext"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="a590bdef32e59fda0fb746a3c2d60049" />
+        
+		<!-- 定位需要的服务 -->
+        <service android:name="com.amap.api.location.APSService" >
+        </service>
+        
+        <activity
+            android:name="com.zgmz.ls.ui.SplashActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.zgmz.ls.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="com.zgmz.ls.ui.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.UserInfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.PreviewActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.IDRecoginzeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.IDManualActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FingerprintActivitiy"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.YearPhotoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.DistrictActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FamilySituationActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FamilyPropertyActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FamilyIncomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FamilySpendingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.SignatureActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.SignaturePanelActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.AttachmentActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.ProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.PasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FeedbackActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.TechnicalSupportActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.AboutActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.SearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.IDRecoginzeSimpleActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FingerprintSimpleActivitiy"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FingerprintCheckActivitiy"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.IDInputActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.CheckUserInfoActivity"
+            android:screenOrientation="portrait"/>
+        
+        <service 
+            android:name="com.synjones.idcard.RemoteDecodeService"
+            android:process=":remote"/>
+    </application>
+
+</manifest>

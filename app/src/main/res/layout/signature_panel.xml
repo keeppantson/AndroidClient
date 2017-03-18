@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.zgmz.ls"
+    android:padding="@dimen/signature_padding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<TextView
+	    android:id="@+id/prompt"
+        android:textSize="24sp"
+        android:textColor="@color/gray"
+        android:text="@string/signature_prompt"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<com.zgmz.ls.view.SignaturePad
+	    android:id="@+id/panel"
+	    android:layout_below="@id/prompt"
+	    android:layout_marginTop="60dp"
+	    android:background="@drawable/item_input_normal"
+	    android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+	
+	 <LinearLayout
+	        android:layout_marginBottom="60dp"
+	        android:layout_alignParentBottom="true"
+	        android:layout_width="match_parent"
+	    	android:layout_height="wrap_content">
+	        
+	        <Button
+			    android:id="@+id/btn_clear"
+			    android:text="@string/clear"
+			    style="@style/Button"
+			    android:layout_gravity="center_horizontal"
+			    android:layout_weight="1"
+			    android:layout_width="0dp"
+			    android:layout_height="wrap_content"/>
+	        
+	         <Button
+			    android:id="@+id/btn_ok"
+			    android:layout_marginLeft="20dp"
+			    android:text="@string/btn_ok"
+			    style="@style/Button"
+			    android:layout_gravity="center_horizontal"
+			    android:layout_weight="1"
+			    android:layout_width="0dp"
+			    android:layout_height="wrap_content"/>
+	         
+	   	</LinearLayout>
+</RelativeLayout>

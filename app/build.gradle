@@ -1,0 +1,30 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        applicationId "com.zgmz.ls"
+        minSdkVersion 17
+        targetSdkVersion 21
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.0.0'
+    compile files('libs/AMap_Location_V2.5.0_20160526.jar')
+    compile files('libs/ElectronSwitch.jar')
+    compile files('libs/EmGpio.jar')
+    compile files('libs/multireaderlib.jar')
+    compile files('libs/Power.jar')
+    compile files('libs/SerialPort.jar')
+    compile files('libs/synjoneshandsetlib.jar')
+}

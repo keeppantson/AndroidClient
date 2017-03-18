@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<ScrollView 
+	    android:layout_width="match_parent"
+    	android:layout_height="match_parent">
+    	
+	    <LinearLayout
+	        android:paddingTop="@dimen/family_income_margin_top"
+	        android:paddingBottom="@dimen/family_income_margin_bottom"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" >
+		    <include
+		        android:id="@+id/code3001"
+		        layout="@layout/family_income_item_first_input"
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/family_income_item_first_height"/>
+		    
+		    <LinearLayout
+		        android:layout_marginTop="@dimen/family_income_item_gap"
+		        android:background="@color/gray_light"
+		        android:orientation="vertical"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content">
+		        <include
+			        android:id="@+id/code3002"
+			        layout="@layout/family_income_item_first"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/family_income_item_first_height"/>
+		        
+		        <include
+			        android:id="@+id/code3003"
+			        layout="@layout/family_income_item_second_input"
+			        android:layout_marginTop="@dimen/family_income_item_line"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/family_income_item_second_height"/>
+		        
+		        <include
+			        android:id="@+id/code3004"
+			        layout="@layout/family_income_item_second_input"
+			        android:layout_marginTop="@dimen/family_income_item_line"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/family_income_item_second_height"/>
+		        
+		        <include
+			        android:id="@+id/code3005"
+			        layout="@layout/family_income_item_second_input"
+			        android:layout_marginTop="@dimen/family_income_item_line"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/family_income_item_second_height"/>
+		        
+		        <include
+			        android:id="@+id/code3006"
+			        layout="@layout/family_income_item_second_input"
+			        android:layout_marginTop="@dimen/family_income_item_line"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/family_income_item_second_height"/>
+		        
+		        <include
+			        android:id="@+id/code3007"
+			        layout="@layout/family_income_item_second_input"
+			        android:layout_marginTop="@dimen/family_income_item_line"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/family_income_item_second_height"/>
+		        
+		        <include
+			        android:id="@+id/code3008"
+			        layout="@layout/family_income_item_second_input"
+			        android:layout_marginTop="@dimen/family_income_item_line"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/family_income_item_second_height"/>
+		    </LinearLayout>
+		    
+		    <include
+		        android:id="@+id/code3009"
+		        layout="@layout/family_income_item_first_input"
+		        android:layout_marginTop="@dimen/family_income_item_gap"
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/family_income_item_first_height"/>
+		    
+		    <include
+		        android:id="@+id/code3010"
+		        layout="@layout/family_income_item_first_input"
+		        android:layout_marginTop="@dimen/family_income_item_gap"
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/family_income_item_first_height"/>
+	    </LinearLayout>
+	    
+	</ScrollView>
+	
+	<include
+        android:id="@+id/total"
+        layout="@layout/family_income_item_first"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/family_income_total_height"/>
+	
+</FrameLayout>

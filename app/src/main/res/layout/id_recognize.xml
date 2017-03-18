@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/frame_recognize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    	android:orientation="vertical" >
+    
+	    <FrameLayout
+	        android:layout_weight="1"
+	        android:layout_width="match_parent"
+	    	android:layout_height="0dp">
+	        
+	         <TextView
+	            android:id="@+id/prompt"
+	            android:textSize="24sp"
+	            android:textColor="@color/gray"
+	            android:gravity="center"
+	            android:padding="30dp"
+	            android:lineSpacingMultiplier="1.2"
+	            android:layout_gravity="center"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"/>
+	         
+	    </FrameLayout>
+		
+	    <Button
+		    android:id="@+id/btn_recognize"
+		    android:layout_margin="30dp"
+		    android:text="@string/start_reconginze"
+		    style="@style/Button"
+		    android:layout_gravity="center_horizontal"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"/>
+    
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/frame_result"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    	android:orientation="vertical" >
+    
+	    <LinearLayout
+	        android:orientation="vertical"
+	        android:layout_weight="1"
+	        android:layout_marginTop="10dp"
+	        android:layout_width="match_parent"
+	    	android:layout_height="0dp">
+	        
+	        <TextView
+	            android:textSize="15sp"
+	            android:layout_marginLeft="10dp"
+	            android:textColor="@color/gray"
+	            android:text="@string/id_card_a"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"/>
+	         
+	        <RelativeLayout
+	            android:id="@+id/card_a"
+	            android:background="@drawable/id_card_a"
+	            android:layout_width="match_parent"
+	            android:layout_height="@dimen/id_card_height">
+	            <TextView
+	                android:id="@+id/name"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:layout_marginTop="@dimen/id_card_name_margin_top"
+		            android:layout_marginLeft="@dimen/id_card_name_margin_left"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/sex"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:layout_marginTop="@dimen/id_card_sex_margin_top"
+	                android:layout_below="@id/name"
+	                android:layout_alignLeft="@id/name"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/nation"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:layout_marginLeft="@dimen/id_card_nation_margin_left"
+	                android:layout_toRightOf="@id/sex"
+	                android:layout_alignTop="@id/sex"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/year"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:layout_marginTop="@dimen/id_card_year_margin_top"
+	                android:layout_below="@id/sex"
+	                android:layout_alignLeft="@id/name"
+		            android:layout_width="@dimen/id_card_year_width"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/month"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:gravity="center"
+		            android:layout_marginLeft="@dimen/id_card_month_margin_left"
+	                android:layout_toRightOf="@id/year"
+	                android:layout_alignTop="@id/year"
+		            android:layout_width="@dimen/id_card_month_width"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/day"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:gravity="center"
+		            android:layout_marginLeft="@dimen/id_card_day_margin_left"
+	                android:layout_toRightOf="@id/month"
+	                android:layout_alignTop="@id/month"
+		            android:layout_width="@dimen/id_card_day_width"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/address"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:layout_marginTop="@dimen/id_card_address_margin_top"
+	                android:layout_below="@id/year"
+	                android:layout_alignLeft="@id/name"
+		            android:layout_width="@dimen/id_card_address_width"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/id_number"
+		            android:textSize="@dimen/id_card_content_text_size"
+		            android:textColor="@color/black"
+		            android:layout_marginTop="@dimen/id_card_number_margin_top"
+		            android:layout_marginLeft="@dimen/id_card_number_margin_top"
+	                android:layout_below="@id/year"
+	                android:layout_alignLeft="@id/name"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"/>
+	            
+	            <ImageView
+	                android:id="@+id/avatar"
+	                android:scaleType="fitXY"
+	                android:background="@color/white"
+	                android:layout_alignParentTop="true"
+	                android:layout_alignParentRight="true"
+	                android:layout_marginTop="@dimen/id_card_avatar_margin_top"
+	                android:layout_marginRight="@dimen/id_card_avatar_margin_right"
+	                android:layout_width="@dimen/id_card_avatar_width"
+		            android:layout_height="@dimen/id_card_avatar_height"/>
+	            
+	        </RelativeLayout>
+	        
+	    	<TextView
+	            android:textSize="15sp"
+	            android:textColor="@color/gray"
+	            android:text="@string/id_card_b"
+	            android:layout_marginLeft="10dp"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"/>
+	         
+	        <RelativeLayout
+	            android:id="@+id/card_b"
+	            android:background="@drawable/id_card_b"
+	            android:layout_width="match_parent"
+	            android:layout_height="@dimen/id_card_height">
+	            
+	            <TextView
+	                android:id="@+id/authority"
+		            android:textSize="@dimen/id_card_content_b_text_size"
+		            android:textColor="@color/gray_dark"
+		            android:layout_marginLeft="@dimen/id_card_authority_margin_left"
+		            android:layout_marginTop="@dimen/id_card_authority_margin_top"
+	                android:layout_alignParentLeft="true"
+	                android:layout_alignParentTop="true"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"/>
+	            
+	            <TextView
+	                android:id="@+id/period_of_validity"
+		            android:textSize="@dimen/id_card_content_b_text_size"
+		            android:textColor="@color/gray_dark"
+		            android:layout_marginTop="@dimen/id_card_period_margin_top"
+	                android:layout_below="@id/authority"
+	                android:layout_alignLeft="@id/authority"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"/>
+	        </RelativeLayout>
+	    </LinearLayout>
+		
+	    
+	    <LinearLayout
+	        android:layout_margin="30dp"
+	        android:layout_width="match_parent"
+	    	android:layout_height="wrap_content">
+	        
+	        <Button
+			    android:id="@+id/btn_again_recognize"
+			    android:text="@string/again_reconginze"
+			    style="@style/Button"
+			    android:layout_gravity="center_horizontal"
+			    android:layout_weight="1"
+			    android:layout_width="0dp"
+			    android:layout_height="wrap_content"/>
+	        
+	         <Button
+			    android:id="@+id/btn_ok"
+			    android:layout_marginLeft="20dp"
+			    android:text="@string/btn_ok"
+			    style="@style/Button"
+			    android:layout_gravity="center_horizontal"
+			    android:layout_weight="1"
+			    android:layout_width="0dp"
+			    android:layout_height="wrap_content"/>
+	         
+	   	</LinearLayout>
+	    
+    
+	</LinearLayout>
+</FrameLayout>

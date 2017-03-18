@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<LinearLayout 
+		android:id="@+id/search"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:gravity="center_horizontal"
+	    android:orientation="vertical" >
+	    
+		<ImageButton 
+		    android:id="@+id/id_recoginze"
+		    android:background="@drawable/search_id_card"
+		    android:layout_marginTop="@dimen/search_item_gap"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
+		
+		
+		<ImageButton 
+		    android:id="@+id/fingerprint"
+		    android:background="@drawable/search_fingerprint"
+		    android:layout_marginTop="@dimen/search_item_gap"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
+		
+		
+		<ImageButton 
+		    android:id="@+id/id_number"
+		    android:background="@drawable/search_id_number"
+		    android:layout_marginTop="@dimen/search_item_gap"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
+		
+	</LinearLayout>
+
+	<FrameLayout
+	    android:id="@+id/result"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <ListView
+            android:id="@+id/list"
+            android:listSelector="@null"
+            android:cacheColorHint="@color/transparent"
+            android:layout_width="match_parent"
+        	android:layout_height="match_parent"/>
+        
+        <TextView
+            android:id="@+id/empty_text"
+            android:textSize="24sp"
+            android:textColor="@color/gray"
+            android:text="@string/no_search_data"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+    </FrameLayout>
+
+</FrameLayout>

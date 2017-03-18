@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/color/title_btn_text.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/color/title_btn_text.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/color/btn_white_text.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/color/btn_white_text.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/color/tab_text.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/color/tab_text.xml"
+    },
+    {
+        "merged": "/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/res/merged/debug/color/tab_check_text.xml",
+        "source": "/Users/mixiang/Desktop/LowestSecurity/app/src/main/res/color/tab_check_text.xml"
+    }
+]

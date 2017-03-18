@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+	android:layout_gravity="center"
+	android:orientation="vertical"
+	android:background="@color/white"
+	android:paddingLeft="@dimen/dialog_add_photo_margin_horizontal"
+	android:paddingRight="@dimen/dialog_add_photo_margin_horizontal"
+	android:paddingBottom="@dimen/dialog_add_photo_padding_bottom"
+   	android:layout_width="match_parent" 
+   	android:layout_height="200dp">
+				
+	<TextView 
+	    android:layout_marginTop="20dp"
+	    android:textSize="20dp"
+	    android:gravity="center_horizontal"
+	    android:text="@string/album_or_camera_prompt"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"/>
+	
+	
+	<Button
+		android:id="@+id/album"
+		android:text="@string/album"
+		style="@style/Button"
+		android:layout_marginTop="60dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+ 	        
+	<Button
+		android:id="@+id/camera"
+		android:text="@string/camera"
+		style="@style/Button"
+		android:layout_marginTop="@dimen/dialog_add_photo_btn_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+ 		
+</LinearLayout>

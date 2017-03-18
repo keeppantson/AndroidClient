@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="anim_right_slide_in_duration">300</integer>
+    <integer name="anim_left_slide_out_duration">300</integer>
+    <integer name="anim_left_slide_in_duration">300</integer>
+    <integer name="anim_right_slide_out_duration">300</integer>
+    
+    <integer name="animation_short_duration">250</integer>
+    <integer name="animation_middle_duration">300</integer>
+    <integer name="animation_long_duration">800</integer>
+    
+    
+    <integer name="letter_grid_column_count">8</integer>
+</resources>

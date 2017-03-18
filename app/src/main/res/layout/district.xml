@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical" >
+    
+	<TextView
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/gray"
+        android:text="@string/provice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	
+	<EditText
+	    android:id="@+id/input_provice"
+	    android:text="贵州省"
+	    style="@style/EditText"
+	    android:enabled="false"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+	
+	<TextView
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/gray"
+        android:text="@string/city_and_district"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<EditText
+	    android:id="@+id/input_city"
+	    android:text="贵州市 - 南山区"
+	    style="@style/EditText"
+	    android:enabled="false"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+	
+	<TextView
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/gray"
+        android:text="@string/address_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<EditText
+	    android:id="@+id/input_address"
+	    style="@style/EditText"
+	    android:minLines="3"
+	    android:maxLines="3"
+	    android:gravity="left|top"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+	
+	
+	<TextView
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/gray"
+        android:text="@string/current_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<FrameLayout 
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    <EditText
+		    android:id="@+id/input_location"
+		    android:hint="获取地理位置"
+		    style="@style/EditText"
+		    android:background="@drawable/edit_text_normal"
+		    android:minLines="4"
+	    	android:maxLines="4"
+	    	android:enabled="false"
+		    android:gravity="left|top"
+		    android:layout_width="match_parent"
+	        android:layout_height="wrap_content"/>
+	    
+	    <Button
+	        android:id="@+id/btn_location"
+	        android:textColor="@color/white"
+	        android:background="@drawable/btn_bottom"
+	        android:text="@string/btn_obatin_location"
+	        android:layout_gravity="bottom"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"/>
+	</FrameLayout>
+	<View
+	    android:layout_weight="1"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"/>
+	
+	<Button
+	    android:id="@+id/btn_complete"
+	    android:layout_marginBottom="40dp"
+	    android:text="@string/compele"
+	    style="@style/Button"
+	    android:layout_gravity="center_horizontal"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"/>
+	
+</LinearLayout>

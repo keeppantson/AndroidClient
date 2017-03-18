@@ -1,0 +1,293 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:2:1-148:12
+	package
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:3:5-26
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:5:5-33
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+	android:versionCode
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:4:5-29
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:2:11-69
+uses-sdk
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:21.0.0] /Users/mixiang/.android/build-cache/b34d0a895af58f5a5c8f89b835c0ec8023c7e011/output/AndroidManifest.xml:15:5-42
+	android:targetSdkVersion
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:9:9-38
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:8:9-35
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:13:2-76
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:13:19-73
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:14:2-76
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:14:19-73
+uses-permission#android.permission.INTERNET
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:15:2-64
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:15:19-61
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:16:2-73
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:16:19-70
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:17:2-73
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:17:19-70
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:20:2-76
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:20:19-73
+uses-permission#android.permission.BAIDU_LOCATION_SERVICE
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:21:2-78
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:21:19-75
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:22:2-78
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:22:19-75
+uses-permission#android.permission.ACCESS_MOCK_LOCATION
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:23:2-76
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:23:19-73
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:25:2-63
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:25:19-60
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:27:2-77
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:27:19-75
+application
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:29:5-146:19
+MERGED from [com.android.support:support-v4:21.0.0] /Users/mixiang/.android/build-cache/b34d0a895af58f5a5c8f89b835c0ec8023c7e011/output/AndroidManifest.xml:16:5-19
+	android:label
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:33:9-41
+	android:allowBackup
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:30:9-35
+	android:icon
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:32:9-45
+	android:theme
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:34:9-40
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:31:9-46
+meta-data#com.amap.api.v2.apikey
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:36:9-38:64
+	android:value
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:38:13-61
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:37:13-50
+service#com.amap.api.location.APSService
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:41:9-42:19
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:41:18-65
+activity#com.zgmz.ls.ui.SplashActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:44:9-52:20
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:46:13-49
+	android:label
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:47:13-45
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:45:13-57
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:48:13-51:29
+action#android.intent.action.MAIN
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:49:17-69
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:49:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:50:17-77
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:50:27-74
+activity#com.zgmz.ls.ui.MainActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:54:9-62:20
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:56:13-49
+	android:label
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:57:13-45
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:55:13-44
+intent-filter#android.intent.category.DEFAULT+com.zgmz.ls.action.MAIN
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:58:13-61:29
+action#com.zgmz.ls.action.MAIN
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:59:17-66
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:59:25-63
+category#android.intent.category.DEFAULT
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:60:17-76
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:60:27-73
+activity#com.zgmz.ls.ui.LoginActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:64:9-66:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:66:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:65:13-56
+activity#com.zgmz.ls.ui.UserInfoActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:67:9-69:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:69:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:68:13-59
+activity#com.zgmz.ls.ui.PreviewActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:70:9-72:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:72:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:71:13-58
+activity#com.zgmz.ls.ui.IDRecoginzeActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:73:9-75:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:75:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:74:13-62
+activity#com.zgmz.ls.ui.IDManualActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:76:9-78:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:78:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:77:13-59
+activity#com.zgmz.ls.ui.FingerprintActivitiy
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:79:9-81:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:81:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:80:13-63
+activity#com.zgmz.ls.ui.YearPhotoActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:82:9-84:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:84:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:83:13-60
+activity#com.zgmz.ls.ui.DistrictActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:85:9-87:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:87:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:86:13-59
+activity#com.zgmz.ls.ui.FamilySituationActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:88:9-90:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:90:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:89:13-66
+activity#com.zgmz.ls.ui.FamilyPropertyActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:91:9-93:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:93:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:92:13-65
+activity#com.zgmz.ls.ui.FamilyIncomeActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:94:9-96:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:96:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:95:13-63
+activity#com.zgmz.ls.ui.FamilySpendingActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:97:9-99:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:99:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:98:13-65
+activity#com.zgmz.ls.ui.SignatureActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:100:9-102:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:102:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:101:13-60
+activity#com.zgmz.ls.ui.SignaturePanelActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:103:9-105:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:105:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:104:13-65
+activity#com.zgmz.ls.ui.AttachmentActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:106:9-108:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:108:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:107:13-61
+activity#com.zgmz.ls.ui.ProfileActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:109:9-111:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:111:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:110:13-58
+activity#com.zgmz.ls.ui.PasswordActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:112:9-114:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:114:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:113:13-59
+activity#com.zgmz.ls.ui.FeedbackActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:115:9-117:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:117:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:116:13-59
+activity#com.zgmz.ls.ui.TechnicalSupportActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:118:9-120:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:120:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:119:13-67
+activity#com.zgmz.ls.ui.AboutActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:121:9-123:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:123:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:122:13-56
+activity#com.zgmz.ls.ui.SearchActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:124:9-126:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:126:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:125:13-57
+activity#com.zgmz.ls.ui.IDRecoginzeSimpleActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:127:9-129:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:129:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:128:13-68
+activity#com.zgmz.ls.ui.FingerprintSimpleActivitiy
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:130:9-132:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:132:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:131:13-69
+activity#com.zgmz.ls.ui.FingerprintCheckActivitiy
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:133:9-135:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:135:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:134:13-68
+activity#com.zgmz.ls.ui.IDInputActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:136:9-138:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:138:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:137:13-58
+activity#com.zgmz.ls.ui.CheckUserInfoActivity
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:139:9-141:51
+	android:screenOrientation
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:141:13-49
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:140:13-64
+service#com.synjones.idcard.RemoteDecodeService
+ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:143:9-145:40
+	android:process
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:145:13-38
+	android:name
+		ADDED from /Users/mixiang/Desktop/LowestSecurity/app/src/main/AndroidManifest.xml:144:13-67

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dialog styles -->
+    <style name="Dialog" parent="@android:style/Theme.Dialog">
+    	<item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowNoTitle">true</item>
+    </style>
+	    
+	<style name="Dialog.Alert" >
+    	<item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    
+    <style name="Dialog.Bottom" >
+    	<item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    
+    
+    <!-- Dialog Progress -->
+    <style name="Text.DialogProgressMessage">
+        <item name="android:textSize">@dimen/dialog_progress_message_text_size</item>
+        <item name="android:textColor">@color/gray_dark</item>
+    </style>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+	<TextView
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="6dp"
+        android:textColor="@color/gray"
+        android:text="@string/user_id_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+	
+	<EditText
+	    android:id="@+id/id_number"
+	    android:padding="12dp"
+	    style="@style/EditText"
+	    android:singleLine="true"
+	    android:maxLength="18"
+	    android:inputType="number"
+		android:digits="0123456789xX"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+	
+	<View 
+	    android:layout_weight="1"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    />
+	
+	<Button 
+	    android:id="@+id/btn_complete"
+	    android:text="@string/compele"
+	    style="@style/Button"
+	    android:layout_marginBottom="60dp"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"/>
+</LinearLayout>

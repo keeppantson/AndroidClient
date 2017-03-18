@@ -1,0 +1,264 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+    
+    <dimen name="horizontal_margin">16dp</dimen>
+	<dimen name="vertical_margin">16dp</dimen>
+	<dimen name="horizontal_padding">16dp</dimen>
+	<dimen name="vertical_padding">16dp</dimen>
+    
+    <!-- TextView -->
+    <dimen name="text_normal_size">16dp</dimen>
+    
+    <!-- Button -->
+    <dimen name="btn_text_size">18sp</dimen>
+    <dimen name="btn_default_width">120dp</dimen>
+    <dimen name="btn_gap">30dp</dimen>
+    
+    <!-- EditText -->
+   	<dimen name="edit_text_size">20sp</dimen>
+    
+	<!-- Toast -->
+    <dimen name="toast_max_width">250dp</dimen>
+    <dimen name="toast_min_height">30dp</dimen>
+ 	<dimen name="toast_max_height">200dp</dimen>
+ 	<dimen name="toast_message_margin_left">10dp</dimen>
+ 	<dimen name="toast_message_padding_right">10dp</dimen>
+ 	<dimen name="toast_logo_margin_left">0dip</dimen>
+ 	<dimen name="toast_logo_width">30dip</dimen>
+ 	<dimen name="toast_logo_height">30dip</dimen>
+    
+    <!-- Dialog  -->
+    <dimen name="dialog_title_text_size">24sp</dimen>
+ 	<dimen name="dialog_button_text_size">20sp</dimen>
+ 	
+ 	<dimen name="dialog_list_item_text_size">24sp</dimen>
+ 	<dimen name="dialog_list_item_height">60dp</dimen>
+ 	<dimen name="dialog_list_item_icon_width">40dp</dimen>
+ 	<dimen name="dialog_list_item_icon_height">40dp</dimen>
+ 	<dimen name="dialog_list_item_margin">12dp</dimen>
+ 	
+ 	<dimen name="dialog_frame_padding_horizantal">80dp</dimen>
+ 	<dimen name="dialog_title_height">54dp</dimen>
+ 	<dimen name="dialog_title_margin_left">10dp</dimen>
+ 	<dimen name="dialog_icon_width">42dp</dimen>
+ 	<dimen name="dialog_icon_height">42dp</dimen>
+ 	<dimen name="dialog_icon_margin_left">4dp</dimen>
+ 	
+ 	<dimen name="dialog_content_min_height">42dp</dimen>
+ 	<dimen name="dialog_content_frame_padding">16dp</dimen>
+ 	
+ 	<dimen name="dialog_btn_frame_padding_top">10dp</dimen>
+ 	<dimen name="dialog_btn_frame_padding_bottom">0dp</dimen>
+ 	
+ 	<dimen name="dialog_btn_width">120dp</dimen>
+ 	<dimen name="dialog_btn_height">40dp</dimen>
+ 	<dimen name="dialog_btn_gap">20dp</dimen>
+ 	
+ 	<dimen name="dialog_check_upgrade_height">200dp</dimen>
+ 	
+ 	<dimen name="dialog_download_min_height">100dp</dimen>
+ 	<dimen name="dialog_download_padding">10dp</dimen>
+ 	
+ 	<!-- Dialog Message -->
+ 	<dimen name="dialog_message_text_size">20sp</dimen>
+ 	
+ 	<!-- Dialog Progress -->
+ 	<dimen name="dialog_progress_min_height">48dp</dimen>
+ 	<dimen name="dialog_progress_min_width">240dp</dimen>
+ 	<dimen name="dialog_progress_margin">6dp</dimen>
+ 	<dimen name="dialog_progress_message_text_size">16sp</dimen>
+ 	<dimen name="dialog_progress_message_margin">10dp</dimen>
+ 	
+ 	<!-- Dialog add Photo -->
+ 	<dimen name="dialog_add_photo_margin_horizontal">20sp</dimen>
+ 	<dimen name="dialog_add_photo_padding_bottom">40sp</dimen>
+ 	<dimen name="dialog_add_photo_btn_gap">20sp</dimen>
+ 	
+    <!-- Title Bar -->
+    <dimen name="title_bar_height">64dp</dimen>
+    <dimen name="title_bar_btn_width">42dp</dimen>
+    <dimen name="title_bar_btn_height">42dp</dimen>
+    <dimen name="title_bar_btn_padding">16dp</dimen>
+    <dimen name="title_bar_btn_margin">16dp</dimen>
+    <dimen name="title_bar_btn_max_width">120dp</dimen>
+    
+    <dimen name="title_bar_text_size">20sp</dimen>
+    <dimen name="title_bar_btn_text_size">18sp</dimen>
+    
+    <!-- Splash -->
+    <dimen name="splash_logo_width">120dp</dimen>
+    <dimen name="splash_logo_height">120dp</dimen>
+    <dimen name="splash_app_name_margin_top">60dp</dimen>
+    <dimen name="splash_app_name_size">20sp</dimen>
+    <dimen name="splash_company_text_size">16sp</dimen>
+    <dimen name="splash_company_margin_bottom">60dp</dimen>
+	
+	<!-- Login -->
+	<dimen name="login_logo_width">120dp</dimen>
+    <dimen name="login_logo_height">120dp</dimen>
+	
+	<!-- Tab -->
+	<dimen name="tab_widget_height">64dp</dimen>
+	<dimen name="tab_padding">8dp</dimen>
+	<dimen name="tab_icon_width">30dp</dimen>
+	<dimen name="tab_icon_height">30dp</dimen>
+	<dimen name="tab_text_size">12sp</dimen>
+	
+	
+	<!-- Id Card -->
+	<dimen name="id_card_height">300dp</dimen>
+	<dimen name="id_card_content_text_size">15sp</dimen>
+	<dimen name="id_card_content_b_text_size">14sp</dimen>
+	<dimen name="id_card_name_margin_top">38dp</dimen>
+	<dimen name="id_card_name_margin_left">88dp</dimen>
+	<dimen name="id_card_sex_margin_top">18dp</dimen>
+	<dimen name="id_card_nation_margin_left">120dp</dimen>
+	<dimen name="id_card_year_margin_top">10dp</dimen>
+	<dimen name="id_card_year_width">60dp</dimen>
+	<dimen name="id_card_month_margin_left">24dp</dimen>
+	<dimen name="id_card_month_width">28dp</dimen>
+	<dimen name="id_card_day_margin_left">18dp</dimen>
+	<dimen name="id_card_day_width">28dp</dimen>
+	<dimen name="id_card_address_margin_top">20dp</dimen>
+	<dimen name="id_card_address_width">220dp</dimen>
+	<dimen name="id_card_number_margin_top">92dp</dimen>
+	<dimen name="id_card_number_margin_left">200dp</dimen>
+	<dimen name="id_card_avatar_width">120dp</dimen>
+	<dimen name="id_card_avatar_height">148dp</dimen>
+	<dimen name="id_card_avatar_margin_top">54dp</dimen>
+	<dimen name="id_card_avatar_margin_right">36dp</dimen>
+	<dimen name="id_card_authority_margin_left">204dp</dimen>
+	<dimen name="id_card_authority_margin_top">184dp</dimen>
+	<dimen name="id_card_period_margin_top">22dp</dimen>
+	
+	
+	<!-- User Info -->
+	<dimen name="base_info_height">100dp</dimen>
+	<dimen name="base_info_title_height">36dp</dimen>
+	<dimen name="base_info_avatar_margin_left">16dp</dimen>
+	<dimen name="base_info_avatar_width">72dp</dimen>
+	<dimen name="base_info_avatar_height">72dp</dimen>
+	<dimen name="base_info_key_name_size">15sp</dimen>
+	<dimen name="base_info_key_name_margin_top">22dp</dimen>
+	<dimen name="base_info_key_name_margin_left">20dp</dimen>
+	<dimen name="base_info_key_id_number_margin_top">6dp</dimen>
+	<dimen name="base_info_name_size">16sp</dimen>
+	<dimen name="base_info_name_margin_top">20dp</dimen>
+	<dimen name="base_info_name_margin_left">10dp</dimen>
+	<dimen name="base_info_id_number_margin_top">6dp</dimen>
+	<dimen name="base_info_arrow_margin_right">4dp</dimen>
+	<dimen name="base_info_item_height">120dp</dimen>
+	
+	<!-- List Item User Info -->
+	<dimen name="item_user_info_height">80dp</dimen>
+	<dimen name="item_user_info_avatar_margin_left">16dp</dimen>
+	<dimen name="item_user_info_avatar_width">64dp</dimen>
+	<dimen name="item_user_info_avatar_height">64dp</dimen>
+	<dimen name="item_user_info_name_size">15sp</dimen>
+	<dimen name="item_user_info_name_margin_top">12dp</dimen>
+	<dimen name="item_user_info_name_margin_left">16dp</dimen>
+	<dimen name="item_user_info_id_number_size">16sp</dimen>
+	<dimen name="item_user_info_id_number_margin_top">4dp</dimen>
+	<dimen name="item_user_info_arrow_margin_right">14dp</dimen>
+	
+	
+	<!-- fingerprint -->
+	<dimen name="fringer_demo_image_margin_top">40dp</dimen>
+	<dimen name="fringer_demo_image_width">240dp</dimen>
+	<dimen name="fringer_demo_image_height">240dp</dimen>
+	<dimen name="fringer_image_margin_top">40dp</dimen>
+	<dimen name="fringer_image_width">240dp</dimen>
+	<dimen name="fringer_image_height">240dp</dimen>
+	
+	
+	<!-- Preview --> 
+	<dimen name="preview_title_size">20sp</dimen>
+	<dimen name="preview_title_margin_left">16dp</dimen>
+	<dimen name="preview_title_tow_size">18sp</dimen>
+	<dimen name="preview_title_tow_margin_left">32dp</dimen>
+	<dimen name="preview_title_three_size">16sp</dimen>
+	<dimen name="preview_title_three_margin_left">32dp</dimen>
+	<dimen name="preview_content_size">16sp</dimen>
+	<dimen name="preview_content_margin_left">32dp</dimen>
+	<dimen name="preview_content_margin_right">16dp</dimen>
+	<dimen name="preview_finger_image_margin_top">10dp</dimen>
+	<dimen name="preview_finger_image_margin_bottom">18dp</dimen>
+	<dimen name="preview_finger_image_margin_left">32dp</dimen>
+	<dimen name="preview_finger_image_width">150dp</dimen>
+	<dimen name="preview_finger_image_height">150dp</dimen>
+	<dimen name="preview_year_photo_margin_top">10dp</dimen>
+	<dimen name="preview_year_photo_margin_bottom">20dp</dimen>
+	
+	<dimen name="preview_signature_image_margin_top">10dp</dimen>
+	<dimen name="preview_signature_image_margin_bottom">10dp</dimen>
+	<dimen name="preview_signature_image_margin_left">32dp</dimen>
+	<dimen name="preview_signature_image_margin_right">32dp</dimen>
+	<dimen name="preview_signature_image_width">240dp</dimen>
+	<dimen name="preview_signature_image_height">100dp</dimen>
+	
+	<!-- Settings -->
+	<dimen name="settings_item_height">80dp</dimen>
+	<dimen name="settings_item_name_margin_left">24dp</dimen>
+	<dimen name="settings_item_name_size">20sp</dimen>
+	
+	<!-- Family Situation -->
+	<dimen name="radio_item_height">54dp</dimen>
+	<dimen name="radio_name_padding_left">20dp</dimen>
+	<dimen name="radio_name_size">16sp</dimen>
+	<dimen name="radio_item_size">16sp</dimen>
+	<dimen name="radio_item_padding_left">16dp</dimen>
+	<dimen name="radio_item_margin_left">48dp</dimen>
+	<dimen name="radio_item_line_height">1dp</dimen>
+    <dimen name="family_sitiation_item_gap">12dp</dimen>
+    <dimen name="family_sitiation_item_height">54dp</dimen>
+    <dimen name="family_sitiation_item_name_margin_left">20dp</dimen>
+    <dimen name="family_sitiation_item_name_size">16sp</dimen>
+    <dimen name="family_sitiation_item_unit_size">16sp</dimen>
+    <dimen name="family_sitiation_item_unit_margin">20dp</dimen>
+    <dimen name="family_sitiation_item_input_width">80dp</dimen>
+    <dimen name="family_sitiation_item_input_size">18sp</dimen>
+    
+    
+    <!-- Family Income -->
+    <dimen name="family_income_margin_top">82dp</dimen>
+    <dimen name="family_income_margin_bottom">180dp</dimen>
+    <dimen name="family_income_item_gap">12dp</dimen>
+    <dimen name="family_income_item_line">1dp</dimen>
+    <dimen name="family_income_total_height">80dp</dimen>
+    <dimen name="family_income_item_first_height">72dp</dimen>
+    <dimen name="family_income_item_second_height">54dp</dimen>
+    <dimen name="family_income_item_first_name_margin_left">20dp</dimen>
+    <dimen name="family_income_item_first_name_size">18sp</dimen>
+    <dimen name="family_income_item_second_name_margin_left">20dp</dimen>
+    <dimen name="family_income_item_second_name_size">16sp</dimen>
+    <dimen name="family_income_item_first_unit_size">14sp</dimen>
+    <dimen name="family_income_item_first_unit_margin_left">10dp</dimen>
+    <dimen name="family_income_item_first_unit_margin_right">20dp</dimen>
+    <dimen name="family_income_item_second_unit_size">14sp</dimen>
+    <dimen name="family_income_item_second_unit_margin_left">10dp</dimen>
+    <dimen name="family_income_item_second_unit_margin_right">20dp</dimen>
+    <dimen name="family_income_item_first_input_width">120dp</dimen>
+    <dimen name="family_income_item_first_input_padding_right">6dp</dimen>
+    <dimen name="family_income_item_first_input_size">18sp</dimen>
+    <dimen name="family_income_item_second_input_width">120dp</dimen>
+    <dimen name="family_income_item_second_input_padding_right">6dp</dimen>
+    <dimen name="family_income_item_second_input_size">18sp</dimen>
+    
+    <!-- Signature -->
+    <dimen name="signature_padding">20dp</dimen>
+    <dimen name="signature_btn_margin">20dp</dimen>
+    
+    <!-- Attachment -->
+    <dimen name="attachment_cell_layout_padding">20dp</dimen>
+    <dimen name="attachment_cell_layout_width">120dp</dimen>
+    <dimen name="attachment_cell_layout_height">120dp</dimen>
+    <dimen name="attachment_cell_layout_width_gap">20dp</dimen>
+    <dimen name="attachment_cell_layout_height_gap">20dp</dimen>
+    
+    <!-- Search -->
+    <dimen name="search_item_gap">60dp</dimen>
+    
+</resources>
