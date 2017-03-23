@@ -10,8 +10,10 @@ import com.zgmz.ls.utils.RestClient;
 import com.zgmz.ls.utils.RestResult;
 
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class AboutActivity extends SubActivity {
@@ -33,9 +35,13 @@ public class AboutActivity extends SubActivity {
 			@Override
 			public void run()
 			{
-				TestUploadFamily();
-				TestUploadFile();
-				TestGetProgress();
+				//TestUploadFamily();
+				//TestUploadFile();
+				//TestGetProgress();
+				RestClient client = new RestClient("115.28.185.19", "mx", "pwd", "1234567890");
+				RestResult result = client.GetConfig();
+				System.out.println("mx: get result:" + result.body.toString());
+
 			}
 		});
 		thread.start();
@@ -59,14 +65,14 @@ public class AboutActivity extends SubActivity {
 		RestClient client = new RestClient("115.28.185.19", "mx", "pwd", "1234567890");
 
 		ArrayList<String> path = new ArrayList<String>();
-		ArrayList<String> content = new ArrayList<String>();
+		ArrayList<byte[]> content = new ArrayList<byte[]>();
 		// file1
 		path.add("http://X.X.X.X/2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.jpg");
-		content.add("d2Vxd2UxZXF3ZXdxZXE=");
+		content.add("d2Vxd2UxZXF3ZXdxZXE=".getBytes());
 
 		//file2
 		path.add("http://X.X.X.X/2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.mp4");
-		content.add("d2llaHdxaWVxd2VqcXdlbHF3ZXdxZXF3ZXF3ZXF3");
+		content.add("d2llaHdxaWVxd2VqcXdlbHF3ZXdxZXF3ZXF3ZXF3".getBytes());
 
 		RestResult result = client.UploadFile(path, content);
 		System.out.println("mx: get result:" + result.body.toString());
@@ -135,7 +141,7 @@ public class AboutActivity extends SubActivity {
 		met1.cllx = "视频";
 		met1.clxx = "/home/video";
 		f.zmclxx.add(met1);
-		client.UploadFamily(f);
+		client.UploadFamily(f.ToJSONString());
 	}
 	
 }

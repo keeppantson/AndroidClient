@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import android.util.Base64;
 
 public class RestClient {
     private ArrayList<String> servers = new ArrayList<String>();
@@ -40,7 +41,7 @@ public class RestClient {
     param@family : 低保家庭实例
     ret param@: rest请求返回结果
      */
-    public RestResult UploadFamily(Family family) {
+    public RestResult UploadFamily(String family) {
         try {
             //mx: TODO
             URL url = new URL("http://" + servers.get(0) + "/" + versionString + "/" + "users");
@@ -51,9 +52,7 @@ public class RestClient {
             conn.setRequestProperty("Content-Type", "application/json");
             SetHeader(conn);
 
-            String input = AppendUsernameAndPassword(family.ToJSONString());
-
-            System.out.println("mx: family string is:" + input);
+            String input = family;
 
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());
@@ -80,10 +79,10 @@ public class RestClient {
     /*
     上传一个文件
     param@filePath : 文件将要上传到服务器上的路径
-    param@fileContent : 文件内容(经过base64 encode)
+    param@fileContent : 文件内容
     ret param@: rest请求返回结果
      */
-    public RestResult UploadFile(ArrayList<String> filePath, ArrayList<String> fileContent) {
+    public RestResult UploadFile(ArrayList<String> filePath, ArrayList<byte[]> fileContent) {
         try {
             //mx: TODO
             URL url = new URL("http://" + servers.get(0) + "/" + versionString + "/" + "files");
@@ -103,15 +102,16 @@ public class RestClient {
             }
 
             StringBuilder builder = new StringBuilder();
-            builder.append("[");
+            builder.append("{files:[");
             for (int i = 0; i < filePath.size(); ++i) {
                 builder.append("{");
-                builder.append(String.format("\"path\" : \"%s\", \"content\" : \"%s\"", filePath.get(i), fileContent.get(i)));
+                byte[] encode = Base64.encode(fileContent.get(i), Base64.DEFAULT);
+                builder.append(String.format("\"path\" : \"%s\", \"content\" : \"%s\"", filePath.get(i), new String(encode, "UTF-8")));
                 builder.append("},");
             }
             String request = builder.toString();
             request = request.substring(0, request.length() - 1); // trim last ,
-            String input = AppendUsernameAndPassword(request + "]");
+            String input = request + "]}";
 
             System.out.println("mx: file string is:" + input);
 
@@ -172,19 +172,31 @@ public class RestClient {
         return null;
     }
 
-    /*
-    获得一条太极原始数据
-    param@id : 申请人身份证号
-    param@date : 救助年月, 格式为yyyyMM
-    param@out : 获取结果
-    ret param@: rest请求返回status code
-     */
-    public int GetFamilyFromTaiJi(String id, String date, Family out) {
-        return 0;
-    }
+    public RestResult GetConfig() {
+        try {
+            //mx: TODO
+            URL url = new URL("http://" + servers.get(0) + "/config");
 
-    private String AppendUsernameAndPassword(String request) {
-        return String.format("{\"cred\" : {\"username\":\"%s\", \"password\":\"%s\", \"imei\":\"%s\"}, \"request\" : %s }", this.userName, this.passWord, this.imei, request);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            RestResult res = BuildResultFromConnection(conn);
+            conn.disconnect();
+            return res;
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private RestResult BuildResultFromConnection(HttpURLConnection conn) throws IOException, JSONException {
