@@ -35,12 +35,26 @@ public class AboutActivity extends SubActivity {
 			@Override
 			public void run()
 			{
-				//TestUploadFamily();
+				try {
+//					RestResult res = TestUploadFamily();
+//					System.out.println(String.format("mx: server = %s, rpc = %s", res.server, res.rpc));
+//
+//					Thread.sleep(1000);
+//					TestGetProgress(res.body.getString("token"), res.server, res.rpc);
+//
+//					Thread.sleep(10000);
+//					TestGetProgress(res.body.getString("token"), res.server, res.rpc);
+
+					TestUploadFile("115.28.185.19", "localhost:50001");
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				//TestUploadFile();
 				//TestGetProgress();
-				RestClient client = new RestClient("115.28.185.19", "mx", "pwd", "1234567890");
-				RestResult result = client.GetConfig();
-				System.out.println("mx: get result:" + result.body.toString());
+				//RestClient client = new RestClient("115.28.185.19", "mx", "pwd", "1234567890");
+				//RestResult result = client.GetConfig();
+				//System.out.println("mx: get result:" + result.body.toString());
 
 			}
 		});
@@ -55,30 +69,30 @@ public class AboutActivity extends SubActivity {
 		super.setupViews(view);
 	}
 
-	private void TestGetProgress() {
+	private void TestGetProgress(String token, String server, String rpc) {
 		RestClient client = new RestClient("115.28.185.19", "mx", "pwd", "1234567890");
-		RestResult result = client.GetProgress(12345);
+		RestResult result = client.GetProgress(token, server, rpc);
 		System.out.println("mx: get result:" + result.body.toString());
 	}
 
-	private void TestUploadFile() {
+	private void TestUploadFile(String server, String rpc) throws Exception {
 		RestClient client = new RestClient("115.28.185.19", "mx", "pwd", "1234567890");
 
 		ArrayList<String> path = new ArrayList<String>();
 		ArrayList<byte[]> content = new ArrayList<byte[]>();
 		// file1
-		path.add("http://X.X.X.X/2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.jpg");
+		path.add("2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.jpg");
 		content.add("d2Vxd2UxZXF3ZXdxZXE=".getBytes());
 
 		//file2
-		path.add("http://X.X.X.X/2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.mp4");
+		path.add("2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.mp4");
 		content.add("d2llaHdxaWVxd2VqcXdlbHF3ZXdxZXF3ZXF3ZXF3".getBytes());
 
-		RestResult result = client.UploadFile(path, content);
+		RestResult result = client.UploadFile(path.get(0), content.get(0), server, rpc);
 		System.out.println("mx: get result:" + result.body.toString());
 	}
 
-	private void TestUploadFamily() {
+	private RestResult TestUploadFamily() throws Exception {
 		RestClient client = new RestClient("115.28.185.19", "mx", "pwd", "1234567890");
 		Family f = new Family();
 		f.fInfo = new FamilyInfo();
@@ -141,7 +155,9 @@ public class AboutActivity extends SubActivity {
 		met1.cllx = "视频";
 		met1.clxx = "/home/video";
 		f.zmclxx.add(met1);
-		client.UploadFamily(f.ToJSONString());
+		RestResult res = client.UploadFamily(f.ToJSONString());
+		System.out.println("mx: receive json body:" + res.body.toString());
+		return res;
 	}
 	
 }

@@ -10,4 +10,6 @@ import org.json.JSONObject;
 public class RestResult {
     public int statusCode;
     public JSONObject body;
+    public String server;
+    public String rpc;
 }
