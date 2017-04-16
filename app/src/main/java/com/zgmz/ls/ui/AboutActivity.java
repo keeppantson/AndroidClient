@@ -13,7 +13,14 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class AboutActivity extends SubActivity {
@@ -35,9 +42,21 @@ public class AboutActivity extends SubActivity {
 			@Override
 			public void run()
 			{
+				ByteArrayOutputStream os = new ByteArrayOutputStream();
 				try {
-//					RestResult res = TestUploadFamily();
-//					System.out.println(String.format("mx: server = %s, rpc = %s", res.server, res.rpc));
+					for (int i = 0; i < 1024*1024; ++i)
+					os.write("12345".getBytes());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				System.out.println("mx size:" + os.size());
+				System.out.println("mx str:" + os.toString());
+
+
+				try {
+					RestResult res = TestUploadFamily();
+					System.out.println(String.format("mx: server = %s, rpc = %s", res.server, res.rpc));
 //
 //					Thread.sleep(1000);
 //					TestGetProgress(res.body.getString("token"), res.server, res.rpc);
@@ -45,7 +64,7 @@ public class AboutActivity extends SubActivity {
 //					Thread.sleep(10000);
 //					TestGetProgress(res.body.getString("token"), res.server, res.rpc);
 
-					TestUploadFile("115.28.185.19", "localhost:50001");
+					//TestUploadFile("115.28.185.19", "localhost:50001");
 
 				} catch (Exception e) {
 					e.printStackTrace();

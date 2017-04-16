@@ -3,3 +3,4 @@ build/android-profile
 app/build/outputs/apk/
 .gradle
 app/build/intermediates
+.gradle

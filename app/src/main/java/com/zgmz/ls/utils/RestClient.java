@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -79,8 +80,9 @@ public class RestClient {
         request = request.substring(0, request.length() - 1); // trim last ,
         String input = request + "]";
 
-        String tmp = "[{\"content\": \"d2Vxd2UxZXF3ZXdxZXE=\", \"path\": \"/2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.jpg\"}]";
-        return DoPost("files", tmp, server, rpc);
+        System.out.println("mx: upload json" + input);
+        //String tmp = "[{\"content\": \"d2Vxd2UxZXF3ZXdxZXE=\", \"path\": \"/2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.jpg\"}]";
+        return DoPost("files", input, server, rpc);
     }
 
 
@@ -139,9 +141,6 @@ public class RestClient {
         RestResult res = new RestResult();
         res.statusCode = conn.getResponseCode();
 
-        char[] buff;
-        buff = new char[buffsize];
-
         InputStream is;
         if (res.statusCode >= 400) {
             is = conn.getErrorStream();
@@ -150,16 +149,27 @@ public class RestClient {
             is = conn.getInputStream();
         }
 
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        char[] buff;
+        buff = new char[1024];
+
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
         int read = br.read(buff);
-        System.out.println("mx: readbuff size:" + read);
-        res.body = new JSONObject(new String(buff));
+        while (read > 0) {
+            os.write(new String(buff, 0, read).getBytes());
+            read = br.read(buff);
+        }
+
+        System.out.println("mx: readbuff size:" + os.size());
+        String tmp = new String(os.toByteArray());
+
+        //mx: debug
+        System.out.println("mx: printbuff:" + tmp);
+        res.body = new JSONObject(tmp);
 
         // record rpc
         res.rpc = conn.getHeaderField("rpc");
-
-        //mx: debug
-        System.out.println("mx: printbuff:" + buff);
         return res;
     }
 
