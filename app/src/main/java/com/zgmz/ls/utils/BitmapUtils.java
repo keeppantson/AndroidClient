@@ -1,6 +1,8 @@
 package com.zgmz.ls.utils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -80,7 +82,7 @@ public final class BitmapUtils {
 	/**
 	 * 图片合成
 	 * 
-	 * @param bitmap
+	 * @param
 	 * @return
 	 */
 	public static Bitmap createBitmap(Bitmap src, Bitmap watermark) {
@@ -108,7 +110,7 @@ public final class BitmapUtils {
 	/**
 	 * 放大缩小图片
 	 * 
-	 * @param bitmap
+	 * @param
 	 * @param w
 	 * @param h
 	 * @return
@@ -128,7 +130,7 @@ public final class BitmapUtils {
 	 * 根据原图和变长绘制圆形图片
 	 * 
 	 * @param source
-	 * @param min
+	 * @param
 	 * @return
 	 */
 	public static Bitmap createCircleImage(Bitmap source) {
@@ -141,7 +143,7 @@ public final class BitmapUtils {
 	 * 根据原图和变长绘制圆形图片
 	 * 
 	 * @param source
-	 * @param min
+	 * @param
 	 * @param color
 	 * @return
 	 */
@@ -182,7 +184,7 @@ public final class BitmapUtils {
 	/**
 	 * 图片圆角
 	 * 
-	 * @param bitmap
+	 * @param
 	 * @return
 	 */
 	public static Bitmap getRoundedCornerBitmap(Bitmap src) {
@@ -207,7 +209,7 @@ public final class BitmapUtils {
 	/**
 	 * 获得带倒影的图片方法
 	 * 
-	 * @param bitmap
+	 * @param
 	 * @return
 	 */
 	public static Bitmap createReflectionImageWithOrigin(Bitmap src) {
@@ -295,6 +297,20 @@ public final class BitmapUtils {
 		AssetManager am = AppContext.getAppContext().getAssets();
 		try {
 			InputStream is = am.open(file);
+			image = BitmapFactory.decodeStream(is);
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return image;
+	}
+
+	public static Bitmap getFileImage(String file) {
+		Bitmap image = null;
+		try {
+			File f = new File(file);
+			InputStream is = new FileInputStream(f);
 			image = BitmapFactory.decodeStream(is);
 			is.close();
 		} catch (IOException e) {

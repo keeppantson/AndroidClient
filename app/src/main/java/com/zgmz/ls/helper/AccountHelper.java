@@ -49,7 +49,8 @@ public class AccountHelper {
 	}
 	
 	public boolean isLogined() {
-		return !PreferencesUtils.getInstance().isEmptyToken();
+		//return !PreferencesUtils.getInstance().isEmptyToken();
+		return false;
 	}
 	
 	public String getToken() {

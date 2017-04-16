@@ -1,5 +1,6 @@
 package com.zgmz.ls.ui;
 
+import com.android.charger.EmGpio;
 import com.zgmz.ls.R;
 import com.zgmz.ls.base.Const;
 import com.zgmz.ls.base.SharedDatas;
@@ -10,9 +11,9 @@ import com.zgmz.ls.model.SimpleUserInfo;
 import com.zgmz.ls.module.fp.Command;
 import com.zgmz.ls.module.fp.TouchIdCallback;
 import com.zgmz.ls.module.fp.TouchIdCommand.Response;
-import com.zgmz.ls.module.fp.TouchIdController;
 import com.zgmz.ls.utils.ToastUtils;
 import com.zgmz.ls.utils.VibratorUtil;
+
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,6 +25,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.zz.jni.mxComFingerDriver;
+import org.zz.jni.zzFingerAlg;
 
 public class FingerprintActivitiy extends SubActivity implements OnClickListener{
 	
@@ -56,8 +60,13 @@ public class FingerprintActivitiy extends SubActivity implements OnClickListener
 	
 	private SimpleUserInfo mUserInfo;
 	
-	private TouchIdController mTouchIdController;
-	
+	// private TouchIdController mTouchIdController;
+
+    // Jni库
+    mxComFingerDriver devDriver;
+    zzFingerAlg algDriver;
+    private static final int TZ_SIZE = 512;
+    private byte[] m_tzBuf = new byte[TZ_SIZE];
 	private int mUserId = 0;
 	
 	private static final long DELAY_TIME = 1500;
@@ -78,12 +87,33 @@ public class FingerprintActivitiy extends SubActivity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fingerprint);
 		onNewIntent(getIntent());
+        devDriver = new mxComFingerDriver();
+        algDriver = new zzFingerAlg();
 		initController();
+        mtSetGPIOValue(4, true);
 	}
+
+    public void mtSetGPIOValue(int pin, boolean bHigh)
+    {
+        if (pin < 0) {
+            return;
+        }
+        EmGpio.gpioInit();
+        EmGpio.setGpioMode(pin);
+        if (bHigh)
+        {
+            EmGpio.setGpioOutput(pin);
+            EmGpio.setGpioDataHigh(pin);
+        }
+        else
+        {
+            EmGpio.setGpioOutput(pin);
+            EmGpio.setGpioDataLow(pin);
+        }
+        EmGpio.gpioUnInit();
+    }
 	
 	private void initController() {
-		mTouchIdController = new TouchIdController();
-		mTouchIdController.setCallBack(mTouchIdCallback);
 	}
 	
 	@Override
@@ -115,14 +145,14 @@ public class FingerprintActivitiy extends SubActivity implements OnClickListener
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mTouchIdController.open();
+		//mTouchIdController.open();
 	}
 	
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mTouchIdController.close();
+		//TouchIdController.close();
 	}
 	
 	
@@ -238,32 +268,32 @@ public class FingerprintActivitiy extends SubActivity implements OnClickListener
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 0% \n等待第一次录入指纹");
-		mTouchIdController.enroll1(mUserId);
+		//mTouchIdController.enroll1(mUserId);
 	}
 	
 	private void startInputSencond() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 25% \n等待第二次录入指纹");
-		mTouchIdController.enroll2(mUserId);
+		//mTouchIdController.enroll2(mUserId);
 	}
 	
 	private void startInputThird() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 60% \n等待第三次录入指纹");
-		mTouchIdController.enroll3(mUserId);
+		//mTouchIdController.enroll3(mUserId);
 	}
 	
 	private void startInputFourth() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 80% \n等待最后一次录入指纹");
-		mTouchIdController.captureImage();
+		//mTouchIdController.captureImage();
 	}
 	
 	private void getUserEgienValue() {
-		mTouchIdController.getUserEigenValue(mUserId);
+		//mTouchIdController.getUserEigenValue(mUserId);
 	}
 	
 //	private void removeTouchIdAllUser() {
@@ -271,9 +301,14 @@ public class FingerprintActivitiy extends SubActivity implements OnClickListener
 //	}
 	
 	private void removeUserTouchId() {
-		mTouchIdController.removeUser(mUserId);
+		//mTouchIdController.removeUser(mUserId);
 	}
-	
+    @Override
+    protected void onDestroy() {
+        //mtSetGPIOValue(64, false);
+        mtSetGPIOValue(4, false);
+        super.onDestroy();
+    }
 	
 	TouchIdCallback mTouchIdCallback = new TouchIdCallback() {
 		

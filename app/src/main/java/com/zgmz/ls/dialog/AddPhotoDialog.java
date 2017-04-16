@@ -14,13 +14,17 @@ import android.widget.Button;
 
 public class AddPhotoDialog extends BaseDialog implements android.view.View.OnClickListener {
 
-	public static final int REQUEST_CODE_ALBUM = 0x12001;
+	public static final int REQUEST_CODE_HUKOUBEN = 101;
 
-	public static final int REQUEST_CODE_CAMERA = 0x12002;
+	public static final int REQUEST_CODE_CAMERA = 103;
 
-	Button mAlbum;
+	public static final int REQUEST_CODE_SHENFENZHENG = 102;
 
-	Button mCamera;
+	Button mShenfenzheng;
+
+	// Button mCamera;
+
+    Button mHukouben;
 
 	public AddPhotoDialog(Context context) {
 		super(context, R.style.Dialog, Gravity.BOTTOM);
@@ -33,11 +37,13 @@ public class AddPhotoDialog extends BaseDialog implements android.view.View.OnCl
 	@Override
 	public void setupViews() {
 		// TODO Auto-generated method stub
-		mAlbum = (Button) findViewById(R.id.album);
-		mCamera = (Button) findViewById(R.id.camera);
+        mShenfenzheng = (Button) findViewById(R.id.shenfenzheng);
+		//mCamera = (Button) findViewById(R.id.camera);
+        mHukouben = (Button) findViewById(R.id.hukouben);
 
-		mAlbum.setOnClickListener(this);
-		mCamera.setOnClickListener(this);
+        mShenfenzheng.setOnClickListener(this);
+		//mCamera.setOnClickListener(this);
+        mHukouben.setOnClickListener(this);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -54,12 +60,15 @@ public class AddPhotoDialog extends BaseDialog implements android.view.View.OnCl
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.album:
-			startAlbumActivity();
+		case R.id.shenfenzheng:
+            startShengfenzhenActivity();
 			break;
-		case R.id.camera:
-			startCameraActivity();
-			break;
+		//case R.id.camera:
+		//	startCameraActivity();
+		//	break;
+        case R.id.hukouben:
+            startCameraActivity();
+            break;
 		default:
 			break;
 		}
@@ -67,13 +76,17 @@ public class AddPhotoDialog extends BaseDialog implements android.view.View.OnCl
 		dismiss();
 	}
 
-	private void startAlbumActivity() {
-		Intent intent = new Intent();
-		intent.setType("image/*");
-		intent.setAction(Intent.ACTION_GET_CONTENT);
-		getActivity().startActivityForResult(intent, REQUEST_CODE_ALBUM);
+    private void startShengfenzhenActivity() {
+        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Const.IMAGE_URI);
+        getActivity().startActivityForResult(openCameraIntent, REQUEST_CODE_SHENFENZHENG);
+    }
 
-	}
+    private void startHukoubenActivity() {
+        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Const.IMAGE_URI);
+        getActivity().startActivityForResult(openCameraIntent, REQUEST_CODE_HUKOUBEN);
+    }
 
 	private void startCameraActivity() {
 		Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

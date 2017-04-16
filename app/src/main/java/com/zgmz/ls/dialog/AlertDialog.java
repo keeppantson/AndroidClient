@@ -38,7 +38,9 @@ public class AlertDialog extends BaseDialog {
 	public AlertDialog(Context context) {
 		super(context, R.style.Dialog_Alert, Gravity.CENTER);
 	}
-
+	public AlertDialog(Context context, int theam) {
+		super(context, theam, Gravity.CENTER);
+	}
 	@Override
 	public void setupViews() {
 	}
@@ -49,7 +51,7 @@ public class AlertDialog extends BaseDialog {
 		
 		View root = mInflater.inflate(R.layout.dialog_alert, null);
 		
-		mTitle = (TextView)root.findViewById(R.id.title);
+		//mTitle = (TextView)root.findViewById(R.id.title);
 		mIcon = (ImageView)root.findViewById(R.id.icon);
 		mContent = (FrameLayout)root.findViewById(R.id.content);
 		
@@ -73,12 +75,12 @@ public class AlertDialog extends BaseDialog {
 	}
 	
 	public void setTitle(int resId){
-		mTitle.setText(resId);
+		//mTitle.setText(resId);
 	}
 	
-	public void setTitle(CharSequence text){
+	/*public void setTitle(CharSequence text){
 		mTitle.setText(text);
-	}
+	}*/
 	
 	public void setIcon(int resId){
 		mIcon.setImageResource(resId);

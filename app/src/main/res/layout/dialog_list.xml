@@ -2,21 +2,49 @@
 <FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+    android:orientation="vertical">
 	  
 	
 	<ListView
 	  	android:id="@+id/list"
-	  	android:cacheColorHint="@android:color/transparent"
 	  	android:layout_width="match_parent"
-	  	android:layout_height="match_parent"/>
-	
-	
-	<TextView 
-	    android:id="@+id/empty"
-	    android:layout_gravity="center"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"/>
-	    
-    
+        android:choiceMode="singleChoice"
+	  	android:layout_height="300dp"/>
+
+
+
+	<ImageView
+		android:layout_width="fill_parent"
+		android:layout_height="10dp"
+		android:layout_marginTop="300dp"
+		android:background="@drawable/zhong_xian_6"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="320dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dialog_confirm"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text = "确定"
+                android:textSize = "25dp"
+                android:textColor="@color/orange"
+                android:background="@color/white"
+                android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="10dp"/>
+            <Button
+                android:id="@+id/dialog_cancel"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text = "取消"
+                android:textSize = "25dp"
+                android:textColor="@color/orange"
+                android:background="@color/white"/>
+        </LinearLayout>
+
 </FrameLayout>

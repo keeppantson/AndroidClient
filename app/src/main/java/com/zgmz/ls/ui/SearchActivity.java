@@ -85,8 +85,7 @@ public class SearchActivity extends SubActivity implements OnClickListener, OnIt
 		mBtnFingerprint = (ImageButton)view.findViewById(R.id.fingerprint);
 		mBtnIdNumber = (ImageButton)view.findViewById(R.id.id_number);
 		
-		
-		mFrameResult = view.findViewById(R.id.result);
+
 		
 		mListView = (ListView) mFrameResult.findViewById(R.id.list);
 		mEmptyView = (TextView) mFrameResult.findViewById(R.id.empty_text);

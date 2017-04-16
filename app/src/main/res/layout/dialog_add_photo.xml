@@ -16,22 +16,24 @@
 	    android:text="@string/album_or_camera_prompt"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"/>
-	
-	
+
+
 	<Button
-		android:id="@+id/album"
-		android:text="@string/album"
+		android:id="@+id/shenfenzheng"
+		android:text="@string/shenfenzheng"
 		style="@style/Button"
 		android:layout_marginTop="60dp"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"/>
- 	        
-	<Button
-		android:id="@+id/camera"
-		android:text="@string/camera"
-		style="@style/Button"
-		android:layout_marginTop="@dimen/dialog_add_photo_btn_gap"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/hukouben"
+        android:text="@string/hukouben"
+        style="@style/Button"
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
  		
 </LinearLayout>

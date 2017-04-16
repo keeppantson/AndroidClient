@@ -76,23 +76,6 @@ public class UserInfoActivity extends SubActivity implements OnClickListener{
 		}
 	}
 	
-	private void updateTitle() {
-		if(mType == InfoType.INPUT) {
-			setTitleBarRightButtonText(null);
-		}
-		else if(mType == InfoType.CHECK) {
-			if(mUserInfo != null) {
-				if(mUserInfo.isChecked()) {
-					setTitleBarTitleText(R.string.checked);
-				}
-				else {
-					setTitleBarTitleText(R.string.uncheck);
-					setTitleBarRightButtonText("确认");
-				}
-			}
-		}
-	}
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +112,6 @@ public class UserInfoActivity extends SubActivity implements OnClickListener{
 		mUserInfo = DBHelper.getInstance().getUserInfo(mUserId, true);
 		updateUserBaseInfo(mUserInfo);
 		updateAllInfosState();
-		updateTitle();
 	}
 	
 	private void updateUserBaseInfo(UserInfo info) {

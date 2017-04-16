@@ -41,12 +41,19 @@ public class UserInfoAdapter extends BaseAdapter {
 		return null;
 	}
 
+    public int getSelectedIndex(){
+        return selectedIndex;
+    }
+
+    public void setSelectedIndex(int index){
+        selectedIndex = index;
+    }
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return position;
 	}
-
+	int selectedIndex;
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
@@ -68,6 +75,16 @@ public class UserInfoAdapter extends BaseAdapter {
 				avatar.setImageBitmap(info.getAvatar());
 			}
 		}
+		if(selectedIndex == position){
+			name.setTextColor(0xFFFF0000);
+		}
+
+        if(selectedIndex == -2){
+            name.setTextColor(0xFFFF0000);
+        }
+        if(selectedIndex == -3){
+            name.setTextColor(0xFF000000);
+        }
 		return view;
 	}
 

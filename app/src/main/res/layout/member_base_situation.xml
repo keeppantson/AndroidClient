@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="30dp"
+    android:orientation="vertical"
+	android:weightSum="1">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp">
+
+		<Button
+			android:id="@+id/recognize_input"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/btn_white"
+			android:text="@string/recognize_input_id"
+			android:textColor="@color/btn_white_text"
+			android:textSize="18sp" />
+
+	</LinearLayout>
+	<TextView
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:text="@string/member_situation_base"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <include
+	    android:id="@+id/CYXM"
+        layout="@layout/family_base_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+
+    <include
+	    android:id="@+id/CYSFZ"
+        layout="@layout/family_base_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+
+
+	<include
+	    android:id="@+id/CYXB"
+	    layout="@layout/radio_gender"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+
+	<include
+		android:id="@+id/CYNL"
+		layout="@layout/family_base_situation_item_input"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<include
+		android:id="@+id/CYLDNL"
+		layout="@layout/radio_laber_ability"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<include
+		android:id="@+id/CYJKQK"
+		layout="@layout/radio_health"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<include
+		android:id="@+id/CYCJLB"
+		layout="@layout/radio_disability"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYCJDJ"
+		layout="@layout/radio_disability_level"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYWHCD"
+		layout="@layout/radio_education"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYSFZX"
+		layout="@layout/radio_tow"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYYSQRGX"
+		layout="@layout/radio_ysqrgx"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYSFYTX"
+		layout="@layout/radio_tow"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYSFHCZP"
+		layout="@layout/radio_tow"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYSFHCSFZ"
+		layout="@layout/radio_tow"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYSFHCHKB"
+		layout="@layout/radio_tow"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYSFZZT"
+		layout="@layout/radio_sfzzt"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<include
+		android:id="@+id/CYRYZT"
+		layout="@layout/radio_ryzt"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	
+</LinearLayout>
+</ScrollView>

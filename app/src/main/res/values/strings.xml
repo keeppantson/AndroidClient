@@ -17,9 +17,10 @@
     <string name="dialog_tilte_service_terms">"服务条款"</string>
     
     <!-- Dialog add Photo -->
-    <string name="album">"相册"</string>
-    <string name="camera">"拍照"</string>
-    <string name="album_or_camera_prompt">"相册/拍照获取图片"</string>
+    <string name="shenfenzheng">"身份证"</string>
+    <string name="camera">"个人拍照"</string>
+	<string name="hukouben">"户口本"</string>
+    <string name="album_or_camera_prompt">"拍照获取图片"</string>
 
     <!-- Splash -->
     <string name="splash_app_name">"低保核查及信息采集终端"</string>
@@ -38,16 +39,24 @@
     
     <!-- Check -->
     <string name="title_tab_check">"核查"</string>
+	<string name="download">"待下载"</string>
     <string name="uncheck">"待核查"</string>
-    <string name="checked">"已核查"</string>
+    <string name="uploading">"待上传"</string>
+	<string name="uploaddone">"正在上传"</string>
+	<string name="shujushangbao">"数据上报"</string>
+	<string name="shujuhecha">"数据核查"</string>
+	<string name="shujuxiazai">"数据下载"</string>
     <string name="no_uncheck_data">"暂无待核查数据"</string>
     <string name="no_checked_data">"暂无已核查数据"</string>
-    
+
     <!-- Record -->
     <string name="title_tab_record">"录入"</string>
     <string name="recognize_input_id">"扫二代证录入"</string>
     <string name="manual_input_id">"手动录入"</string>
     <string name="no_record_data">"暂无录入记录"</string>
+	<string name="add_download">"增加下载任务"</string>
+	<string name="commit">"完成核查"</string>
+	<string name="commit_add">"完成添加"</string>
     
     
     <!-- Settings -->
@@ -64,6 +73,7 @@
 	
 	<!-- ID Manual -->
 	<string name="title_id_manual">"新建用户"</string>
+	<string name="title_new_task">"新建任务"</string>
 	<string name="user_name">"姓名"</string>
 	<string name="user_id_number">"身份证号"</string>
 	
@@ -76,9 +86,11 @@
 	<string name="btn_ok">"确定"</string>
 	<string name="id_card_a">"身份证正面"</string>
 	<string name="id_card_b">"身份证反面"</string>
+	<string name="start_upload">"开始上传"</string>
 	
 	<!-- User Info -->
 	<string name="title_user_info">"个人信息"</string>
+	<string name="title_family_info">"家庭信息"</string>
 	<string name="name">"姓    名："</string>
 	<string name="id_number">"身份证："</string>
 	
@@ -96,14 +108,21 @@
 	<string name="other">"其他"</string>
 	<string name="signature">"签名"</string>
 	<string name="attachment">"其他相关照片"</string>
-	
+	<!-- Check Family Info -->
+	<string name="title_check_family_info">"家庭信息"</string>
+
+	<string name="family_base_info">"家庭信息"</string>
+	<string name="check_family_preview">"预览"</string>
+	<string name="check_members">"家庭成员"</string>
 	<!-- Check User Info -->
 	<string name="title_check_user_info">"个人信息"</string>
 	
 	<string name="check_user_info">"个人信息"</string>
+	<string name="other_user_info">"其他个人信息"</string>
 	<string name="check_preview">"预览"</string>
 	<string name="check_id_recognize">"二代证核查"</string>
 	<string name="check_fingerprint_input">"指纹比对"</string>
+	<string name="add_member">"增加家庭成员"</string>
 	<string name="check_year_photo">"年度拍照"</string>
 	<string name="check_district_area">"行政区划"</string>
 	
@@ -116,8 +135,9 @@
 	<string name="check_other">"其他"</string>
 	<string name="check_signature">"签名"</string>
 	<string name="check_attachment">"其他相关照片"</string>
-	
-	
+	<string name="delete_member">"删除该成员"</string>
+
+
 	<!-- Fingerprint -->
 	<string name="title_fingerprint">"指纹录入"</string>
 	<string name="fingerprint_prompt">"请将右手大拇指\n放置在指纹模块上"</string>
@@ -145,7 +165,30 @@
 	<string name="preview_title_finger">"指纹信息"</string>
 	<string name="preview_title_year_photo">"年度照片"</string>
 	<string name="preview_title_district">"区域信息"</string>
-	
+	<string name="preview_nd">"核查（抽查）年度"</string>
+	<string name="preview_rq">"核查（抽查）日期"</string>
+	<string name="preview_fzr">"核查（抽查）负责人"</string>
+	<string name="preview_lx">"核查（抽查）类型"</string>
+	<string name="preview_xzqhdm">"行政区划代码"</string>
+	<string name="preview_apply_time">"申请日期"</string>
+	<string name="preview_jzlx">"救助业务类型"</string>
+	<string name="preview_zpyy">"主要致贫原因"</string>
+
+
+    <string name="preview_CYXB">"性别"</string>
+    <string name="preview_CYNL">"年龄"</string>
+    <string name="preview_CYLDNL">"劳动能力"</string>
+    <string name="preview_CYJKQK">"健康状况"</string>
+    <string name="preview_CYCJLB">"残疾类别"</string>
+    <string name="preview_CYCJDJ">"残疾等级"</string>
+    <string name="preview_CYWHCD">"文化程度"</string>
+    <string name="preview_CYSFZX">"是否在校"</string>
+    <string name="preview_CYYSQRGX">"与申请人关系"</string>
+    <string name="preview_CYSFYTX">"是否有该人员身份证头像照片"</string>
+    <string name="preview_CYSFHCZP">"是否已核查对象照片"</string>
+    <string name="preview_CYSFHCSFZ">"是否已核查身份证"</string>
+    <string name="preview_CYSFHCHKB">"是否已核查户口本"</string>
+
 	<string name="preview_title_family_info">"家庭信息"</string>
 	<string name="preview_title_family_situation">"家庭状况"</string>
 	<string name="preview_title_family_property">"家庭财产"</string>
@@ -161,6 +204,9 @@
 	<!-- Year Photo -->
 	<string name="title_year_photo">"年度拍照"</string>
 	<string name="year_photo">"年度拍照"</string>
+	<!-- Year Video -->
+	<string name="title_year_video">"年度摄影"</string>
+	<string name="year_video">"年度摄影"</string>
 	
 	<!-- District -->
 	<string name="title_district">"行政区域"</string>
@@ -173,6 +219,7 @@
 	
 	<!-- Family Situation -->
 	<string name="title_family_situation">"家庭情况"</string>
+	<string name="title_family_member_situation">"成员情况"</string>
 	<string name="save">"保存"</string>
 	<string name="unit_ge">"个"</string>
 	<string name="unit_ren">"人"</string>
@@ -183,7 +230,8 @@
 	<string name="unit_liang">"辆"</string>
 	<string name="unit_yuan">"元"</string>
 	
-	<string name="family_situation_base">" 一、家庭基本情况"</string>
+	<string name="family_situation_base">"家庭基本情况"</string>
+	<string name="member_situation_base">"成员基本情况"</string>
 	<string name="name_code1001">"1. 是否“三无人员？”"</string>
 	<string name="name_code1002">"2. 是否独生子女家庭？"</string>
 	<string name="name_code1003">"3. 是否单亲家庭？"</string>
@@ -282,7 +330,7 @@
 	<string name="title_profile">"个人信息"</string>
 	
 	<!-- Password -->
-	<string name="title_offline_password">"离线密码"</string>
+	<string name="title_offline_password">"用户名密码修改"</string>
 	
 	<!-- Feedback -->
 	<string name="title_feedback">"用户反馈"</string>
@@ -297,6 +345,8 @@
 	<string name="title_search">"搜索"</string>
 	<string name="title_search_result">"搜索结果"</string>
 	<string name="no_search_data">"未找到相关数据"</string>
-	
+
+	<!-- Main -->
+	<string name="title_main">"请选择对应操作"</string>
 	
 </resources>

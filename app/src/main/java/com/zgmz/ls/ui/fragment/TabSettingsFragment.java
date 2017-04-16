@@ -19,6 +19,13 @@ public class TabSettingsFragment extends TitleBarFragment implements OnClickList
 	protected void onConfigrationTitleBar() {
 		// TODO Auto-generated method stub
 		setTitleBarTitleText(R.string.title_tab_settings);
+
+		setTitleBarLeftImageButtonImageResource(R.drawable.title_back);
+	}
+
+	@Override
+	public void onTitleBarLeftButtonOnClick(View v) {
+		getActivity().finish();
 	}
 
 	@Override

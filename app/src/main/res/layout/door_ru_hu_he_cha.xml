@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<LinearLayout 
+		android:id="@+id/search"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:gravity="center_horizontal"
+	    android:orientation="vertical"
+		android:weightSum="1">
+	    
+		<ImageButton
+			android:id="@+id/shu_ju_xia_zai"
+		    android:background="@drawable/shu_ju_xia_zai"
+		    android:layout_marginTop="@dimen/search_item_gap"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
+		
+		
+		<ImageButton 
+		    android:id="@+id/shu_ju_he_cha"
+		    android:background="@drawable/shu_ju_he_cha"
+		    android:layout_marginTop="@dimen/search_item_gap"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:layout_weight="0.09" />
+		
+		
+		<ImageButton 
+		    android:id="@+id/shu_ju_shang_bao"
+		    android:background="@drawable/shu_ju_shang_bao"
+		    android:layout_marginTop="@dimen/search_item_gap"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
+		
+	</LinearLayout>
+
+</FrameLayout>

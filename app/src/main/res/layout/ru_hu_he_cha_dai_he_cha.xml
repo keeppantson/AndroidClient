@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+	<LinearLayout
+		android:id="@+id/search"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+
+
+        <LinearLayout
+            android:id="@+id/jiancha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="待核查:"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/quan_bu"
+                android:layout_marginTop="16dp"
+                android:text="全部"
+                android:paddingLeft="10dp"
+                android:button="@drawable/check_box_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/other"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="550dp">
+
+            <ListView
+                android:id="@+id/uncheck_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@color/transparent"
+                android:listSelector="@null" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.98"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/he_cha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/he_cha_bottom" />
+
+            <ImageButton
+                android:id="@+id/shan_chu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shanchu_bottom" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

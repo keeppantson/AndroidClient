@@ -9,19 +9,20 @@
     android:layout_height="match_parent"
     android:paddingBottom="30dp"
     android:orientation="vertical" >
-    
-	<TextView
-        android:textSize="15sp"
-        android:textColor="@color/gray"
-        android:text="@string/family_situation_base"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-	
-	<include
+
+    <TextView
+android:id="@+id/textView2"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:padding="10dp"
+android:text="@string/family_situation_base"
+android:textColor="@color/gray"
+        android:textSize="15sp" />
+
+    <include
 	    android:id="@+id/code1001"
 	    layout="@layout/radio_tow"
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"/>
 	
 	<include

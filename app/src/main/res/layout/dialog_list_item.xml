@@ -4,20 +4,13 @@
   android:orientation="horizontal"
   android:layout_width="match_parent"
   android:layout_height="@dimen/dialog_list_item_height">
-  
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_marginLeft="@dimen/dialog_list_item_margin"
-        android:layout_gravity="center_vertical"
-        android:layout_width="@dimen/dialog_list_item_icon_width"
-        android:layout_height="@dimen/dialog_list_item_icon_height"/>
     
     <TextView
         android:id="@+id/name"
         style="@style/Text.DialogListItem"
-        android:layout_marginLeft="@dimen/dialog_list_item_margin"
-        android:layout_marginRight="@dimen/dialog_list_item_margin"
-        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     

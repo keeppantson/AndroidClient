@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<RelativeLayout
+		android:layout_marginTop="20dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+
+		<EditText
+			android:id="@+id/shengfenzheng"
+			android:hint="身份证"
+			style="@style/EditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentStart="true" />
+
+
+		<EditText
+			android:id="@+id/appDate"
+			android:hint="申请低保年月 如201701"
+			style="@style/EditText"
+			android:layout_marginTop="40dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+
+
+		<EditText
+			android:id="@+id/hcYear"
+			android:hint="核查年份 如2017"
+			style="@style/EditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/appDate"
+			android:layout_alignParentStart="true" />
+
+		<EditText
+			android:id="@+id/hcDate"
+			android:hint="预计入户时间 如2017-01-01"
+			style="@style/EditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/appDate"
+			android:layout_alignParentStart="true" />
+
+		<include
+			android:id="@+id/HCLX"
+			layout="@layout/radio_download_task_type"
+			android:layout_marginTop="140dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+
+	</RelativeLayout>
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp">
+
+		<Button
+			android:id="@+id/recognize_input"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/btn_white"
+			android:text="@string/recognize_input_id"
+			android:textColor="@color/btn_white_text"
+			android:textSize="18sp" />
+
+
+		<Button
+			android:id="@+id/add_download"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="2dp"
+			android:layout_weight="1"
+			android:background="@drawable/btn_white"
+			android:text="@string/commit_add"
+			android:textColor="@color/btn_white_text"
+			android:textSize="18sp" />
+
+	</LinearLayout>
+
+	<Spinner
+		android:id="@+id/spinner_city"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+
+	<Spinner
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/spinner_town"
+		/>
+	<Spinner
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/spinner_street"
+		/>
+	<Spinner
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/spinner_building"
+		/>
+</LinearLayout>

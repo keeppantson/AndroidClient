@@ -40,7 +40,8 @@ public class AttachImageButton extends ImageButton implements CellViewManager{
 				setBackgroundResource(attach.getResId());
 			else {
 				setBackground(null);
-				Bitmap bmp = BitmapHelper.getThumbBitmap(attach.getPath(), 150, 150);
+				//Bitmap bmp = BitmapHelper.getThumbBitmap(attach.getPath(), 150, 150);
+				Bitmap bmp = attach.getContent();
 				if(bmp != null)
 					setImageBitmap(bmp);
 				else 

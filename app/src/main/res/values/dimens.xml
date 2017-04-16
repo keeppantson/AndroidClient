@@ -85,7 +85,7 @@
     <dimen name="title_bar_btn_margin">16dp</dimen>
     <dimen name="title_bar_btn_max_width">120dp</dimen>
     
-    <dimen name="title_bar_text_size">20sp</dimen>
+    <dimen name="title_bar_text_size">18sp</dimen>
     <dimen name="title_bar_btn_text_size">18sp</dimen>
     
     <!-- Splash -->

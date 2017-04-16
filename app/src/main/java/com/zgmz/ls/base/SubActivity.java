@@ -9,7 +9,7 @@ public class SubActivity extends TitleBarActivity {
 	@Override
 	protected void onConfigrationTitleBar() {
 		// TODO Auto-generated method stub
-		setTitleBarLeftImageButtonImageResource(R.drawable.title_back);
+		setTitleBarLeftImageButtonImageResource(R.drawable.back_new);
 	}
 
 	@Override
@@ -23,6 +23,10 @@ public class SubActivity extends TitleBarActivity {
 	public void onTitleBarLeftButtonOnClick(View v) {
 		onBackPressed();
 	}
-	
-	
+
+
+	@Override
+	public void onTitleBarRightButtonOnClick(View v) {
+		onBackPressed();
+	}
 }

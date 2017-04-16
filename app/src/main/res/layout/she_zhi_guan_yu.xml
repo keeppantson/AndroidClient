@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/ru_hu_he_cha_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/she_zhi_guan_yu" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/she_zhi_guan_yu_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/she_zhi_guan_yu_1" />
+            <ImageButton
+                android:id="@+id/jian_kuang_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jian_kuang_1" />
+            <ImageView
+                android:id="@+id/she_zhi_guan_yu_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/she_zhi_guan_yu_2" />
+            <ImageView
+                android:id="@+id/she_zhi_guan_yu_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/she_zhi_guan_yu_3" />
+            <ImageView
+                android:id="@+id/she_zhi_guan_yu_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/she_zhi_guan_yu_4" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/she_zhi_guan_yu_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/she_zhi_guan_yu_5" />
+    </LinearLayout>
+
+    <TextView
+        android:textColor="@color/gray_dark"
+        android:textSize="18sp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="160dp"
+        android:layout_gravity="center_vertical"
+        android:text="便携式低保终端MZT-DB-01(A型)是面向低保户的信息
+采集及入户核查的智能终端，
+通过详细了解低保家庭，做到底子清，
+情况明。跟据核实情况决定是否续保，
+确定低保对象应保尽保。"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.98"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ru_hu_he_cha_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ru_hu_he_cha_bottom" />
+
+
+            <ImageButton
+                android:id="@+id/xin_zeng_bao_song_bottom"
+                android:background="@drawable/xin_zeng_bao_song_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageButton
+                android:id="@+id/she_zhi"
+                android:background="@drawable/she_zhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

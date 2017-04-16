@@ -17,6 +17,8 @@ public interface Const {
 	public static final String KEY_USER_ID = "userId";
 	
 	public static final String KEY_USER_INFO = "userInfo";
+
+	public static final String KEY_ATTACHMENT_TYPE = "attachmentType";
 	
 	public static final String KEY_ID_CARD = "idcard";
 	
@@ -26,10 +28,14 @@ public interface Const {
 	
 	
 	public static final String IMAGE_BASE_LOCATION = "/sdcard/.ls/image/";
+	public static final String VIDEO_BASE_LOCATION = "/sdcard/.ls/video/";
 	
 	public static final String IMAGE_TEMP_FILE_LOCATION = "/sdcard/.ls/image/temp.jpg";//temp file
 	
 	public static final Uri IMAGE_URI = Uri.parse("file://"+IMAGE_TEMP_FILE_LOCATION);//The Uri to store the big bitmap
+	public static final String VIDEO_TEMP_FILE_LOCATION = "/sdcard/.ls/video/temp.3gp";//temp file
+
+	public static final Uri VIDEO_URI = Uri.parse("file://"+VIDEO_TEMP_FILE_LOCATION);//The Uri to store the big bitmap
 	
 	
 	public interface HousingStructure {

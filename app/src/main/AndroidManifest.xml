@@ -17,14 +17,33 @@
 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 	
 	<!-- 使用定位功能所需权限-->
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!--获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!--用于访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <!--用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
+    <!--用于申请获取蓝牙信息进行室内定位-->
+    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
 	
-	<uses-permission android:name="android.permission.VIBRATE" />  
-	
+	<uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 使用機器功能所需权限-->
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -35,11 +54,10 @@
         
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="a590bdef32e59fda0fb746a3c2d60049" />
+            android:value="7ec0a5821bcdf95a30cd633e4b87e836" />
         
 		<!-- 定位需要的服务 -->
-        <service android:name="com.amap.api.location.APSService" >
-        </service>
+        <service android:name="com.amap.api.location.APSService"></service>
         
         <activity
             android:name="com.zgmz.ls.ui.SplashActivity"
@@ -52,7 +70,7 @@
         </activity>
         
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.DoorActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
@@ -63,6 +81,9 @@
         
         <activity
             android:name="com.zgmz.ls.ui.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.DoorHeChaActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.zgmz.ls.ui.UserInfoActivity"
@@ -139,7 +160,71 @@
         <activity
             android:name="com.zgmz.ls.ui.CheckUserInfoActivity"
             android:screenOrientation="portrait"/>
-        
+        <activity
+            android:name="com.zgmz.ls.ui.CheckFamilyInfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FamilyBaseSituationActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.FamilyMemberSituationActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.YearVideoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.DBFamilyPreviewActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_He_Cha_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_Lu_Ru_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_She_Zhi_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.DBMemberPreviewActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_Shu_Ju_Xia_Zai_Activity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_Shu_Ju_Shang_Bao_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_Shu_Ju_He_Cha_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.DoorShuJuHeChaActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.AddDownLoadTaskActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_Shu_Ju_Xia_Zai_Pi_Liang_Activity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.ShouDongXiaZaiActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_Shu_Ju_He_Cha_Yi_He_Cha_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_Shu_Ju_Shang_Bao_2_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_She_Zhi_Guan_Yu_Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.Main_She_Zhi_Ji_Shu_Zhi_Chi_Activity"
+            android:screenOrientation="portrait"/>Ji_Shu_Zhi_Ch
         <service 
             android:name="com.synjones.idcard.RemoteDecodeService"
             android:process=":remote"/>

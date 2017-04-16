@@ -33,13 +33,13 @@ abstract public class BottomTabActivity extends Activity implements OnClickListe
 		setupViews();
 		initTabs();
 	}
-	
+
 	abstract protected void initTabs();
-	
+
 	private void setupViews() {
 		mTabWidget = (LinearLayout)findViewById(R.id.tab_widget);
 	}
-	
+
 	
 	public View getTabWidget() {
 		return mTabWidget;

@@ -7,8 +7,8 @@
     
 	<TextView
         android:textSize="15sp"
-        android:textColor="@color/gray"
-        android:text="@string/year_photo"
+        android:textColor="@color/red"
+        android:text="年度拍照（按下面空白处启动照相机）"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 	

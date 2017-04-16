@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/name"
+        android:background="@color/white"
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/radio_name_size"
+        android:paddingLeft="@dimen/radio_name_padding_left"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+    	android:layout_height="@dimen/radio_item_height"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/radio_item_line_height"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+    	android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="175dp"
+            android:layout_height="55dp"
+            android:background="@color/white"
+            android:button="@drawable/radio_button"
+            android:checked="false"
+            android:paddingLeft="@dimen/radio_item_padding_left"
+            android:text="扫描二代身份证"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/radio_item_size" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="172dp"
+            android:layout_height="57dp"
+            android:layout_marginLeft="@dimen/radio_item_margin_left"
+            android:background="@color/white"
+            android:button="@drawable/radio_button"
+            android:checked="false"
+            android:paddingLeft="@dimen/radio_item_padding_left"
+            android:text="手动填写"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/radio_item_size" />
+    </RadioGroup>
+
+</LinearLayout>

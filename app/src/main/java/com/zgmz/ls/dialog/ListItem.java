@@ -29,7 +29,8 @@ public class ListItem {
 	public String name;
 	
 	public Object data;
-	
+
+	public boolean selected;
 	
 	public static ListItem create() {
 		return new ListItem();

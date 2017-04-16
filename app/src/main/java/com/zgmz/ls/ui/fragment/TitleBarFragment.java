@@ -29,7 +29,7 @@ abstract public class TitleBarFragment extends BaseFragment {
 	FrameLayout mContentView;
 	
 	int mTitleBarHeight;
-	
+
 	
 	@Override
 	public View findViewById(int id) {

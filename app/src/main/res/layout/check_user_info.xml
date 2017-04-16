@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
 	<RelativeLayout
 	    android:id="@+id/base_info"
 	    android:layout_marginTop="0dp"
 	    android:background="@drawable/item_bg_white"
 	    android:layout_width="match_parent"
     	android:layout_height="@dimen/base_info_height">
-	    <ImageView 
+	    <ImageView
 	        android:id="@+id/avatar"
 	        android:scaleType="fitXY"
 	        android:background="@drawable/default_user_avatar"
@@ -18,8 +18,8 @@
 	        android:layout_marginLeft="@dimen/base_info_avatar_margin_left"
 	        android:layout_width="@dimen/base_info_avatar_width"
 	        android:layout_height="@dimen/base_info_avatar_height"/>
-	    
-	    <TextView 
+
+	    <TextView
 	        android:id="@+id/key_name"
 	        android:textColor="@color/gray"
 	        android:textSize="@dimen/base_info_key_name_size"
@@ -29,7 +29,7 @@
 	        android:layout_marginLeft="@dimen/base_info_key_name_margin_left"
 	        android:layout_width="wrap_content"
     		android:layout_height="wrap_content"/>
-	    
+
 	    <TextView
 	        android:id="@+id/key_id_number"
 	        android:textColor="@color/gray"
@@ -40,8 +40,8 @@
 	        android:layout_marginTop="@dimen/base_info_key_id_number_margin_top"
 	        android:layout_width="wrap_content"
     		android:layout_height="wrap_content"/>
-	    
-	    <TextView 
+
+	    <TextView
 	        android:id="@+id/name"
 	        android:textColor="@color/black"
 	        android:textSize="@dimen/base_info_name_size"
@@ -50,9 +50,9 @@
 	        android:layout_marginLeft="@dimen/base_info_name_margin_left"
 	        android:layout_width="wrap_content"
     		android:layout_height="wrap_content"/>
-	    
-	    
-	    <TextView 
+
+
+	    <TextView
 	        android:id="@+id/id_number"
 	        android:textColor="@color/black"
 	        android:textSize="@dimen/base_info_name_size"
@@ -61,8 +61,8 @@
 	        android:layout_marginTop="@dimen/base_info_id_number_margin_top"
 	        android:layout_width="wrap_content"
     		android:layout_height="wrap_content"/>
-	    
-	    <ImageView 
+
+	    <ImageView
 	        android:scaleType="fitXY"
 	        android:src="@drawable/preview_arrow"
 	        android:duplicateParentState="true"
@@ -71,9 +71,9 @@
 	        android:layout_marginRight="@dimen/base_info_arrow_margin_right"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"/>
-	    
+
 	</RelativeLayout>
-	
+
 	<TextView
 	 	android:textSize="15sp"
 	    android:layout_marginLeft="16dp"
@@ -94,83 +94,50 @@
 	        android:layout_weight="1"
 	        android:layout_width="0dp"
 	    	android:layout_height="match_parent"/>
-	    
-	    <include
-	        android:id="@+id/fingerprint"
-	        layout="@layout/base_info_item"
-	        android:layout_marginLeft="2dp"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
-	    
-	    <include
+
+		<include
+            android:id="@+id/fingerprint"
+            layout="@layout/base_info_item"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+		<include
 	        android:id="@+id/year_photo"
 	        layout="@layout/base_info_item"
 	        android:layout_marginLeft="2dp"
 	        android:layout_weight="1"
 	        android:layout_width="0dp"
 	    	android:layout_height="match_parent"/>
-	    
-	    <include
-	        android:id="@+id/district"
-	        layout="@layout/base_info_item"
-	        android:layout_marginLeft="2dp"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
+
 	</LinearLayout>
-	
+
 	<TextView
 	 	android:textSize="15sp"
 	    android:layout_marginLeft="16dp"
 	    android:textColor="@color/gray"
-	    android:text="@string/check_family_info"
+	    android:text="@string/other_user_info"
 	    android:gravity="center_vertical"
 	    android:layout_width="wrap_content"
-	    android:layout_height="@dimen/base_info_title_height"/>
-	
+	    android:layout_height="@dimen/base_info_title_height"
+		android:id="@+id/textView" />
+
 	<LinearLayout
 	    android:id="@+id/family_info"
 	    android:orientation="horizontal"
 	    android:layout_width="match_parent"
 	    android:layout_height="@dimen/base_info_item_height">
-	    <include
-	        android:id="@+id/family_situation"
-	        layout="@layout/base_info_item"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
-	    
-	    <include
-	        android:id="@+id/family_property"
-	        layout="@layout/base_info_item"
-	        android:layout_marginLeft="2dp"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
+
+		<include
+            android:id="@+id/other_situation"
+            layout="@layout/base_info_item"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
 	</LinearLayout>
-	<LinearLayout
-	    android:id="@+id/family_journal"
-	    android:layout_marginTop="2dp"
-	    android:orientation="horizontal"
-	    android:layout_width="match_parent"
-	    android:layout_height="@dimen/base_info_item_height">
-	    <include
-	        android:id="@+id/family_income"
-	        layout="@layout/base_info_item"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
-	    
-	    <include
-	        android:id="@+id/family_spending"
-	        layout="@layout/base_info_item"
-	        android:layout_marginLeft="2dp"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
-	</LinearLayout>
-	
+
 	<TextView
 	 	android:textSize="15sp"
 	    android:layout_marginLeft="16dp"
@@ -185,19 +152,27 @@
 	    android:orientation="horizontal"
 	    android:layout_width="match_parent"
 	    android:layout_height="@dimen/base_info_item_height">
-	    <include
-	        android:id="@+id/signature"
-	        layout="@layout/base_info_item"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
-	    
-	    <include
-	        android:id="@+id/attachment"
-	        layout="@layout/base_info_item"
-	        android:layout_marginLeft="2dp"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	    	android:layout_height="match_parent"/>
+
+		<include
+            android:id="@+id/signature"
+            layout="@layout/base_info_item"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+		<include
+			android:id="@+id/attachment"
+			layout="@layout/base_info_item"
+			android:layout_marginLeft="2dp"
+			android:layout_weight="1"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"/>
+		<include
+			android:id="@+id/delete"
+			layout="@layout/base_info_item"
+			android:layout_marginLeft="2dp"
+			android:layout_weight="1"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"/>
 	</LinearLayout>
 </LinearLayout>

@@ -17,8 +17,11 @@ public class PreferencesUtils {
 	private static final String SOUNDS_SWITCH = "sounds_switch";
 	
 	private static final String USERNAME = "username";
+	private static final String QHM = "qhm";
 	
 	private static final String PASSWORD = "password";
+
+	private static final String QUHUAMA_LAST_UPDATE_TIME = "quhuama";
 	
 	private static final boolean DEFAULT_SOURNDS = true;
 	
@@ -81,15 +84,33 @@ public class PreferencesUtils {
 		this.mEditor.putString(TOKEN, value);
 		this.mEditor.commit();
 	}
-	
+
+	public void setQHM(String qhm) {
+		putString(QHM, qhm);
+	}
+
+
+	public String getQHM() {
+		return getString(QHM, null);
+	}
+
+	public void setQuhuamaLastUpdateTime(long time) {
+		putLong(QUHUAMA_LAST_UPDATE_TIME, time);
+	}
+
+	public Long getQuhuamaLastUpdateTime() {
+		return getLong(QUHUAMA_LAST_UPDATE_TIME, 0);
+	}
+
 	public void setUsername(String username) {
 		putString(USERNAME, username);
 	}
-	
+
+
 	public String getUsername() {
 		return getString(USERNAME, null);
 	}
-	
+
 	public void setPassword(String password) {
 		putString(PASSWORD, password);
 	}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="30dp"
+    android:orientation="vertical"
+	android:weightSum="1">
+    
+	<TextView
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:text="@string/family_situation_base"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <include
+	    android:id="@+id/HCRQ"
+        layout="@layout/family_base_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+
+    <include
+        android:id="@+id/HCND"
+        layout="@layout/family_base_situation_item_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <include
+	    android:id="@+id/HCFZR"
+        layout="@layout/family_base_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+
+
+	<include
+	    android:id="@+id/HCLX"
+	    layout="@layout/radio_jclx"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+
+	<include
+	    android:id="@+id/XZQBM"
+	    layout="@layout/family_base_situation_item_input"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/SQRXM"
+	    layout="@layout/family_base_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/SFZHM"
+	    layout="@layout/family_base_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/SQRQ"
+	    layout="@layout/family_base_situation_item_input"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/family_sitiation_item_height"/>
+	
+	<include
+	    android:id="@+id/JZLX"
+	    layout="@layout/radio_jzyelx"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+	
+	<include
+	    android:id="@+id/ZYZPYY"
+	    layout="@layout/radio_zpyy"
+	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"/>
+	
+</LinearLayout>
+</ScrollView>

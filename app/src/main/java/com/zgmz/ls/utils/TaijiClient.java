@@ -33,15 +33,31 @@ import java.util.List;
  */
 
 public class TaijiClient {
-    private int MAX_FILE_SIZE = 400 * 1024 * 1024; //文件最大允许多少, 400M
-
     private String userName = null;
     private String passWord = null;
     private String imei = null;
 
     private String taijiUri = "http://222.240.178.36:6888/saas_hn/app/interfaceAction.do?act=";
+    private String taijiContentUri = "http://222.240.178.36:6888/fileRelease/servlet/FileServlet?appKey=";
     private String appKey = null;
     private String zoneName = null;
+
+    public String getZoneName() {
+        return zoneName;
+    }
+
+    public void setZoneName(String zoneName) {
+        this.zoneName = zoneName;
+    }
+
+    public String getZoneCode() {
+        return zoneCode;
+    }
+
+    public void setZoneCode(String zoneCode) {
+        this.zoneCode = zoneCode;
+    }
+
     private String zoneCode = null;
 
     public TaijiClient(String userName, String passWord, String imei) {
@@ -153,35 +169,49 @@ public class TaijiClient {
     /* 获取材料
     uri : 需要获得的东西.(不是完整uri, 不包括太极endpoint)
      */
-    public byte[] GetMaterial(String uri) throws Exception {
+    public byte[] GetMaterial(String jia_ting_id, String xzqhbm, String cai_liao_id) throws Exception {
         int retry = 3;
+        String jsonStr = String.format("{\"jtid\":\"%s\",\"xzqhdm\":\"%s\",\"clid\":\"%s\"}", jia_ting_id, xzqhbm, cai_liao_id);
         while (retry > 0) {
             try {
-                URL url = new URL(uri);
+                String uri = taijiContentUri;
+                String value = URLEncoder.encode(appKey, "UTF-8")
+                        + "&imei="+ imei + "&json="
+                        + URLEncoder.encode("{\"jtid\":\""+ jia_ting_id +"\",\"xzqhdm\":\""+ xzqhbm +"\",\"clid\":\""+ cai_liao_id +"\"}","UTF-8");
+                String urll = uri + value;
+
+                URL url = new URL(urll);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setDoOutput(true);
+
                 conn.setRequestMethod("GET");
-                conn.setRequestProperty("Content-Type", "application/json");
+                String result;
+                if (conn.getResponseCode() == 200) {
+                    // 获取响应的输入流对象
+                    InputStream is = conn.getInputStream();
 
-                int statusCode = conn.getResponseCode();
-                if (statusCode != HttpURLConnection.HTTP_OK) {
-                    return null;
+                    // 创建字节输出流对象
+                    ByteArrayOutputStream os = new ByteArrayOutputStream();
+                    // 定义读取的长度
+                    int len = 0;
+                    // 定义缓冲区
+                    byte buffer[] = new byte[1024];
+                    // 按照缓冲区的大小，循环读取
+                    while ((len = is.read(buffer)) != -1) {
+                        // 根据读取的长度写入到os对象中
+                        os.write(buffer, 0, len);
+                    }
+                    // 释放资源
+                    is.close();
+                    os.close();
+                    // 返回字符串
+                    result = new String(os.toByteArray());
+                } else {
+                    result = "";
                 }
-
-                char[] buff;
-                buff = new char[MAX_FILE_SIZE];
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        (conn.getInputStream())));
-                int read = br.read(buff);
-
-                // TODO: this encode method?
-                Charset cs = Charset.forName ("UTF-8");
-                CharBuffer cb = CharBuffer.allocate(read);
-                cb.put (buff);
-                cb.flip();
-                ByteBuffer bb = cs.encode(cb);
-
-                return bb.array();
+                conn.disconnect();
+                JSONObject obj = new JSONObject(result);
+                String cont = obj.getString("content");
+                return Base64.decode(cont, Base64.DEFAULT);
             } catch (Exception e) {
                 if (IsRetryableException(e)) {
                     retry--;
@@ -222,6 +252,8 @@ public class TaijiClient {
         System.out.println("mx: readbuff size:" + os.size());
         String tmp = new String(os.toByteArray());
 
+        is.close();
+        os.close();
         //mx: debug
         System.out.println("mx: printbuff:" + tmp);
         res.body = new JSONObject(tmp);
@@ -239,6 +271,7 @@ public class TaijiClient {
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("POST");
+                //conn.setRequestProperty("Content-Type", "application/json");
 
                 String input = jsonStr;
 
@@ -281,13 +314,13 @@ public class TaijiClient {
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("GET");
+                //conn.setRequestProperty("Content-Type", "application/json");
 
                 // appkey and imei
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("imei", this.imei));
                 params.add(new BasicNameValuePair("appKey", this.appKey));
                 params.add(new BasicNameValuePair("json", jsonStr));
-
                 // write
                 OutputStream os = conn.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(

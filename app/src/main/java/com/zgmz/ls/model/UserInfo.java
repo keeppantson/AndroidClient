@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import android.graphics.Bitmap;
 
+import static com.zgmz.ls.ui.LoginActivity.TEST_XZBM;
+
 public class UserInfo extends BaseData implements Serializable{
 
 	/**
@@ -14,12 +16,77 @@ public class UserInfo extends BaseData implements Serializable{
 	private String name;
 	
 	private String idNumber;
-	
+
+	public String getFather_idNumber() {
+		return father_idNumber;
+	}
+
+	public void setFather_idNumber(String father_idNumber) {
+		this.father_idNumber = father_idNumber;
+	}
+
+	private String father_idNumber;
 	private int type;
 	
 	private boolean checked;
 	
 	private Bitmap avatar;
+	private Bitmap finger;
+
+	public Bitmap getFinger() {
+		return finger;
+	}
+
+	public void setFinger(Bitmap finger) {
+		this.finger = finger;
+	}
+
+	public Bitmap getHu_kou_ben() {
+		return hu_kou_ben;
+	}
+
+	public void setHu_kou_ben(Bitmap hu_kou_ben) {
+		this.hu_kou_ben = hu_kou_ben;
+	}
+
+	public Bitmap getNian_du_she_xiang() {
+		return nian_du_she_xiang;
+	}
+
+	public void setNian_du_she_xiang(Bitmap nian_du_she_xiang) {
+		this.nian_du_she_xiang = nian_du_she_xiang;
+	}
+
+	public Bitmap getSheng_fen_zheng() {
+		return sheng_fen_zheng;
+	}
+
+	public void setSheng_fen_zheng(Bitmap sheng_fen_zheng) {
+		this.sheng_fen_zheng = sheng_fen_zheng;
+	}
+
+	private Bitmap hu_kou_ben;
+	private Bitmap nian_du_she_xiang;
+	private Bitmap sheng_fen_zheng;
+	private Bitmap user_signture;
+
+	public Bitmap getUser_signture() {
+		return user_signture;
+	}
+
+	public void setUser_signture(Bitmap user_signture) {
+		this.user_signture = user_signture;
+	}
+
+	public Bitmap getManager_signture() {
+		return manager_signture;
+	}
+
+	public void setManager_signture(Bitmap manager_signture) {
+		this.manager_signture = manager_signture;
+	}
+
+	private Bitmap manager_signture;
 	
 	private boolean flagId;
 	
@@ -42,6 +109,16 @@ public class UserInfo extends BaseData implements Serializable{
 	private boolean flagAttachment;
 	
 	private int checkStatus;
+
+    public String getCheck_task_id() {
+        return check_task_id;
+    }
+
+    public void setCheck_task_id(String check_task_id) {
+        this.check_task_id = check_task_id;
+    }
+
+    private String check_task_id;
 
 	public String getName() {
 		return name;
@@ -195,6 +272,9 @@ public class UserInfo extends BaseData implements Serializable{
 			userInfo.setName(info.getName());
 			userInfo.setIdNumber(info.getIdNumber());
 			userInfo.setChecked(info.isChecked());
+			userInfo.setCheck_task_id(info.getCheck_task_id());
+			userInfo.setXzqhbm(TEST_XZBM);
+			userInfo.setFather_card_id(info.getFather_idNumber());
 		}
 		
 		return userInfo;
@@ -207,6 +287,8 @@ public class UserInfo extends BaseData implements Serializable{
 		userInfo.setName(this.getName());
 		userInfo.setIdNumber(this.getIdNumber());
 		userInfo.setChecked(this.isChecked());
+		userInfo.setCheck_task_id(this.getCheck_task_id());
+		userInfo.setFather_card_id(this.getFather_idNumber());
 		return userInfo;
 	}
 	

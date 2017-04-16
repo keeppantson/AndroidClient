@@ -7,34 +7,11 @@
    	android:layout_width="match_parent" 
    	android:layout_height="wrap_content">
 		   	
- 	<LinearLayout 
-		android:id="@+id/title_frame"
-		android:background="@drawable/dialog_top_bg"
-		android:gravity="center_vertical"
-		android:layout_centerHorizontal="true"
-		android:layout_width="match_parent" 
-  		android:layout_height="@dimen/dialog_title_height">
- 	        
- 	        <ImageView 
- 	            android:id="@+id/icon"
- 	            android:visibility="gone"
- 	            android:layout_marginLeft="@dimen/dialog_icon_margin_left"
- 	            android:layout_width="@dimen/dialog_icon_width"
- 	            android:layout_height="@dimen/dialog_icon_height"/>
- 	        
- 	        <TextView
-				android:id="@+id/title"
-				style="@style/Text.DialogTitle"
-				android:layout_marginLeft="@dimen/dialog_title_margin_left"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"/>
- 	    </LinearLayout>
-		   	
 		   	
 	<LinearLayout 
 		android:id="@+id/content_frame"
 		android:orientation="vertical"
-		android:background="@drawable/dialog_content_bg"
+		android:background="@drawable/blank_bg"
 		android:padding="@dimen/dialog_content_frame_padding"
 		android:layout_width="match_parent" 
   		android:layout_height="wrap_content">			

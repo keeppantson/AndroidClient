@@ -11,9 +11,17 @@ package com.zgmz.ls;
 import com.zgmz.ls.base.BaseApplication;
 import com.zgmz.ls.db.DBHelper;
 import com.zgmz.ls.utils.FileUtils;
+import com.zgmz.ls.utils.PreferencesUtils;
+import com.zgmz.ls.utils.RestClient;
+import com.zgmz.ls.utils.RestClientOld;
+import com.zgmz.ls.utils.TaijiClient;
+import com.zgmz.ls.utils.TaijiClientLocal;
+import com.zgmz.ls.utils.ToastUtils;
+import com.zgmz.ls.utils.WorkerThread;
 
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.telephony.TelephonyManager;
 import android.util.SparseIntArray;
 
 /**
@@ -39,8 +47,94 @@ public class AppContext extends BaseApplication{
 	public static AppContext getAppContext() {
 		return sAppContext;
 	}
-	
 
+	private WorkerThread mWorkerThread = null;
+	private TaijiClient taijiClient = null;
+	private RestClient restClient = null;
+
+
+	public synchronized TaijiClient getTaijiClient() {
+		return taijiClient;
+	}
+	public synchronized boolean initTaijiClient() {
+        if (taijiClient != null) {
+			taijiClient = null;
+		}
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+        String imei = tm.getDeviceId();
+		// TODO Fake IMEI & user name & password
+		imei = "12345";
+        String userName = PreferencesUtils.getInstance().getUsername();
+        if (userName == null || userName.equals("")) {
+            userName = "quxian1";
+        }
+        String userPassword= PreferencesUtils.getInstance().getPassword();
+        if (userPassword == null || userPassword.equals("")) {
+            userPassword = "abcd1234";
+        }
+		taijiClient = new TaijiClient(userName, userPassword, imei);
+
+        Thread thread=new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try {
+                    AppContext.getAppContext().getTaijiClient().LogIn();
+                    getWorkerThread().initialized = true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        return true;
+	}
+    public synchronized boolean initTaijiClient(String userName, String userPassword) {
+        if (taijiClient != null) {
+            taijiClient = null;
+        }
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+        String imei = tm.getDeviceId();
+		// TODO Fake IMEI
+		imei = "12345";
+        taijiClient = new TaijiClient(userName, userPassword, imei);
+
+        return true;
+    }
+    public synchronized RestClient getRestClient() {
+        return restClient;
+    }
+    public synchronized boolean initRestClient() {
+        if (restClient != null) {
+            restClient = null;
+        }
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+        String imei = tm.getDeviceId();
+		// TODO Fake IMEI
+		imei = "12345";
+        String userName = PreferencesUtils.getInstance().getUsername();
+        String userPassword= PreferencesUtils.getInstance().getPassword();
+        userName = "quxian1";
+        userPassword = "abcd1234";
+        String serverurl = "115.28.185.19";
+        restClient = new RestClient(serverurl, userName, userPassword, imei);
+
+        return true;
+    }
+
+	public synchronized WorkerThread getWorkerThread() {
+		return mWorkerThread;
+	}
+	public synchronized void deInitWorkerThread() {
+		mWorkerThread.exit();
+		try {
+			mWorkerThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		mWorkerThread = null;
+	}
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
@@ -53,7 +147,15 @@ public class AppContext extends BaseApplication{
 	protected void init() {
 		// TODO Auto-generated method stub
 		FileUtils.ensureImageLocation();
+		FileUtils.ensureVideoLocation();
 		initSoundPool();
+		initTaijiClient();
+		initRestClient();
+		if (mWorkerThread == null) {
+			mWorkerThread = new WorkerThread(getApplicationContext());
+			mWorkerThread.start();
+		}
+
 	}
 	
 	

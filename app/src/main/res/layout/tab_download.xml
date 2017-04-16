@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tab_download"
+            android:textSize="28sp"
+            android:textColor="@color/gray"
+            android:text="@string/download"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_uncheck"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="2dp">
+
+        <ListView
+            android:id="@+id/uncheck_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/transparent"
+            android:listSelector="@null" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/add_download"
+        style="@style/Button"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_download" />
+</LinearLayout>

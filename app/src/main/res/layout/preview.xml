@@ -108,7 +108,7 @@
 	    android:layout_marginLeft="@dimen/preview_title_tow_margin_left"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"/>
-	
+
 	<TextView 
 	    android:id="@+id/text_district"
 	    style="@style/Text.PreviewContent"
@@ -133,14 +133,15 @@
 	    android:layout_marginLeft="@dimen/preview_title_tow_margin_left"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"/>
-	<TextView 
+
+	<TextView
 	    android:id="@+id/text_family_situation"
 	    style="@style/Text.PreviewContent"
 	    android:layout_marginLeft="@dimen/preview_content_margin_left"
 	    android:layout_marginRight="@dimen/preview_content_margin_right"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"/>
-	
+
 	<View 
 	    android:background="@color/preview_line"
 	    android:layout_marginTop="4dp"

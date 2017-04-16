@@ -13,10 +13,15 @@ import com.zgmz.ls.R;
 import com.zgmz.ls.base.Const;
 import com.zgmz.ls.base.SubActivity;
 import com.zgmz.ls.db.DBHelper;
+import com.zgmz.ls.db.TableTools;
 import com.zgmz.ls.dialog.AddPhotoDialog;
 import com.zgmz.ls.model.Attachment;
+import com.zgmz.ls.model.FamilyBase;
 import com.zgmz.ls.model.SimpleUserInfo;
+import com.zgmz.ls.model.UserInfo;
 import com.zgmz.ls.utils.BitmapHelper;
+import com.zgmz.ls.utils.BitmapUtils;
+import com.zgmz.ls.utils.FileUtils;
 import com.zgmz.ls.utils.ToastUtils;
 import com.zgmz.ls.view.CellItemInfo;
 import com.zgmz.ls.view.SingleCellLayout;
@@ -39,7 +44,7 @@ import android.widget.ImageView;
 public class AttachmentActivity extends SubActivity implements OnClickListener, OnLongClickListener {
 
 	View mRoot;
-	
+	SimpleUserInfo userInfo;
 	SingleCellLayout mSingleCellLayout;
 	
 	ImageView mImageView;
@@ -67,9 +72,13 @@ public class AttachmentActivity extends SubActivity implements OnClickListener, 
 	protected void onNewIntent(Intent intent) {
 		// TODO Auto-generated method stub
 		super.onNewIntent(intent);
-		SimpleUserInfo userInfo = (SimpleUserInfo) intent.getSerializableExtra(Const.KEY_USER_INFO); 
+		userInfo = (SimpleUserInfo) intent.getSerializableExtra(Const.KEY_USER_INFO);
 		if(userInfo != null) {
 			mUserId = userInfo.getUserId();
+
+			FamilyBase info = DBHelper.getInstance().getFamilyWithTaskID(userInfo.getCheck_task_id());
+			userInfo.setTime(info.getSqrq());
+
 			loadData();
 		}
 		else {
@@ -131,7 +140,7 @@ public class AttachmentActivity extends SubActivity implements OnClickListener, 
 
 	public void loadData() {
 		// TODO Auto-generated method stub
-		List<Attachment> attachs = DBHelper.getInstance().getAttachments(mUserId);
+		List<Attachment> attachs = DBHelper.getInstance().getAllAttachments(userInfo.getIdNumber(), userInfo.getCheck_task_id());
 		List<CellItemInfo> data = new ArrayList<CellItemInfo>();
 		CellItemInfo info;
 		Attachment attach;
@@ -206,27 +215,10 @@ public class AttachmentActivity extends SubActivity implements OnClickListener, 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
-		if (requestCode == AddPhotoDialog.REQUEST_CODE_ALBUM) {
+		if (requestCode == AddPhotoDialog.REQUEST_CODE_CAMERA ||
+				requestCode == AddPhotoDialog.REQUEST_CODE_HUKOUBEN ||
+				requestCode == AddPhotoDialog.REQUEST_CODE_SHENFENZHENG) {
 			if (resultCode == Activity.RESULT_OK) {
-				Uri selectedImage = data.getData();
-				String path = null;
-				try {
-					String[] filePathColumn = { MediaStore.Images.Media.DATA };
-					Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-					cursor.moveToFirst();
-					int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-					path = cursor.getString(columnIndex);
-					cursor.close();
-				} catch (Exception e) {
-
-				}
-				String name = DateFormat.format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";
-				saveAttachment(name, path);
-			}
-		} else if (requestCode == AddPhotoDialog.REQUEST_CODE_CAMERA) {
-			if (resultCode == Activity.RESULT_OK) {
-//				Bundle bundle = data.getExtras();
-//				Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
 				Bitmap bitmap = BitmapHelper.getThumbBitmap(Const.IMAGE_TEMP_FILE_LOCATION, 720, 720);
 				FileOutputStream b = null;
 				String name = DateFormat.format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";
@@ -248,19 +240,29 @@ public class AttachmentActivity extends SubActivity implements OnClickListener, 
 						e.printStackTrace();
 					}
 				}
-				
-				saveAttachment(name, fileName);
+
+                String path = userInfo.getTime() + "/" + userInfo.getXzqhbm() + "/" + userInfo.getFather_card_id()
+                                + "/" + requestCode + "/" + userInfo.getIdNumber() + "-" + requestCode + ".jpg";
+                Bitmap bmp = BitmapUtils.getFileImage(fileName);
+                name = userInfo.getIdNumber() + "-" + requestCode + ".jpg";
+                if (bmp != null) {
+                    saveAttachment(name, path, bmp, requestCode, userInfo.getIdNumber(), userInfo.getCheck_task_id());
+                    bmp.recycle();
+                } else {
+                    saveAttachment(name, path, bmp, requestCode, userInfo.getIdNumber(), userInfo.getCheck_task_id());
+                }
+
 			}
 		}
 	}
 
 	private void removeCell(CellItemInfo info) {
 		if (mCellItemInfos.contains(info)) {
-			if(DBHelper.getInstance().deleteAttachment((Attachment) info.getObj())) {
+			/*if(DBHelper.getInstance().deleteAttachment((Attachment) info.getObj())) {
 				ToastUtils.showShortToast("删除成功");
 				mSingleCellLayout.clear();
 				loadData();
-			}
+			}*/
 		}
 	}
 
@@ -273,17 +275,19 @@ public class AttachmentActivity extends SubActivity implements OnClickListener, 
 		mAddPhotoDialog.show();
 	}
 
-	
-	private void saveAttachment(String name, String path) {
+	private void saveAttachment(String name, String path, Bitmap content, int type, String card_id, String task_id) {
 		Attachment attachment = new Attachment();
 		attachment.setUserId(mUserId);
 		attachment.setName(name);
 		attachment.setPath(path);
-		if(DBHelper.getInstance().insertAttachment(attachment)) {
-			DBHelper.getInstance().updateAttachmentFlag(mUserId);
+		attachment.setContent(content);
+		attachment.setType(type);
+		attachment.setCheck_task_id(task_id);
+        attachment.setCard_id(card_id);
+		if(DBHelper.getInstance().insertOrUpdateAttachment(attachment)) {
+			//DBHelper.getInstance().updateAttachmentFlag(mUserId);
 			loadData();
 		}
-		
+
 	}
-	
 }

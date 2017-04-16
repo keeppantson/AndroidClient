@@ -1,5 +1,6 @@
 package com.zgmz.ls.ui;
 
+import com.android.charger.EmGpio;
 import com.zgmz.ls.R;
 import com.zgmz.ls.base.Const;
 import com.zgmz.ls.base.SharedDatas;
@@ -15,15 +16,26 @@ import com.zgmz.ls.utils.ToastUtils;
 import com.zgmz.ls.utils.VibratorUtil;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.zz.jni.mxComFingerDriver;
+import org.zz.jni.zzFingerAlg;
+
+import finger.BMP;
+
+import static java.lang.Thread.sleep;
 
 public class FingerprintCheckActivitiy extends SubActivity implements OnClickListener{
 	
@@ -61,8 +73,7 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	private FingerPrint mFingerPrint;
 	
 	private SimpleUserInfo mUserInfo;
-	
-	private TouchIdController mTouchIdController;
+
 	
 	private int mUserId = 0;
 	
@@ -70,13 +81,125 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	
 	Handler mHandler = new Handler();
 
+	mxComFingerDriver devDriver;
+	zzFingerAlg algDriver;
 	@Override
 	protected void onConfigrationTitleBar() {
 		// TODO Auto-generated method stub
 		super.onConfigrationTitleBar();
 		setTitleBarTitleText(R.string.title_fingerprint_check);
 	}
-	
+	void show_image()
+	{
+
+		if(m_bitmap != null){
+			if (!m_bitmap.isRecycled()) {
+				m_bitmap.recycle();
+			}
+		}
+		m_bitmap = BMP.Raw2Bimap(m_bImgBuf,IMAGE_X,IMAGE_Y);
+		if(m_bitmap!=null){
+			ImageView image_open = (ImageView) findViewById(R.id.finger_demo_image);
+			image_open.setImageBitmap(m_bitmap);
+		}
+	}
+
+    private void ShowDlg(String strMsg) {
+        new AlertDialog.Builder(FingerprintCheckActivitiy.this).setTitle("提示信息")
+                .setMessage(strMsg)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                    }
+                }).show();
+    }
+	private static final int TZ_SIZE =512;
+	private byte[] m_mbBuf = new byte[TZ_SIZE*3];
+	int m_iTimeout      = 15*1000;
+
+	Bitmap m_bitmap = null;
+	private static final  int IMAGE_X     = 208;
+	private static final  int IMAGE_Y     = 288;
+	private static final  int IMAGE_SIZE  = IMAGE_X*IMAGE_Y;
+	private byte[] m_bImgBuf = new byte[IMAGE_SIZE];
+	public void Enroll() {
+		int nRet = 0;
+		byte[] tzBuf1 = new byte[TZ_SIZE];
+		byte[] tzBuf2 = new byte[TZ_SIZE];
+		byte[] tzBuf3 = new byte[TZ_SIZE];
+		String strDevName  = "/dev/ttyMT3";
+		String strBaudRate = "115200";
+		int iBaudRate = Integer.parseInt(strBaudRate);
+        ShowDlg("0=======================");
+		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf1);
+		if (nRet != 0) {
+			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
+			return ;
+		}
+
+        ShowDlg("1=======================");
+		nRet = devDriver.mxGetImageDY(strDevName, iBaudRate, m_iTimeout,m_bImgBuf);
+		if (nRet != 0) {
+            ShowDlg("1=======================:" + nRet);
+			return;
+		}
+        ShowDlg("2=======================:" + nRet);
+		show_image();
+		ToastUtils.showLongToast("请第2次手指...");
+		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf2);
+		if (nRet != 0) {
+			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
+			return ;
+		}
+		nRet = devDriver.mxGetImageDY(strDevName, iBaudRate, m_iTimeout,m_bImgBuf);
+		if (nRet != 0) {
+			ToastUtils.showLongToast("获取指纹失败,nRet=" + nRet);
+			return;
+		}
+		show_image();
+
+		nRet = algDriver.mxFingerMatch512(tzBuf1,tzBuf2,3);
+		if(nRet!=0)
+		{
+			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
+			return;
+		}
+
+		ToastUtils.showLongToast("请第3次手指...");
+		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf3);
+		if (nRet != 0) {
+			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
+			return ;
+		}
+		nRet = devDriver.mxGetImageDY(strDevName, iBaudRate, m_iTimeout,m_bImgBuf);
+		if (nRet != 0) {
+			ToastUtils.showLongToast("获取指纹失败,nRet=" + nRet);
+			return;
+		}
+		show_image();
+
+		nRet = algDriver.mxFingerMatch512(tzBuf1,tzBuf3,3);
+		if(nRet!=0)
+		{
+			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
+			return;
+		}
+
+		for(int j=0;j<512;j++)
+		{
+			m_mbBuf[j] = tzBuf1[j];
+		}
+		for(int j=0;j<512;j++)
+		{
+			m_mbBuf[512+j] = tzBuf2[j];
+		}
+		for(int j=0;j<512;j++)
+		{
+			m_mbBuf[1024+j] = tzBuf3[j];
+		}
+
+		ToastUtils.showLongToast("请第3次手指...");
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,14 +207,19 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fingerprint);
 		onNewIntent(getIntent());
-		initController();
+
+		mtSetGPIOValue(4, true);
+		sleep(188);
 	}
-	
-	private void initController() {
-		mTouchIdController = new TouchIdController();
-		mTouchIdController.setCallBack(mTouchIdCallback);
+
+
+	//liuwei add for power ctrl
+	private void sleep(int ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+		}
 	}
-	
 	@Override
 	protected void onNewIntent(Intent intent) {
 		// TODO Auto-generated method stub
@@ -121,14 +249,12 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mTouchIdController.open();
 	}
 	
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		mTouchIdController.close();
 	}
 	
 	
@@ -158,10 +284,28 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		
 		showFrameInput(STATE_CHECK_INPUT);
 		mBtnInput.setEnabled(true);
-//		showFrameReuslt();
+
+
+		devDriver = new mxComFingerDriver();
+		algDriver = new zzFingerAlg();
 		
 	}
-	
+
+
+    private class EnrollThread extends Thread {
+        public void run() {
+            Looper.prepare();
+            try {
+                Enroll();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } finally {
+                Looper.loop();
+            }
+        }
+    };
+    private EnrollThread   m_enrollThread = null;
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -169,7 +313,13 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		
 		switch(v.getId()) {
 			case R.id.btn_finger_input:
-				if (state == STATE_CHECK_INPUT) {
+                if (m_enrollThread != null) {
+                    m_enrollThread.interrupt();
+                    m_enrollThread = null;
+                }
+                m_enrollThread = new EnrollThread();
+                m_enrollThread.start();
+				/*if (state == STATE_CHECK_INPUT) {
 					startCheckFringer();
 				}
 				else if (state == STATE_FIRST_INPUT) {
@@ -183,7 +333,7 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 				}
 				else if(state == STATE_FOURTH_INPUT) {
 					startInputFourth();
-				}
+				}*/
 				break;
 			case R.id.btn_again_finger_input:
 //				removeUserTouchId();
@@ -249,9 +399,29 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		Intent data = getIntent();
 		data.putExtra(Const.KEY_FINGER_PRINT, SharedDatas.getInstance().put(mFingerPrint));
 		setResult(Activity.RESULT_OK, data);
+
+		mtSetGPIOValue(4, false);
 		finish();
 	}
-	
+	public void mtSetGPIOValue(int pin, boolean bHigh)
+	{
+		if (pin < 0) {
+			return;
+		}
+		EmGpio.gpioInit();
+		EmGpio.setGpioMode(pin);
+		if (bHigh)
+		{
+			EmGpio.setGpioOutput(pin);
+			EmGpio.setGpioDataHigh(pin);
+		}
+		else
+		{
+			EmGpio.setGpioOutput(pin);
+			EmGpio.setGpioDataLow(pin);
+		}
+		EmGpio.gpioUnInit();
+	}
 	private void showFrameReuslt() {
 		mFrameFingerInput.setVisibility(View.GONE);
 		mFrameResult.setVisibility(View.VISIBLE);
@@ -281,189 +451,30 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	
 	private void startCheckFringer() {
 		mBtnInput.setEnabled(false);
-		mTouchIdController.search();
 	}
 	
 	private void startInputFirst() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 0% \n等待第一次录入指纹");
-		mTouchIdController.enroll1(mUserId);
 	}
 	
 	private void startInputSencond() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 25% \n等待第二次录入指纹");
-		mTouchIdController.enroll2(mUserId);
 	}
 	
 	private void startInputThird() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 60% \n等待第三次录入指纹");
-		mTouchIdController.enroll3(mUserId);
 	}
 	
 	private void startInputFourth() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
 		mPrompt.setText("已完成 80% \n等待最后一次录入指纹");
-		mTouchIdController.captureImage();
 	}
-	
-	private void getUserEgienValue() {
-		mTouchIdController.getUserEigenValue(mUserId);
-	}
-	
-//	private void removeTouchIdAllUser() {
-//		mTouchIdController.removeAll();
-//	}
-	
-	private void removeUserTouchId() {
-		mTouchIdController.removeUser(mUserId);
-	}
-	
-	
-	TouchIdCallback mTouchIdCallback = new TouchIdCallback() {
-		
-		@Override
-		public void onTimeout(Command cmd) {
-			// TODO Auto-generated method stub
-			resetCheck();
-			ToastUtils.showShortToast("比对超时");
-		}
-		
-		@Override
-		public void onResponseUploadAndCompare(Command cmd, int state) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void onResponseRemoveAll(Command cmd, int state) {
-			// TODO Auto-generated method stub
-//			if(state == Response.ACK_SUCCESS) {
-//				
-//			}
-//			else {
-//				resetInput();
-//			}
-		}
-		
-		@Override
-		public void onResponseRemoveUser(Command cmd, int state) {
-			// TODO Auto-generated method stub
-			if(state == Response.ACK_SUCCESS) {
-				ToastUtils.showLongToast("用户指纹已清除，重新录入");
-			}
-		}
-		
-		@Override
-		public void onResponseSearch(Command cmd, int state) {
-			shwoUserFinger(cmd.getUserId());
-			
-		};
-		
-		@Override
-		public void onResponseEnrollThird(Command cmd, int state) {
-			// TODO Auto-generated method stub
-			if(state == Response.ACK_SUCCESS) {
-				getUserEgienValue();
-			}
-			else {
-				resetInput();
-			}
-		}
-		
-		@Override
-		public void onResponseEnrollSecond(Command cmd, int state) {
-			// TODO Auto-generated method stub
-			if(state == Response.ACK_SUCCESS) {
-				VibratorUtil.fingerPrintVibrate();
-				showFrameInput(STATE_THIRD_INPUT);
-				mHandler.postDelayed(new Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						startInputThird();
-					}
-				}, DELAY_TIME);
-			}
-			else {
-				resetInput();
-			}
-		}
-		
-		@Override
-		public void onResponseEnrollFirst(Command cmd, int state) {
-			// TODO Auto-generated method stub
-			if(state == Response.ACK_SUCCESS) {
-				VibratorUtil.fingerPrintVibrate();
-				showFrameInput(STATE_SECOND_INPUT);
-				mHandler.postDelayed(new Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						startInputSencond();
-					}
-				}, DELAY_TIME);
-				
-			}
-			else {
-				removeUserTouchId();
-				resetInput();
-			}
-		}
-		
-		@Override
-		public void onReponseUserEigenValue(Command cmd, int state, byte[] data) {
-			// TODO Auto-generated method stub
-			if(state == Response.ACK_SUCCESS) {
-				mFingerPrint.setEigenValue(data);
-				VibratorUtil.fingerPrintVibrate();
-				showFrameInput(STATE_FOURTH_INPUT);
-				mHandler.postDelayed(new Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						startInputFourth();
-					}
-				}, DELAY_TIME);
-//				ToastUtils.showShortToast("成功获取特征值");
-			}
-			else {
-				resetInput();
-			}
-		}
-		
-		@Override
-		public void onError(Command cmd) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void onCollectAndExtract(Command cmd, int state, byte[] data) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void onCaptureImage(Command cmd, int state, Bitmap bmp) {
-			// TODO Auto-generated method stub
-			if(state == Response.ACK_SUCCESS) {
-				VibratorUtil.fingerPrintVibrate();
-				mFingerPrint.setCapture(bmp);
-				mFingerPrint.setCompleted(true);
-				showFrameReuslt();
-			}
-			else {
-				showFrameInput(STATE_FOURTH_INPUT);
-			}
-		}
-	};
+
 }

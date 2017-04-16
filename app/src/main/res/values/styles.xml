@@ -60,8 +60,17 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:singleLine">true</item>
         <item name="android:gravity">center</item>
-    </style> 
-    
+    </style>
+    <style
+
+        name="CustomAlertDialogBackground"
+        parent="@android:style/Theme.Holo.Dialog">
+        <item
+            name="android:background">@android:color/white</item>
+        <item
+            name="android:windowNoTitle">true</item>
+
+    </style>
 	<!-- Title Bar -->
     <style name="Text.TitleBar">
         <item name="android:textColor">@color/title_bar_text</item>

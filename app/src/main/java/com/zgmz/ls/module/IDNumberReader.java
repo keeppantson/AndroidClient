@@ -1,19 +1,22 @@
 package com.zgmz.ls.module;
 
-import com.synjones.handset.IDCardReaderModule;
-import com.synjones.idcard.IDCard;
-import com.synjones.idcard.IDCardReaderRetInfo;
+import com.android.charger.EmGpio;
+import com.guoguang.jni.JniCall;
+import com.zgmz.ls.utils.BitmapUtils;
+import com.zz.idcard.IDCardDevice;
 import com.zgmz.ls.model.IdCard;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 
 public class IDNumberReader {
 
 //	private Context mContext;
-	private IDCardReaderModule mIdCardReaderModule;
-	private IDCard mIdCard = null;
+
+	IDCardDevice idcardDevice;
 	private int mStatus = 0;
 
 	private long mTimeout = 10000;
@@ -33,10 +36,8 @@ public class IDNumberReader {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case MSG_READ_SUCCESS:
-				if (mIdCard != null) {
 					if (mOnIDReaderListener != null) {
-						mOnIDReaderListener.onReadSuccess(convert(mIdCard));
-					}
+						mOnIDReaderListener.onReadSuccess(convert(textData, photoData, true));
 				}
 				break;
 			case MSG_READ_TIME:
@@ -45,11 +46,9 @@ public class IDNumberReader {
 				}
 				break;
 			case MSG_READ_FAILURE:
-				if (mIdCard == null) {
-					if (mOnIDReaderListener != null) {
-						mOnIDReaderListener.onReadFailure(mStatus);
-					}
-				}
+                if (mOnIDReaderListener != null) {
+                    mOnIDReaderListener.onReadFailure(mStatus);
+                }
 				break;
 			}
 		};
@@ -70,7 +69,6 @@ public class IDNumberReader {
 	}
 
 	public IDNumberReader(Context context) {
-		mIdCardReaderModule = new IDCardReaderModule(context);
 	}
 
 	public void setTimeout(long timeout) {
@@ -96,6 +94,8 @@ public class IDNumberReader {
 	 * @Title OpenReader
 	 */
 	public void OpenReader() {
+		idcardDevice = new IDCardDevice();
+		mtSetGPIOValue(95, true);
 		if (bReading)
 			return;
 		mReaderThread = new ReaderThread();
@@ -111,8 +111,31 @@ public class IDNumberReader {
 	public void CloseReader() {
 		mReaderThread.stopReader();
 		mReaderThread = null;
+		mtSetGPIOValue(95, false);
+	}
+	public void mtSetGPIOValue(int pin, boolean bHigh)
+	{
+		if (pin < 0) {
+			return;
+		}
+		EmGpio.gpioInit();
+		EmGpio.setGpioMode(pin);
+		if (bHigh)
+		{
+			EmGpio.setGpioOutput(pin);
+			EmGpio.setGpioDataHigh(pin);
+		}
+		else
+		{
+			EmGpio.setGpioOutput(pin);
+			EmGpio.setGpioDataLow(pin);
+		}
+		EmGpio.gpioUnInit();
 	}
 
+    byte[] textData = new byte[256];
+    byte[] photoData = new byte[1024];
+    byte[] message = new byte[100];
 	private class ReaderThread extends Thread {
 
 		boolean reading = false;
@@ -144,7 +167,6 @@ public class IDNumberReader {
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			mIdCardReaderModule.open();
 			bReading = true;
 			reading = true;
 			startTime = System.currentTimeMillis();
@@ -164,18 +186,17 @@ public class IDNumberReader {
 				}
 
 				try {
-					IDCardReaderRetInfo retInfo = mIdCardReaderModule.getIDcardInfo(false, true, false);//获取身份证对象
+                    int result = IDCardDevice.ReadIdCard(6,
+                            "/dev/ttyMT1", textData, photoData, message);
 //					IDCardReaderRetInfo retInfo = mIdCardReaderModule.getIDcardInfo();
 					// samvID=idCardReaderModule.getSamvIDString();
 					// String
 					// appendAddress=idCardReaderModule.getAppendAddress();
-					if (retInfo.errCode == IDCardReaderRetInfo.ERROR_OK) {
-						mIdCard = retInfo.card;
+					if (result==0) {
 						mStatus = 0;
 						mHandler.sendEmptyMessage(MSG_READ_SUCCESS);
 						break;
 					} else {
-						mIdCard = null;
 						mStatus = -2;
 						// bytesToHexString(new
 						// byte[]{retInfo.sw1,retInfo.sw2,retInfo.sw3});
@@ -187,11 +208,19 @@ public class IDNumberReader {
 				}
 			} // while
 				// 停止读卡线程
-			mIdCardReaderModule.close();
 			bReading = false;
 		}
 	}
-
+    private static final int mPhotoWidth      = 102;
+    private static final int mPhotoWidthBytes = (((mPhotoWidth * 3 + 3) / 4) * 4);
+    private static final int mPhotoHeight     = 126;
+    private static final int mPhotoSize       = (14 + 40 + mPhotoWidthBytes * mPhotoHeight);
+    public int Wlt2Bmp(byte[] wlt, byte[] bmp) {
+        if(bmp.length < mPhotoSize)
+            return -12;
+        JniCall.Huaxu_Wlt2Bmp(wlt, bmp, 0);
+        return 0;
+    }
 	public static String bytesToHexString(byte[] src) {
 		StringBuilder stringBuilder = new StringBuilder("");
 		if (src == null || src.length <= 0) {
@@ -266,21 +295,126 @@ public class IDNumberReader {
 //
 //	}
 
-	public IdCard convert(IDCard idcard) {
+    public static String unicode2String(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length / 2; i++) {
+            int a = bytes[2 * i + 1];
+            if (a < 0) {
+                a = a + 256;
+            }
+            int b = bytes[2 * i];
+            if (b < 0) {
+                b = b + 256;
+            }
+            int c = (a << 8) | b;
+			if (c == 32) {
+				break;
+			}
+            sb.append((char) c);
+        }
+        return sb.toString();
+    }
+    String[] FOLK = { "汉", "蒙古", "回", "藏", "维吾尔", "苗", "彝", "壮", "布依", "朝鲜",
+            "满", "侗", "瑶", "白", "土家", "哈尼", "哈萨克", "傣", "黎", "傈僳", "佤", "畲",
+            "高山", "拉祜", "水", "东乡", "纳西", "景颇", "柯尔克孜", "土", "达斡尔", "仫佬", "羌",
+            "布朗", "撒拉", "毛南", "仡佬", "锡伯", "阿昌", "普米", "塔吉克", "怒", "乌孜别克",
+            "俄罗斯", "鄂温克", "德昂", "保安", "裕固", "京", "塔塔尔", "独龙", "鄂伦春", "赫哲",
+            "门巴", "珞巴", "基诺", "", "", "穿青人", "家人", "", "", "", "", "", "", "",
+            "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+            "", "", "", "", "", "", "", "", "", "", "", "", "其他", "外国血统", "",
+            ""
+    };
+	public IdCard convert(byte[] cardInfo, byte[] photoData, Boolean bShowImage) {
 		IdCard card = new IdCard();
-		card.setName(idcard.getName());
-		card.setSex(idcard.getSex());
-		card.setBirth(idcard.getBirthday());
-		card.setAddress(idcard.getAddress());
-		card.setIdNumber(idcard.getIDCardNo().toUpperCase());
-		card.setAuthority(idcard.getGrantDept());
-		card.setNation(idcard.getNation());
-		card.setStartValidDate(idcard.getUserLifBebinWithPoint());
-		card.setWlt(idcard.getWlt());
-		card.setEndValidDate(idcard.getUserLifEndWithPoint());
-		card.setWlt(idcard.getWlt());
-		card.setAvatar(idcard.getPhoto());
-		card.setCompleted(true);
+
+        byte[] id_Name = new byte[30]; // 姓名
+        byte[] id_Sex = new byte[2]; // 性别 1为男 其他为女
+        byte[] id_Rev = new byte[4]; // 民族
+        byte[] id_Born = new byte[16]; // 出生日期
+        byte[] id_Home = new byte[70]; // 住址
+        byte[] id_Code = new byte[36]; // 身份证号
+        byte[] _RegOrg = new byte[30]; // 签发机关
+        byte[] id_ValidPeriodStart = new byte[16]; // 有效日期 起始日期16byte 截止日期16byte
+        byte[] id_ValidPeriodEnd = new byte[16];
+        byte[] id_NewAddr = new byte[36]; // 预留区域
+
+        int iLen = 0;
+        for (int i = 0; i < id_Name.length; i++) {
+            id_Name[i] = cardInfo[i + iLen];
+        }
+        iLen = iLen + id_Name.length;
+        card.setName(unicode2String(id_Name));
+
+        for (int i = 0; i < id_Sex.length; i++) {
+            id_Sex[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_Sex.length;
+
+        if (id_Sex[0] == '1') {
+            card.setSex("男");
+        } else {
+            card.setSex("女");
+        }
+
+        for (int i = 0; i < id_Rev.length; i++) {
+            id_Rev[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_Rev.length;
+        if (id_Rev[0] != 0) {
+            int iRev = Integer.parseInt(unicode2String(id_Rev));
+            card.setNation(FOLK[iRev - 1]);
+        }
+
+        for (int i = 0; i < id_Born.length; i++) {
+            id_Born[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_Born.length;
+        card.setBirth(unicode2String(id_Born));
+
+        for (int i = 0; i < id_Home.length; i++) {
+            id_Home[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_Home.length;
+        card.setAddress(unicode2String(id_Home));
+
+        for (int i = 0; i < id_Code.length; i++) {
+            id_Code[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_Code.length;
+        card.setIdNumber(unicode2String(id_Code));
+
+        for (int i = 0; i < _RegOrg.length; i++) {
+            _RegOrg[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + _RegOrg.length;
+        card.setAuthority(unicode2String(_RegOrg));
+
+        for (int i = 0; i < id_ValidPeriodStart.length; i++) {
+            id_ValidPeriodStart[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_ValidPeriodStart.length;
+        for (int i = 0; i < id_ValidPeriodEnd.length; i++) {
+            id_ValidPeriodEnd[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_ValidPeriodEnd.length;
+        card.setStartValidDate(unicode2String(id_ValidPeriodStart));
+        card.setEndValidDate(unicode2String(id_ValidPeriodEnd));
+
+        for (int i = 0; i < id_NewAddr.length; i++) {
+            id_NewAddr[i] = cardInfo[iLen + i];
+        }
+        iLen = iLen + id_NewAddr.length;
+
+        if (bShowImage == true) {
+
+            byte[] bmp = new byte[mPhotoSize];
+            Wlt2Bmp(photoData, bmp);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
+            card.setAvatar(bitmap);
+            card.setWlt(bmp);
+        }
+
+        card.setCompleted(true);
 		return card;
 	}
 }

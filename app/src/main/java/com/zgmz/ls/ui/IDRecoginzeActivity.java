@@ -27,12 +27,11 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 	private View mFrameRecognize;
 	private View mFrameResult;
 	
-	private TextView mPrompt;
-	
 	private Button mBtnRecognize;
 	private Button mBtnAgainRecognize;
 	private Button mBtnOk;
-	
+    private ImageView fake_bg;
+	private ImageView fake_head;
 	
 	private View mIdCardViewA;
 	private View mIdCardViewB;
@@ -112,20 +111,19 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 	}
 	
 	@Override
-	protected void onConfigrationTitleBar() {
-		// TODO Auto-generated method stub
-		super.onConfigrationTitleBar();
-		setTitleBarTitleText(R.string.title_id_recognize);
-	}
-	
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.id_recognize);
+		setContentView(R.layout.shen_fen_shi_bie);
 		onNewIntent(getIntent());
+        setupViews();
 	}
-	
+	@Override
+	protected void onConfigrationTitleBar() {
+		// TODO Auto-generated method stub
+		super.onConfigrationTitleBar();
+		setTitleBarTitleText("身份证识别");
+	}
 	@Override
 	protected void onNewIntent(Intent intent) {
 		// TODO Auto-generated method stub
@@ -147,25 +145,22 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 		stopReconginze();
 		super.onPause();
 	}
-	
-	@Override
-	protected void setupViews(View view) {
+
+	protected void setupViews() {
 		// TODO Auto-generated method stub
-		mFrameRecognize = view.findViewById(R.id.frame_recognize);
-		mFrameResult = view.findViewById(R.id.frame_result);
-		
-		
-		mPrompt = (TextView) mFrameRecognize.findViewById(R.id.prompt);
+		mFrameRecognize = this.findViewById(R.id.frame_recognize);
+		mFrameResult = this.findViewById(R.id.frame_result);
+
+
 		mBtnRecognize = (Button)mFrameRecognize.findViewById(R.id.btn_recognize);
-		
 		mBtnAgainRecognize = (Button)mFrameResult.findViewById(R.id.btn_again_recognize);
 		mBtnOk = (Button)mFrameResult.findViewById(R.id.btn_ok);
 		
 		mBtnRecognize.setOnClickListener(this);
 		mBtnAgainRecognize.setOnClickListener(this);
 		mBtnOk.setOnClickListener(this);
-		
-		
+        fake_bg = (ImageView) this.findViewById(R.id.fake_bg);
+		fake_head = (ImageView) this.findViewById(R.id.fake_head);
 		mIdCardViewA = mFrameResult.findViewById(R.id.card_a);
 		mIdCardViewB = mFrameResult.findViewById(R.id.card_b);
 		
@@ -238,24 +233,22 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 	
 	
 	private void showFrameRecognize() {
-		mFrameRecognize.setVisibility(View.VISIBLE);
 		mFrameResult.setVisibility(View.GONE);
-		mPrompt.setText(R.string.prompt_reconginze_id_ready);
 		mBtnRecognize.setText(R.string.start_reconginze);
 	}
 	
 	private void showReconginzeFailure() {
-		mPrompt.setText(R.string.prompt_reconginze_id_failure);
 		mBtnRecognize.setText(R.string.again_reconginze);
 		mBtnRecognize.setEnabled(true);
 		mState =  STATE_RECOGNIZED;
 	}
 	
 	private void showFrameReuslt() {
-		mFrameRecognize.setVisibility(View.GONE);
 		mFrameResult.setVisibility(View.VISIBLE);
-		mPrompt.setText(R.string.prompt_reconginze_id_ready);
 		mBtnRecognize.setText(R.string.start_reconginze);
+        mBtnRecognize.setVisibility(View.GONE);
+        fake_bg.setVisibility(View.GONE);
+		fake_head.setVisibility(View.GONE);
 		mBtnOk.setEnabled(true);
 		mState =  STATE_RECOGNIZED;
 	}

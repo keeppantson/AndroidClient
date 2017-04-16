@@ -1,23 +1,34 @@
 package com.zgmz.ls.ui.fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.zgmz.ls.R;
 import com.zgmz.ls.base.Const;
 import com.zgmz.ls.base.SharedDatas;
 import com.zgmz.ls.db.DBHelper;
+import com.zgmz.ls.db.TableTools;
+import com.zgmz.ls.model.Attachment;
+import com.zgmz.ls.model.CheckTask;
+import com.zgmz.ls.model.FamilyBase;
 import com.zgmz.ls.model.IdCard;
 import com.zgmz.ls.model.SimpleUserInfo;
 import com.zgmz.ls.model.UserInfo;
+import com.zgmz.ls.ui.CheckFamilyInfoActivity;
 import com.zgmz.ls.ui.IDManualActivity;
 import com.zgmz.ls.ui.IDRecoginzeActivity;
 import com.zgmz.ls.ui.UserInfoActivity;
 import com.zgmz.ls.ui.adapter.UserInfoAdapter;
+import com.zgmz.ls.utils.BitmapUtils;
 import com.zgmz.ls.utils.ToastUtils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +37,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import static com.zgmz.ls.model.Attachment.TYPE_IMAGE_SHENGFENZHEN;
+import static com.zgmz.ls.model.CheckTask.STATUS_NEW_ADDED;
+import static com.zgmz.ls.ui.LoginActivity.TEST_USERNAME;
+import static com.zgmz.ls.ui.LoginActivity.TEST_XZBM;
 
 public class TabRecordFragment extends TitleBarFragment implements OnClickListener, OnItemClickListener{
 	
@@ -38,7 +54,7 @@ public class TabRecordFragment extends TitleBarFragment implements OnClickListen
 	TextView mEmptyText;
 	
 	UserInfoAdapter mAdapter;
-	
+
 	
 	List<UserInfo> mUserInfos = new ArrayList<UserInfo>();
 
@@ -46,6 +62,13 @@ public class TabRecordFragment extends TitleBarFragment implements OnClickListen
 	protected void onConfigrationTitleBar() {
 		// TODO Auto-generated method stub
 		setTitleBarTitleText(R.string.title_tab_record);
+
+		setTitleBarLeftImageButtonImageResource(R.drawable.title_back);
+	}
+
+	@Override
+	public void onTitleBarLeftButtonOnClick(View v) {
+		getActivity().finish();
 	}
 	
 	@Override
@@ -88,7 +111,7 @@ public class TabRecordFragment extends TitleBarFragment implements OnClickListen
 	}
 	
 	public void updateUserInfos() {
-		List<UserInfo> userInfos = DBHelper.getInstance().getLastUserInfos(10, true);
+		List<UserInfo> userInfos = DBHelper.getInstance().getCheckedUser(true);
 		if(userInfos != null) {
 			mUserInfos.clear();
 			mUserInfos.addAll(userInfos);
@@ -163,49 +186,130 @@ public class TabRecordFragment extends TitleBarFragment implements OnClickListen
 	
 	private void createUserAndShowUserInfo(UserInfo userInfo) {
 		if(!DBHelper.getInstance().hasUser(userInfo.getIdNumber())) {
-			if(DBHelper.getInstance().insertUser(userInfo)) {
-				UserInfo info = DBHelper.getInstance().getUserInfo(userInfo.getIdNumber());
-				if(info != null) {
-					SharedDatas.getInstance().recordUpdated();
+			DBHelper.getInstance().insertUser(userInfo);
+		}
+		UserInfo info = DBHelper.getInstance().getUserInfo(userInfo.getIdNumber());
+		if(info != null) {
+					CheckTask task = new CheckTask();
+					Long time = System.currentTimeMillis();
+					Calendar c = Calendar.getInstance();
+					int year = c.get(Calendar.YEAR);
+					SimpleDateFormat    formatter    =   new SimpleDateFormat("yyyy-MM-dd");
+					Date curDate = new Date(time);//获取当前时间
+					String str =  formatter.format(curDate);
+					task.setLx("03");
+					task.setFzr(TEST_USERNAME);
+					task.setNd(Integer.toString(year));
+					task.setDate(str);
+					task.setCheck_task_id(Long.toString(time));
+					task.setStatus(STATUS_NEW_ADDED);
+
+					DBHelper.getInstance().insertOrUpdateCheckTask(task);
+
+					FamilyBase family = new FamilyBase();
+					family.setCheck_task_id(Long.toString(time));
+					family.setXzqhdm(TEST_XZBM);
+					family.setSqrxm(userInfo.getName());
+					family.setSqrsfzh(userInfo.getIdNumber());
+					family.setSqrq(str);
+					family.setIsChecked("0");
+					DBHelper.getInstance().insertOrUpdateFamilyBase(family);
+
+					FamilyBase.member member = family.new member();
+					member.setCheck_task_id(Long.toString(time));
+					member.setCyxm(userInfo.getName());
+					member.setCysfzh(userInfo.getIdNumber());
+					member.setFather_id(userInfo.getIdNumber());
+                    member.setRyzt("01");
+                    member.setSfz_status("02");
+					DBHelper.getInstance().insertOrUpdateMember(member);
+
+					info.setCheck_task_id(Long.toString(time));
 					startUserInfoActivity(info);
-				}
-			}
-			else {
-				ToastUtils.showLongToast("新建用户失败");
-			}
 		}
 		else {
-			ToastUtils.showLongToast("用户已存在");
+				ToastUtils.showLongToast("用户信息失效");
 		}
 	}
 	
 	private void createUserAndShowUserInfo(IdCard idCard) {
 		if(!DBHelper.getInstance().hasUser(idCard.getIdNumber())) {
-			if(DBHelper.getInstance().insertUser(idCard)) {
+            DBHelper.getInstance().insertUser(idCard);
+        }
 				
-				UserInfo info = DBHelper.getInstance().getUserInfo(idCard.getIdNumber());
-				if(info != null) {
+        UserInfo info = DBHelper.getInstance().getUserInfo(idCard.getIdNumber());
+        if(info != null) {
 					idCard.setUserId(info.getUserId());
 					if(DBHelper.getInstance().insertOrUpdateIdCard(idCard)) {
 						info.setFlagId(true);
 						SharedDatas.getInstance().recordUpdated();
 					}
+					CheckTask task = new CheckTask();
+                    Long time = System.currentTimeMillis();
+                    Calendar c = Calendar.getInstance();
+                    int year = c.get(Calendar.YEAR);
+                    SimpleDateFormat    formatter    =   new SimpleDateFormat("yyyy-MM-dd");
+                    Date curDate = new Date(time);//获取当前时间
+                    String str =  formatter.format(curDate);
+                    task.setLx("03");
+                    task.setFzr(TEST_USERNAME);
+                    task.setNd(Integer.toString(year));
+                    task.setDate(str);
+                    task.setCheck_task_id(Long.toString(time));
+                    task.setStatus(STATUS_NEW_ADDED);
+
+					DBHelper.getInstance().insertOrUpdateCheckTask(task);
+
+                    FamilyBase family = new FamilyBase();
+                    family.setCheck_task_id(Long.toString(time));
+                    family.setXzqhdm(TEST_XZBM);
+                    family.setSqrxm(idCard.getName());
+                    family.setSqrsfzh(idCard.getIdNumber());
+                    family.setSqrq(str);
+                    family.setIsChecked("0");
+                    byte[] bmp = idCard.getWlt();
+                    Bitmap pic = BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
+                    DBHelper.getInstance().insertOrUpdateFamilyBase(family, pic);
+
+                    FamilyBase.member member = family.new member();
+                    member.setCheck_task_id(Long.toString(time));
+                    member.setCyxm(idCard.getName());
+                    member.setCysfzh(idCard.getIdNumber());
+					member.setFather_id(idCard.getIdNumber());
+					member.setRyzt("01");
+					member.setSfz_status("01");
+                    if (idCard.getSex().equals("男")) {
+                        member.setXb("1");
+                    } else {
+                        member.setXb("2");
+                    }
+                    bmp = idCard.getWlt();
+                    pic = BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
+                    DBHelper.getInstance().insertOrUpdateMember(member, pic);
+
+					Attachment attachment = new Attachment();
+					attachment.setCheck_task_id(Long.toString(time));
+					attachment.setCard_id(idCard.getIdNumber());
+					bmp = idCard.getWlt();
+					pic = BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
+					attachment.setContent(pic);
+					attachment.setName(idCard.getIdNumber() + "-" + "102.jpg");
+					attachment.setType(TYPE_IMAGE_SHENGFENZHEN);
+					attachment.setPath(str + "/" + TEST_XZBM + "/"+ idCard.getIdNumber() + "/102/"+ idCard.getIdNumber() + "-102.jpg");
+					DBHelper.getInstance().insertAttachment(attachment);
+
+                    info.setCheck_task_id(Long.toString(time));
 					startUserInfoActivity(info);
-				}
-			}
-			else {
-				ToastUtils.showLongToast("新建用户失败");
-			}
-		}
-		else {
-			ToastUtils.showLongToast("用户已存在");
+		}else {
+			ToastUtils.showLongToast("用户已失效");
 		}
 	}
 	
 	private void startUserInfoActivity(UserInfo info) {
 		Intent intent = new Intent();
 		intent.putExtra(Const.KEY_USER_INFO, info.toSimpleUserInfo());
-		intent.setClass(getActivity(),UserInfoActivity.class);
+		intent.putExtra(Const.KEY_TYPE, Const.InfoType.INPUT);
+		intent.setClass(getActivity(),CheckFamilyInfoActivity.class);
 		startActivity(intent);
 	}
 	

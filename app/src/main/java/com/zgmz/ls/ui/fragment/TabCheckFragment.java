@@ -9,7 +9,7 @@ import com.zgmz.ls.base.Const.InfoType;
 import com.zgmz.ls.base.SharedDatas;
 import com.zgmz.ls.db.DBHelper;
 import com.zgmz.ls.model.UserInfo;
-import com.zgmz.ls.ui.CheckUserInfoActivity;
+import com.zgmz.ls.ui.CheckFamilyInfoActivity;
 import com.zgmz.ls.ui.SearchActivity;
 import com.zgmz.ls.ui.adapter.UserInfoAdapter;
 
@@ -17,6 +17,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -59,7 +61,6 @@ public class TabCheckFragment extends TitleBarFragment implements OnClickListene
 	protected void onConfigrationTitleBar() {
 		// TODO Auto-generated method stub
 		setTitleBarTitleText(R.string.title_tab_check);
-//		setTitleBarRightImageButtonImageResource(R.drawable.title_search);
 		setTitleBarRightButtonText("搜索");
 	}
 
@@ -98,9 +99,6 @@ public class TabCheckFragment extends TitleBarFragment implements OnClickListene
 		mUncheckList.setEmptyView(mUncheckEmpty);
 		mCheckedList.setEmptyView(mCheckEmpty);
 		
-		mTabUncheck = (Button) root.findViewById(R.id.tab_uncheck);
-		mTabChecked = (Button) root.findViewById(R.id.tab_checked);
-		
 		mTabUncheck.setOnClickListener(this);
 		mTabChecked.setOnClickListener(this);
 		
@@ -136,12 +134,6 @@ public class TabCheckFragment extends TitleBarFragment implements OnClickListene
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch(v.getId()) {
-			case R.id.tab_uncheck:
-				showTabUncheck();
-				break;
-			case R.id.tab_checked:
-				showTabChecked();
-				break;
 		}
 	}
 	
@@ -173,7 +165,7 @@ public class TabCheckFragment extends TitleBarFragment implements OnClickListene
 		Intent intent = new Intent();
 		intent.putExtra(Const.KEY_USER_INFO, userInfo.toSimpleUserInfo());
 		intent.putExtra(Const.KEY_TYPE, InfoType.CHECK);
-		intent.setClass(getActivity(),CheckUserInfoActivity.class);
+		intent.setClass(getActivity(),CheckFamilyInfoActivity.class);
 		startActivity(intent);
 	}
 	

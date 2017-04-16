@@ -40,7 +40,7 @@
 	    android:enabled="false"
 	    android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-	
+
 	<TextView
         android:textSize="15sp"
         android:layout_marginTop="10dp"
@@ -49,7 +49,7 @@
         android:text="@string/address_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-	
+
 	<EditText
 	    android:id="@+id/input_address"
 	    style="@style/EditText"
@@ -59,31 +59,12 @@
 	    android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 	
-	
-	<TextView
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/gray"
-        android:text="@string/current_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-	
-	<FrameLayout 
+
+
+	<FrameLayout
 	    android:layout_width="match_parent"
         android:layout_height="wrap_content">
-	    <EditText
-		    android:id="@+id/input_location"
-		    android:hint="获取地理位置"
-		    style="@style/EditText"
-		    android:background="@drawable/edit_text_normal"
-		    android:minLines="4"
-	    	android:maxLines="4"
-	    	android:enabled="false"
-		    android:gravity="left|top"
-		    android:layout_width="match_parent"
-	        android:layout_height="wrap_content"/>
-	    
+
 	    <Button
 	        android:id="@+id/btn_location"
 	        android:textColor="@color/white"

@@ -8,15 +8,16 @@
     android:layout_height="match_parent"
     android:paddingBottom="30dp"
     android:orientation="vertical" >
-    
+
 	<TextView
-        android:textSize="15sp"
-        android:textColor="@color/gray"
-        android:text="@string/family_property_housing"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-	
+		android:id="@+id/textView3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		android:text="@string/family_property_housing"
+		android:textColor="@color/gray"
+		android:textSize="15sp" />
+
 	<include
 	    android:id="@+id/code2001"
 	    layout="@layout/radio_tow"
@@ -92,14 +93,14 @@
 	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
 	    android:layout_width="match_parent"
     	android:layout_height="@dimen/family_sitiation_item_height"/>
-	
+
 	<include
-	    android:id="@+id/code2010"
-	    layout="@layout/family_situation_item_input"
-	    android:layout_marginTop="@dimen/family_sitiation_item_gap"
-	    android:layout_width="match_parent"
-    	android:layout_height="@dimen/family_sitiation_item_height"/>
-	
+		android:id="@+id/code2010"
+		layout="@layout/family_situation_item_input"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/family_sitiation_item_height"
+		android:layout_marginTop="@dimen/family_sitiation_item_gap" />
+
 	<include
 	    android:id="@+id/code2011"
 	    layout="@layout/family_situation_item_input"
