@@ -1,6 +1,5 @@
-app/build/intermediates
-build/android-profile
-app/build/outputs/apk/
-.gradle
-app/build/intermediates
-.gradle
+app/build/
+build/
+.idea/
+.idea/workspace.xml
+.idea/misc.xml

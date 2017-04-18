@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,6 +17,9 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Base64;
 
 public class RestClient {
@@ -45,10 +50,10 @@ public class RestClient {
     初始化失败将直接报exception
      */
     public void Init() throws IOException, JSONException {
-        RestResult res = GetConfig();
-        JSONArray array = res.body.getJSONArray("servers");
-        for (int i = 0; i < array.length(); ++i) {
-            servers.add(array.getString(i));
+        ConfigClient config = new ConfigClient();
+        config.Init();
+        for (int i = 0; i < config.servers.size(); ++i) {
+            servers.add(config.servers.get(i));
         }
     }
 
@@ -117,20 +122,6 @@ public class RestClient {
         }
 
         return null;
-    }
-
-    public RestResult GetConfig() throws IOException, JSONException {
-        //mx: TODO
-        URL url = new URL("http://" + servers.get(0) + "/config");
-
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Accept", "application/json");
-
-        RestResult res = BuildResultFromConnection(conn);
-        conn.disconnect();
-        return res;
-
     }
 
     private RestResult BuildResultFromConnection(HttpURLConnection conn) throws IOException, JSONException {

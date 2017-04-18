@@ -3,10 +3,15 @@ package com.zgmz.ls.ui;
 import com.zgmz.ls.AppContext;
 import com.zgmz.ls.R;
 import com.zgmz.ls.base.TitleBarActivity;
+import com.zgmz.ls.utils.ConfigClient;
 import com.zgmz.ls.utils.PreferencesUtils;
+import com.zgmz.ls.utils.RestClient;
 import com.zgmz.ls.utils.ToastUtils;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +19,18 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import org.json.JSONException;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class LoginActivity extends TitleBarActivity {
 	
@@ -69,7 +86,7 @@ public class LoginActivity extends TitleBarActivity {
 	private void login() {
 		String username = mUsername.getText().toString().trim();
 		String password = mPassword.getText().toString().trim();
-		
+
 		{
 			
 			if(mOffline.isChecked()) {
@@ -96,7 +113,7 @@ public class LoginActivity extends TitleBarActivity {
 		}
 		
 	}
-	
+
 	private void onlineLogin(String username, String password) {
 		AppContext.getAppContext().initTaijiClient(username, password);
 		try {
