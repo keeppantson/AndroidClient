@@ -105,7 +105,8 @@ public class TaijiClient {
                 conn.setRequestMethod("GET");
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("json", String.format("{\"username\":\"%s\", \"password\":\"%s\", \"imei\":\"%s\"}", this.userName, pwd, this.imei)));
+                params.add(new BasicNameValuePair("json", String.format("{\"username\":\"%s\", \"password\":\"%s\", \"imei\":\"%s\"}",
+                        this.userName, pwd, this.imei)));
 
                 OutputStream os = conn.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(

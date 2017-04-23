@@ -412,8 +412,14 @@ public class WorkerThread extends Thread {
                     continue;
                 }
             }
+            int status =  0;
+            try {
+                status = restResult.body.getInt("status");
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
             // 如果上传不成功或者没有上传过，那么就需要重新上传
-            if (restResult.statusCode != status_ok) {
+            if (restResult.statusCode != status_ok || status != 1) {
                 AppContext context = AppContext.getAppContext();
                 RestClient client = context.getRestClient();
                 try {

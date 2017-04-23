@@ -181,7 +181,14 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 //		showFrameReuslt();
 	}
 
-	@Override
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        backResult();
+    }
+
+    @Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch(v.getId()) {
@@ -199,6 +206,10 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 	private void startReconginze() {
 		if(mState != STATE_RECOGNIZING) {
 			showFrameRecognize();
+
+            mBtnRecognize.setVisibility(View.VISIBLE);
+            fake_bg.setVisibility(View.VISIBLE);
+            fake_head.setVisibility(View.VISIBLE);
 			startTimer();
 			mState =  STATE_RECOGNIZING;
 			mBtnRecognize.setEnabled(false);
@@ -212,26 +223,16 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 			stopTimer();
 			mState =  STATE_WAIT_RECOGNIZE;
 			mBtnRecognize.setEnabled(true);
-			closeIdNumberReader();
+            IDNumberReader.getInstance().CloseReader();
 		}
 	}
 	
 	private void openIdNumberReader() {
-		if(mIdNumberReader == null) {
-			mIdNumberReader = new IDNumberReader(this);
-			mIdNumberReader.setTimeout(mTimeOut);
-			mIdNumberReader.setOnIDReaderListener(this);
-		}
-		mIdNumberReader.OpenReader();
+        IDNumberReader.getInstance().setTimeout(mTimeOut);
+        IDNumberReader.getInstance().setOnIDReaderListener(this);
+        IDNumberReader.getInstance().OpenReader();
 	}
-	
-	private void closeIdNumberReader() {
-		if(mIdNumberReader != null) {
-			mIdNumberReader.stopReader();
-		}
-	}
-	
-	
+
 	private void showFrameRecognize() {
 		mFrameResult.setVisibility(View.GONE);
 		mBtnRecognize.setText(R.string.start_reconginze);
@@ -290,6 +291,8 @@ public class IDRecoginzeActivity extends SubActivity implements OnClickListener,
 		data.putExtra(Const.KEY_ID_CARD, SharedDatas.getInstance().put(mIdCard));
 		setResult(Activity.RESULT_OK, data);
 		SharedDatas.getInstance().recordUpdated();
+
+        IDNumberReader.getInstance().CloseReader();
 		finish();
 	}
 

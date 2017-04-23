@@ -44,12 +44,12 @@ public class Main_Shu_Ju_He_Cha_Activity extends SubActivity implements View.OnC
 		// TODO Auto-generated method stub
 		super.onConfigrationTitleBar();
 		setTitleBarTitleText("数据核查");
-		setTitleBarRightImageButtonImageResource(R.drawable.yi_he_cha);
+		//setTitleBarRightImageButtonImageResource(R.drawable.yi_he_cha);
 	}
 
 	@Override
 	public void onTitleBarRightButtonOnClick(View v) {
-		startHeChaYiHeChaActivity();
+		//startHeChaYiHeChaActivity();
 		return;
 	}
 	@Override

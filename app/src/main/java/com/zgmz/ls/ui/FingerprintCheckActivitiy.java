@@ -6,6 +6,8 @@ import com.zgmz.ls.base.Const;
 import com.zgmz.ls.base.SharedDatas;
 import com.zgmz.ls.base.SubActivity;
 import com.zgmz.ls.db.DBHelper;
+import com.zgmz.ls.model.Attachment;
+import com.zgmz.ls.model.FamilyBase;
 import com.zgmz.ls.model.FingerPrint;
 import com.zgmz.ls.model.SimpleUserInfo;
 import com.zgmz.ls.module.fp.Command;
@@ -20,10 +22,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,6 +39,10 @@ import org.zz.jni.zzFingerAlg;
 
 import finger.BMP;
 
+import static com.zgmz.ls.model.Attachment.TYPE_FINGER;
+import static com.zgmz.ls.model.Attachment.TYPE_SIGNTURE_MANAGER;
+import static com.zgmz.ls.model.Attachment.TYPE_SIGNTURE_USER;
+import static com.zgmz.ls.ui.LoginActivity.TEST_XZBM;
 import static java.lang.Thread.sleep;
 
 public class FingerprintCheckActivitiy extends SubActivity implements OnClickListener{
@@ -52,7 +60,7 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	private ImageView mFingerImage;
 	
 	private Button mBtnInput;
-	private Button mBtnAgainInput;
+	//private Button mBtnAgainInput;
 	private Button mBtnOk;
 	
 	private TextView mResultText;
@@ -66,16 +74,53 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	private static final int STATE_INPUT_SUCCESS = 8;
 	
 	private static final int STATE_CHECK_INPUT = 0x101;
-	private static final int STATE_CHECK_SUCCESS = 0x102;
 	
 	private int mState = STATE_FIRST_INPUT;
 	
 	private FingerPrint mFingerPrint;
-	
-	private SimpleUserInfo mUserInfo;
+	@Override
+	public void onTitleBarLeftButtonOnClick(View v) {
 
-	
-	private int mUserId = 0;
+		mtSetGPIOValue(4, false);
+		finish();
+	}
+	private SimpleUserInfo userInfo;
+	private void SendMsg(int what, String obj) {
+		Message message = new Message();
+		message.what = what;
+		message.obj  = obj;
+		message.arg1 = 0;
+		LinkDetectedHandler.sendMessage(message);
+	}
+	private static final int SHOW_IMG_OK_MSG       = 1; // 成功显示图像
+    private static final int SHOW_PROMOT_MSG_1       = 2;
+    private static final int SHOW_PROMOT_MSG_2       = 3;
+    private static final int SHOW_PROMOT_MSG_3      = 4;
+    private static final int SHOW_PROMOT_MSG_4       = 5;
+	private Handler LinkDetectedHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+				case SHOW_IMG_OK_MSG:
+					show_image();
+					break;
+                case SHOW_PROMOT_MSG_1:
+                    startInputFirst();
+                    break;
+                case SHOW_PROMOT_MSG_2:
+                    startInputSencond();
+                    break;
+                case SHOW_PROMOT_MSG_3:
+                    startInputThird();
+                    break;
+                case SHOW_PROMOT_MSG_4:
+                    startInputFourth();
+                    break;
+				default:
+					break;
+			}
+		}
+	};
 	
 	private static final long DELAY_TIME = 1500;
 	
@@ -103,16 +148,6 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 			image_open.setImageBitmap(m_bitmap);
 		}
 	}
-
-    private void ShowDlg(String strMsg) {
-        new AlertDialog.Builder(FingerprintCheckActivitiy.this).setTitle("提示信息")
-                .setMessage(strMsg)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialoginterface, int i) {
-                    }
-                }).show();
-    }
 	private static final int TZ_SIZE =512;
 	private byte[] m_mbBuf = new byte[TZ_SIZE*3];
 	int m_iTimeout      = 15*1000;
@@ -130,22 +165,19 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		String strDevName  = "/dev/ttyMT3";
 		String strBaudRate = "115200";
 		int iBaudRate = Integer.parseInt(strBaudRate);
-        ShowDlg("0=======================");
 		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf1);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
 			return ;
 		}
 
-        ShowDlg("1=======================");
 		nRet = devDriver.mxGetImageDY(strDevName, iBaudRate, m_iTimeout,m_bImgBuf);
 		if (nRet != 0) {
-            ShowDlg("1=======================:" + nRet);
 			return;
 		}
-        ShowDlg("2=======================:" + nRet);
-		show_image();
-		ToastUtils.showLongToast("请第2次手指...");
+        SendMsg(SHOW_IMG_OK_MSG,"");
+        SendMsg(SHOW_PROMOT_MSG_1,"");
+        sleep(3000);
 		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf2);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
@@ -156,8 +188,9 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 			ToastUtils.showLongToast("获取指纹失败,nRet=" + nRet);
 			return;
 		}
-		show_image();
-
+        SendMsg(SHOW_IMG_OK_MSG,"");
+        SendMsg(SHOW_PROMOT_MSG_2,"");
+        sleep(3000);
 		nRet = algDriver.mxFingerMatch512(tzBuf1,tzBuf2,3);
 		if(nRet!=0)
 		{
@@ -165,7 +198,6 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 			return;
 		}
 
-		ToastUtils.showLongToast("请第3次手指...");
 		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf3);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
@@ -176,7 +208,9 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 			ToastUtils.showLongToast("获取指纹失败,nRet=" + nRet);
 			return;
 		}
-		show_image();
+        SendMsg(SHOW_IMG_OK_MSG,"");
+        SendMsg(SHOW_PROMOT_MSG_3,"");
+        sleep(3000);
 
 		nRet = algDriver.mxFingerMatch512(tzBuf1,tzBuf3,3);
 		if(nRet!=0)
@@ -198,7 +232,8 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 			m_mbBuf[1024+j] = tzBuf3[j];
 		}
 
-		ToastUtils.showLongToast("请第3次手指...");
+        SendMsg(SHOW_IMG_OK_MSG,"");
+        SendMsg(SHOW_PROMOT_MSG_4,"");
 	}
 	
 	@Override
@@ -224,25 +259,17 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	protected void onNewIntent(Intent intent) {
 		// TODO Auto-generated method stub
 		super.onNewIntent(intent);
-		mUserInfo = (SimpleUserInfo) intent.getSerializableExtra(Const.KEY_USER_INFO); 
-		if(mUserInfo != null) {
-			mUserId = mUserInfo.getUserId();
-			mFingerPrint = DBHelper.getInstance().getFingerPrint(mUserInfo.getUserId());
-			if(mFingerPrint != null) {
-//				showFrameReuslt();
-//				mBtnOk.setEnabled(false);
-//				mFingerImage.setImageBitmap(mFingerPrint.getCapture());
-			}
-			else {
-				mFingerPrint = new FingerPrint();
-				mFingerPrint.setUserId(mUserInfo.getUserId());
-			}
-			
-		}
-		else {
-			ToastUtils.showLongToast("未知用户无法录入指纹");
-			finish();
-		}
+        userInfo = (SimpleUserInfo) intent.getSerializableExtra(Const.KEY_USER_INFO);
+
+        if(userInfo != null) {
+
+            FamilyBase info = DBHelper.getInstance().getFamilyWithTaskID(userInfo.getCheck_task_id());
+            userInfo.setTime(info.getSqrq());
+        }
+        else {
+            ToastUtils.showShortToast("未知用户");
+            finish();
+        }
 	}
 	
 	@Override
@@ -271,15 +298,15 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		mFingerImage = (ImageView)view.findViewById(R.id.finger_image);
 		
 		mBtnInput = (Button)view.findViewById(R.id.btn_finger_input);
-		mBtnAgainInput = (Button)view.findViewById(R.id.btn_again_finger_input);
+		// mBtnAgainInput = (Button)view.findViewById(R.id.btn_again_finger_input);
 		mBtnOk = (Button)view.findViewById(R.id.btn_ok);
 		
 		mResultText = (TextView)view.findViewById(R.id.result_text);
-		mBtnAgainInput.setText(R.string.fingerprint_re_check);
-		mResultText.setText(R.string.fingerprint_check_success);
+		//mBtnAgainInput.setText(R.string.fingerprint_re_check);
+		mResultText.setText("指纹核对成功");
 		
 		mBtnInput.setOnClickListener(this);
-		mBtnAgainInput.setOnClickListener(this);
+		//mBtnAgainInput.setOnClickListener(this);
 		mBtnOk.setOnClickListener(this);
 		
 		showFrameInput(STATE_CHECK_INPUT);
@@ -313,6 +340,9 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		
 		switch(v.getId()) {
 			case R.id.btn_finger_input:
+                mBtnInput.setEnabled(false);
+                mBtnInput.setText(R.string.fingerprint_input_waiting);
+                mPrompt.setText("等待第一次录入指纹");
                 if (m_enrollThread != null) {
                     m_enrollThread.interrupt();
                     m_enrollThread = null;
@@ -335,30 +365,10 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 					startInputFourth();
 				}*/
 				break;
-			case R.id.btn_again_finger_input:
-//				removeUserTouchId();
-//				resetInput();
-				resetCheck();
-				startCheckFringer();
-				break;
 			case R.id.btn_ok:
 				backResult();
 				break;
 		}
-	}
-	
-	private void resetInput() {
-		mFingerPrint.setCapture(null);
-		mFingerPrint.setEigenValue(null);
-		showFrameInput(STATE_FIRST_INPUT);
-		startInputFirst();
-	}
-	
-	private void resetCheck() {
-		mFingerPrint.setCapture(null);
-		mFingerPrint.setEigenValue(null);
-		showFrameInput(STATE_CHECK_INPUT);
-		mBtnInput.setEnabled(true);
 	}
 	
 	private void showFrameInput(int state) {
@@ -422,59 +432,61 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		}
 		EmGpio.gpioUnInit();
 	}
-	private void showFrameReuslt() {
-		mFrameFingerInput.setVisibility(View.GONE);
-		mFrameResult.setVisibility(View.VISIBLE);
-		mFingerImage.setImageBitmap(mFingerPrint.getCapture());
-		mBtnOk.setEnabled(true);
-//		mFingerImage.setRotation(180);
-		mState = STATE_INPUT_SUCCESS;
-	}
-	
-	private void shwoUserFinger(int userId) {
-		FingerPrint fp = DBHelper.getInstance().getFingerPrint(userId);
-		 
-		
-		if(fp != null && mFingerPrint.getUserId() == userId) {
-			mFrameFingerInput.setVisibility(View.GONE);
-			mFrameResult.setVisibility(View.VISIBLE);
-			mFingerImage.setImageBitmap(fp.getCapture());
-			mBtnOk.setEnabled(false);
-			mState = STATE_CHECK_SUCCESS;
-			ToastUtils.showLongToast("比对正确");
-		}
-		else {
-			ToastUtils.showLongToast("比对失败");
-			resetCheck();
-		}
-	}
-	
-	private void startCheckFringer() {
-		mBtnInput.setEnabled(false);
-	}
-	
+
 	private void startInputFirst() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
-		mPrompt.setText("已完成 0% \n等待第一次录入指纹");
+		mPrompt.setText("已完成 30% \n等待第二次录入指纹");
 	}
 	
 	private void startInputSencond() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
-		mPrompt.setText("已完成 25% \n等待第二次录入指纹");
+		mPrompt.setText("已完成 60% \n等待第三次录入指纹");
 	}
 	
 	private void startInputThird() {
 		mBtnInput.setEnabled(false);
 		mBtnInput.setText(R.string.fingerprint_input_waiting);
-		mPrompt.setText("已完成 60% \n等待第三次录入指纹");
+		mPrompt.setText("已完成 80% \n等待第四次录入指纹");
 	}
 	
 	private void startInputFourth() {
-		mBtnInput.setEnabled(false);
-		mBtnInput.setText(R.string.fingerprint_input_waiting);
-		mPrompt.setText("已完成 80% \n等待最后一次录入指纹");
+		mBtnInput.setEnabled(true);
+		mBtnInput.setText("完成");
+		mPrompt.setText("已完成 100% \n");
+        mFrameFingerInput.setVisibility(View.GONE);
+        mFrameResult.setVisibility(View.VISIBLE);
+        mBtnInput.setVisibility(View.GONE);
+        //mBtnAgainInput.setVisibility(View.VISIBLE);
+        mBtnOk.setVisibility(View.VISIBLE);
+        mFingerImage.setImageBitmap(m_bitmap);
+        String path = userInfo.getTime() + "/" + TEST_XZBM + "/" + userInfo.getFather_card_id()
+                + "/" + String.valueOf(TYPE_FINGER) + "/" + userInfo.getIdNumber() + "-" +
+                String.valueOf(TYPE_FINGER) + ".jpg";
+        Bitmap bmp = m_bitmap;
+        String name = userInfo.getIdNumber() + "-" + String.valueOf(TYPE_FINGER) + ".jpg";
+        if (bmp != null) {
+            saveAttachment(name, path, bmp, TYPE_FINGER, userInfo.getIdNumber(), userInfo.getCheck_task_id());
+        } else {
+            saveAttachment(name, path, bmp, TYPE_FINGER, userInfo.getIdNumber(), userInfo.getCheck_task_id());
+        }
 	}
 
+    int mUserId;
+    private void saveAttachment(String name, String path, Bitmap content, int type, String card_id, String task_id) {
+        Attachment attachment = new Attachment();
+        attachment.setUserId(mUserId);
+        attachment.setName(name);
+        attachment.setPath(path);
+        attachment.setContent(content);
+        attachment.setType(type);
+        attachment.setCheck_task_id(task_id);
+        attachment.setCard_id(card_id);
+        if(DBHelper.getInstance().insertOrUpdateAttachment(attachment)) {
+            //DBHelper.getInstance().updateAttachmentFlag(mUserId);
+            return;
+        }
+        return;
+    }
 }

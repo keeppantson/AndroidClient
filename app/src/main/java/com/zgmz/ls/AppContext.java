@@ -24,6 +24,10 @@ import android.media.SoundPool;
 import android.telephony.TelephonyManager;
 import android.util.SparseIntArray;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * @ClassName: AppContext
  * @Description: TODO
@@ -117,6 +121,14 @@ public class AppContext extends BaseApplication{
         String userPassword= PreferencesUtils.getInstance().getPassword();
         userName = "quxian1";
         userPassword = "abcd1234";
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		md.update(userPassword.getBytes());
+		userPassword = new BigInteger(1, md.digest()).toString(16);
         String serverurl = "115.28.185.19";
         restClient = new RestClient(serverurl, userName, userPassword, imei);
 

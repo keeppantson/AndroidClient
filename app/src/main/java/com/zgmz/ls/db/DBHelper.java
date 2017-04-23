@@ -1469,10 +1469,10 @@ public class DBHelper {
                     info.setFinger(BitmapUtils.getCircleBitmapFromByte(cursor.getBlob(4)));
                 }
                 if(cursor.getString(0).equals(String.valueOf(TYPE_SIGNTURE_MANAGER))){
-                    info.setManager_signture(BitmapUtils.getCircleBitmapFromByte(cursor.getBlob(4)));
+                    info.setManager_signture(BitmapUtils.getBitmapFromByte(cursor.getBlob(4)));
                 }
                 if(cursor.getString(0).equals(String.valueOf(TYPE_SIGNTURE_USER))){
-                    info.setUser_signture(BitmapUtils.getCircleBitmapFromByte(cursor.getBlob(4)));
+                    info.setUser_signture(BitmapUtils.getBitmapFromByte(cursor.getBlob(4)));
                 }
             }
         }

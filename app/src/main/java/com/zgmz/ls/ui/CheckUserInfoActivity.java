@@ -22,10 +22,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,7 +45,7 @@ import static com.zgmz.ls.R.id.id_username;
 import static com.zgmz.ls.model.Attachment.TYPE_IMAGE_SHENGFENZHEN;
 import static com.zgmz.ls.ui.LoginActivity.TEST_XZBM;
 
-public class CheckUserInfoActivity extends SubActivity implements OnClickListener {
+public class CheckUserInfoActivity extends SubActivity implements OnClickListener, CompoundButton.OnCheckedChangeListener {
 
 
     private TextView mName;
@@ -61,8 +65,26 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
     private ImageView mPreview;
     private ImageView mStore;
 
+    private TextView chengyuanxingbie_1;
+    private TextView chengyuanxingbie_2;
+    private TextView lao_dong_neng_li_1;
+    private TextView lao_dong_neng_li_2;
+    private TextView jiankangqingkuang_1;
+    private TextView jiankangqingkuang_2;
+    private TextView id_canjileibie_1;
+    private TextView id_canjileibie_2;
+    private TextView canjidengji_1;
+    private TextView canjidengji_2;
+    private TextView ren_yuan_zhuang_tai_1;
+    private TextView ren_yuan_zhuang_tai_2;
+    private TextView wenjiachengdu_1;
+    private TextView wenjiachengdu_2;
+    private TextView yushengqingrenguanxi_1;
+    private TextView yushengqingrenguanxi_2;
+
     private EditText xing_ming;
     private EditText nian_ling;
+    private String nian_ling_str;
     private EditText shen_feng_zheng;
     private Button xing_bie;
     private Button jian_kang_qing_kang;
@@ -72,9 +94,31 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
     private Button wen_hua_cheng_du;
     private Button shen_qing_ren_guan_xi;
     private Button lao_dong_neng_li;
-    private ImageView shi_fou_zai_xiao;
-    private ImageView shi_fou_cai_ji_shen_fen_zheng;
-    private ImageView shi_fou_he_cha_hu_kou_ben;
+    private ImageView er_dai_shen_fen_zhen;
+    CheckBox sfzx_yes;
+    CheckBox sfzx_no;
+    CheckBox sfhzhkb_yes;
+    CheckBox sfhzhkb_no;
+    CheckBox sfhzsfz_yes;
+    CheckBox sfhzsfz_no;
+
+
+    String year;
+    String month;
+    String date;
+    public int get_birth_day(String sfzid){
+        String id = sfzid;
+        String regex = "^\\d{6}(\\d{4})(\\d{2})(\\d{2})\\d{3}(X|\\d)$";
+        if(!id.matches(regex)){
+            System.err.println("输入的身份证号码不符合规格");
+            return -1;
+        }else{
+            year = id.replaceAll(regex, "$1");
+            month = id.replaceAll(regex, "$2");
+            date = id.replaceAll(regex, "$3");
+        }
+        return 0;
+    }
 
     private UserInfo mUserInfo;
     public static int IdNOToAge(String IdNO){
@@ -180,6 +224,8 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
                     can_ji_lei_bie.setText("多重残疾");
                 } else if (mFamilyMemberInfo.getCjlb().equals("69")) {
                     can_ji_lei_bie.setText("其他残疾");
+                } else {
+                    can_ji_lei_bie.setText("无残疾");
                 }
             }
             if (mFamilyMemberInfo.getCjdj() != null) {
@@ -191,6 +237,8 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
                     can_ji_deng_ji.setText("三级残疾");
                 } else if (mFamilyMemberInfo.getCjdj().equals("04")) {
                     can_ji_deng_ji.setText("四级残疾");
+                } else {
+                    can_ji_lei_bie.setText("无残疾");
                 }
             }
             if (mFamilyMemberInfo.getWhcd() != null) {
@@ -215,28 +263,40 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
 
             if (mFamilyMemberInfo.getSfzx() != null) {
                 if (mFamilyMemberInfo.getSfzx().equals("01")) {
-                    shi_fou_zai_xiao.setImageResource(R.drawable.check_box_true_2);
+                    //shi_fou_zai_xiao.setImageResource(R.drawable.check_box_true_2);
+                    sfzx_yes.setChecked(true);
+                    sfzx_no.setChecked(false);
                     _shi_fou_zai_xiao = 1;
                 } else if (mFamilyMemberInfo.getSfzx().equals("02")) {
-                    shi_fou_zai_xiao.setImageResource(R.drawable.check_box_false_2);
+                    //shi_fou_zai_xiao.setImageResource(R.drawable.check_box_false_2);
+                    sfzx_yes.setChecked(false);
+                    sfzx_no.setChecked(true);
                     _shi_fou_zai_xiao = 0;
                 }
             }
             if (mFamilyMemberInfo.getHchkb() != null) {
                 if (mFamilyMemberInfo.getHchkb().equals("01")) {
-                    shi_fou_he_cha_hu_kou_ben.setImageResource(R.drawable.check_box_true_2);
+                    //shi_fou_he_cha_hu_kou_ben.setImageResource(R.drawable.check_box_true_2);
+                    sfhzhkb_yes.setChecked(true);
+                    sfhzhkb_no.setChecked(false);
                     _id_shifouyihechahukouben = 1;
                 } else if (mFamilyMemberInfo.getHchkb().equals("02")) {
-                    shi_fou_he_cha_hu_kou_ben.setImageResource(R.drawable.check_box_false_2);
+                    //shi_fou_he_cha_hu_kou_ben.setImageResource(R.drawable.check_box_false_2);
+                    sfhzhkb_yes.setChecked(false);
+                    sfhzhkb_no.setChecked(true);
                     _id_shifouyihechahukouben = 0;
                 }
             }
             if (mFamilyMemberInfo.getHcsfz() != null) {
                 if (mFamilyMemberInfo.getHcsfz().equals("01")) {
-                    shi_fou_cai_ji_shen_fen_zheng.setImageResource(R.drawable.check_box_true_2);
+                    //shi_fou_cai_ji_shen_fen_zheng.setImageResource(R.drawable.check_box_true_2);
+                    sfhzsfz_yes.setChecked(true);
+                    sfhzsfz_no.setChecked(false);
                     _id_shifouyicaijishenfenzhen = 1;
                 } else if (mFamilyMemberInfo.getHcsfz().equals("02")) {
-                    shi_fou_cai_ji_shen_fen_zheng.setImageResource(R.drawable.check_box_false_2);
+                    //shi_fou_cai_ji_shen_fen_zheng.setImageResource(R.drawable.check_box_false_2);
+                    sfhzsfz_yes.setChecked(false);
+                    sfhzsfz_no.setChecked(true);
                     _id_shifouyicaijishenfenzhen = 0;
                 }
             }
@@ -307,7 +367,13 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         }
         if (!mIDNumber.getText().toString().equals("")) {
             shen_feng_zheng.setText(info.getIdNumber());
-            nian_ling.setText(String.valueOf(IdNOToAge(info.getIdNumber())));
+            int ret = get_birth_day(info.getIdNumber());
+            if (ret == -1) {
+                nian_ling.setText("无效年龄");
+            } else {
+                nian_ling.setText(year + "-" + month + "-" + date);
+                nian_ling_str = String.valueOf(IdNOToAge(info.getIdNumber()));
+            }
         }
     }
 
@@ -361,7 +427,31 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
             mImageAttachment.setImageResource(R.drawable.icon_attachment_off);
         }
     }
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void afterTextChanged(Editable s) {
+            // TODO Auto-generated method stub
+        }
 
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+            // TODO Auto-generated method stub
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            String str = shen_feng_zheng.getText().toString();
+            int ret = get_birth_day(str);
+            if (ret == -1) {
+                nian_ling.setText("无效年龄");
+            } else {
+                nian_ling.setText(year + "-" + month + "-" + date);
+                nian_ling_str = String.valueOf(IdNOToAge(str));
+            }
+
+        }
+    };
     protected void setupViews() {
         // TODO Auto-generated method stub
         mAvatar = (ImageView) this.findViewById(R.id.avatar);
@@ -403,12 +493,53 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         wen_hua_cheng_du = (Button)this.findViewById(R.id.id_wenhuachengdu);
         shen_qing_ren_guan_xi = (Button)this.findViewById(R.id.id_yushengqingrenguanxi);
         lao_dong_neng_li = (Button)this.findViewById(R.id.lao_dong_neng_li);
+        er_dai_shen_fen_zhen = (ImageView) this.findViewById(R.id.er_dai_shen_fen_zhen);
 
-        shi_fou_zai_xiao = (ImageView) this.findViewById(R.id.id_shifouzaixiao);
-        shi_fou_he_cha_hu_kou_ben = (ImageView)this.findViewById(R.id.id_shifouyihechahukouben);
-        shi_fou_cai_ji_shen_fen_zheng = (ImageView)this.findViewById(R.id.id_shifouyicaijishenfenzhen);
+        chengyuanxingbie_1 = (TextView) this.findViewById(R.id.chengyuanxingbie_1);
+        chengyuanxingbie_2 = (TextView) this.findViewById(R.id.chengyuanxingbie_2);
+        lao_dong_neng_li_1 = (TextView) this.findViewById(R.id.lao_dong_neng_li_1);
+        lao_dong_neng_li_2 = (TextView) this.findViewById(R.id.lao_dong_neng_li_2);
+        jiankangqingkuang_1 = (TextView) this.findViewById(R.id.jiankangqingkuang_1);
+        jiankangqingkuang_2 = (TextView) this.findViewById(R.id.jiankangqingkuang_2);
+        id_canjileibie_1 = (TextView) this.findViewById(R.id.id_canjileibie_1);
+        id_canjileibie_2 = (TextView) this.findViewById(R.id.id_canjileibie_2);
+        canjidengji_1 = (TextView) this.findViewById(R.id.canjidengji_1);
+        canjidengji_2 = (TextView) this.findViewById(R.id.canjidengji_2);
+        ren_yuan_zhuang_tai_1 = (TextView) this.findViewById(R.id.ren_yuan_zhuang_tai_1);
+        ren_yuan_zhuang_tai_2 = (TextView) this.findViewById(R.id.ren_yuan_zhuang_tai_2);
+        wenjiachengdu_1 = (TextView) this.findViewById(R.id.wenjiachengdu_1);
+        wenjiachengdu_2 = (TextView) this.findViewById(R.id.wenjiachengdu_2);
+        yushengqingrenguanxi_1 = (TextView) this.findViewById(R.id.yushengqingrenguanxi_1);
+        yushengqingrenguanxi_2 = (TextView) this.findViewById(R.id.yushengqingrenguanxi_2);
+
+
+        chengyuanxingbie_1.setOnClickListener(this);
+        chengyuanxingbie_2.setOnClickListener(this);
+        lao_dong_neng_li_1.setOnClickListener(this);
+        lao_dong_neng_li_2.setOnClickListener(this);
+        jiankangqingkuang_1.setOnClickListener(this);
+        jiankangqingkuang_2.setOnClickListener(this);
+        id_canjileibie_1.setOnClickListener(this);
+        id_canjileibie_2.setOnClickListener(this);
+        canjidengji_1.setOnClickListener(this);
+        canjidengji_2.setOnClickListener(this);
+        ren_yuan_zhuang_tai_1.setOnClickListener(this);
+        ren_yuan_zhuang_tai_2.setOnClickListener(this);
+        wenjiachengdu_1.setOnClickListener(this);
+        wenjiachengdu_2.setOnClickListener(this);
+        yushengqingrenguanxi_1.setOnClickListener(this);
+        yushengqingrenguanxi_2.setOnClickListener(this);
+
+        sfzx_yes = (CheckBox)this.findViewById(R.id.sfzx_yes);
+        sfzx_no = (CheckBox)this.findViewById(R.id.sfzx_no);
+        sfhzsfz_yes = (CheckBox)this.findViewById(R.id.sfhzsfz_yes);
+        sfhzsfz_no = (CheckBox)this.findViewById(R.id.sfhzsfz_no);
+        sfhzhkb_yes = (CheckBox)this.findViewById(R.id.sfhzhkb_yes);
+        sfhzhkb_no = (CheckBox)this.findViewById(R.id.sfhzhkb_no);
+        shen_feng_zheng.addTextChangedListener(textWatcher);
 
         xing_bie.setOnClickListener(this);
+        er_dai_shen_fen_zhen.setOnClickListener(this);
         jian_kang_qing_kang.setOnClickListener(this);
         can_ji_lei_bie.setOnClickListener(this);
         wen_hua_cheng_du.setOnClickListener(this);
@@ -416,26 +547,26 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         ren_yuan_zhuang_tai.setOnClickListener(this);
         can_ji_deng_ji.setOnClickListener(this);
         lao_dong_neng_li.setOnClickListener(this);
-
-
-        shi_fou_zai_xiao.setOnClickListener(this);
-        shi_fou_he_cha_hu_kou_ben.setOnClickListener(this);
-        shi_fou_cai_ji_shen_fen_zheng.setOnClickListener(this);
-
-
+        sfzx_yes.setOnCheckedChangeListener(this);
+        sfzx_no.setOnCheckedChangeListener(this);
+        sfhzsfz_yes.setOnCheckedChangeListener(this);
+        sfhzsfz_no.setOnCheckedChangeListener(this);
+        sfhzhkb_yes.setOnCheckedChangeListener(this);
+        sfhzhkb_no.setOnCheckedChangeListener(this);
     }
 
-    boolean change_sf_hc_hkb = false;
-    boolean change_sf_hc_sfz = false;
-    boolean change_sf_zx = false;
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.yu_lan_chen_yuan:
+                if (bao_cun_1() == -1) {
+                    break;
+                }
                 preview();
                 break;
             case R.id.er_dai_zheng:
+            case R.id.er_dai_shen_fen_zhen:
                 recognizeIdCard();
                 break;
             case R.id.zhiwenduibi:
@@ -457,40 +588,44 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
                 gps();
                 break;
             case R.id.xing_bie:
+            case R.id.chengyuanxingbie_1:
+            case R.id.chengyuanxingbie_2:
                 show_xing_bie();
                 break;
             case R.id.id_jiankangqingkuang:
+            case R.id.jiankangqingkuang_1:
+            case R.id.jiankangqingkuang_2:
                 jiankangqingkuang();
                 break;
             case R.id.canjileibie:
+            case R.id.id_canjileibie_1:
+            case R.id.id_canjileibie_2:
                 canjileibie();
                 break;
             case R.id.id_canjidengji:
+            case R.id.canjidengji_1:
+            case R.id.canjidengji_2:
                 canjidengji();
                 break;
             case R.id.id_wenhuachengdu:
+            case R.id.wenjiachengdu_1:
+            case R.id.wenjiachengdu_2:
                 id_wenhuachengdu();
                 break;
             case R.id.id_yushengqingrenguanxi:
+            case R.id.yushengqingrenguanxi_1:
+            case R.id.yushengqingrenguanxi_2:
                 id_yushengqingrenguanxi();
                 break;
-            case R.id.id_shifouzaixiao:
-                change_sf_zx = true;
-                id_shifouzaixiao();
-                break;
-            case R.id.id_shifouyihechahukouben:
-                change_sf_hc_hkb = true;
-                id_shifouyihechahukouben();
-                break;
-            case R.id.id_shifouyicaijishenfenzhen:
-                change_sf_hc_sfz = true;
-                id_shifouyicaijishenfenzhen();
-                break;
             case R.id.ren_yuan_zhuang_tai:
+            case R.id.ren_yuan_zhuang_tai_1:
+            case R.id.ren_yuan_zhuang_tai_2:
                 on_ren_yuan_zhuang_tai();
                 break;
 
             case R.id.lao_dong_neng_li:
+            case R.id.lao_dong_neng_li_1:
+            case R.id.lao_dong_neng_li_2:
                 on_lao_dong_neng_li();
                 break;
         }
@@ -650,18 +785,26 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
 
 
     private FamilyBase.member mFamilyMemberInfo;
-    void bao_cun() {
+    int bao_cun() {
+        if (bao_cun_1() == -1) {
+            return -1;
+        }
+
+        finish();
+        return 0;
+    }
+    int bao_cun_1() {
 
         if(xing_ming.getText().toString().equals("") ||
                 shen_feng_zheng.getText().toString().equals("") ) {
-            ToastUtils.showShortToast("error input name and id number");
-            return;
+            ToastUtils.showShortToast("请输入正确的姓名和身份证号码");
+            return -1;
         }
 
         mFamilyMemberInfo.setCyxm(xing_ming.getText().toString().trim());
         mFamilyMemberInfo.setCysfzh(shen_feng_zheng.getText().toString().trim());
-        if (!nian_ling.getText().toString().equals("")) {
-            mFamilyMemberInfo.setNl(nian_ling.getText().toString().trim());
+        if (!nian_ling_str.equals("")) {
+            mFamilyMemberInfo.setNl(nian_ling_str.trim());
         }
         mFamilyMemberInfo.setFather_id(local_simple_info.getFather_card_id());
         if (change_sf_zx) {
@@ -688,87 +831,99 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
 
         if (mFamilyMemberInfo.getYsqrgx() == null) {
             ToastUtils.showLongToast("未设置和申请人关系");
-            return;
+            return -1;
         }
         if (mFamilyMemberInfo.getCyxm() == null) {
             ToastUtils.showLongToast("成员姓名为空");
-            return;
+            return -1;
         }
         if (mFamilyMemberInfo.getCysfzh() == null) {
             ToastUtils.showLongToast("成员身份证为空");
-            return;
+            return -1;
         }
         if (mFamilyMemberInfo.getNl() == null) {
             ToastUtils.showLongToast("成员年龄为空");
-            return;
+            return -1;
         }
         if (mFamilyMemberInfo.getRyzt() == null) {
             ToastUtils.showLongToast("未设置成员状态");
-            return;
+            return -1;
         }
         if (mFamilyMemberInfo.getHchkb() == null) {
             ToastUtils.showLongToast("未设置是否核查户口本");
-            return;
+            return -1;
         }
 
         if (mFamilyMemberInfo.getHcsfz() == null) {
             ToastUtils.showLongToast("未设置是否核查身份证");
-            return;
+            return -1;
         }
 
 
-        boolean ret = false;
-        /*
-        if (attachment != null) {
-            DBHelper.getInstance().insertOrUpdateAttachment(attachment);
-            ret = DBHelper.getInstance().insertOrUpdateMember(mFamilyMemberInfo,
-                    pic);
-        } else */
-        {
-            ret = DBHelper.getInstance().insertOrUpdateMember(mFamilyMemberInfo);
-        }
+        boolean ret = DBHelper.getInstance().insertOrUpdateMember(mFamilyMemberInfo);
+
         if(ret == true) {
-            finish();
             ToastUtils.showLongToast("保存成功");
         }
         else {
             ToastUtils.showLongToast("保存失败");
+            return -1;
         }
-        finish();
+
+        return 0;
     }
 
-    int _id_shifouyicaijishenfenzhen = 1;
-    void id_shifouyicaijishenfenzhen() {
-        if (_id_shifouyicaijishenfenzhen == 0) {
-            _id_shifouyicaijishenfenzhen = 1;
-            shi_fou_cai_ji_shen_fen_zheng.setImageResource(R.drawable.check_box_true_2);
-        } else {
-            _id_shifouyicaijishenfenzhen = 0;
-            shi_fou_cai_ji_shen_fen_zheng.setImageResource(R.drawable.check_box_false_2);
-        }
-    }
 
-    int _id_shifouyihechahukouben = 1;
-    void id_shifouyihechahukouben() {
-        if (_id_shifouyihechahukouben == 0) {
-            _id_shifouyihechahukouben = 1;
-            shi_fou_he_cha_hu_kou_ben.setImageResource(R.drawable.check_box_true_2);
-        } else {
-
-            _id_shifouyihechahukouben = 0;
-            shi_fou_he_cha_hu_kou_ben.setImageResource(R.drawable.check_box_false_2);
-        }
-    }
-
-    int _shi_fou_zai_xiao = 1;
-    void id_shifouzaixiao() {
-        if (_shi_fou_zai_xiao == 0) {
-            _shi_fou_zai_xiao = 1;
-            shi_fou_zai_xiao.setImageResource(R.drawable.check_box_true_2);
-        } else {
-
-            _shi_fou_zai_xiao = 0;
-            shi_fou_zai_xiao.setImageResource(R.drawable.check_box_false_2);
+    int _shi_fou_zai_xiao = -1;
+    int _id_shifouyicaijishenfenzhen = -1;
+    int _id_shifouyihechahukouben = -1;
+    boolean change_sf_hc_hkb = false;
+    boolean change_sf_hc_sfz = false;
+    boolean change_sf_zx = false;
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (buttonView == sfzx_yes) {
+            change_sf_zx = true;
+            if (isChecked) {
+                _shi_fou_zai_xiao = 1;
+                sfzx_yes.setChecked(true);
+                sfzx_no.setChecked(false);
+            }
+        } else if (buttonView == sfzx_no) {
+            change_sf_zx = true;
+            if (isChecked) {
+                _shi_fou_zai_xiao = 0;
+                sfzx_yes.setChecked(false);
+                sfzx_no.setChecked(true);
+            }
+        } else if (buttonView == sfhzhkb_yes) {
+            change_sf_hc_hkb = true;
+            if (isChecked) {
+                _id_shifouyihechahukouben = 1;
+                sfhzhkb_yes.setChecked(true);
+                sfhzhkb_no.setChecked(false);
+            }
+        } else if (buttonView == sfhzhkb_no) {
+            change_sf_hc_hkb = true;
+            if (isChecked) {
+                _id_shifouyihechahukouben = 0;
+                sfhzhkb_yes.setChecked(false);
+                sfhzhkb_no.setChecked(true);
+            }
+        } else if (buttonView == sfhzsfz_yes) {
+            change_sf_hc_sfz = true;
+            if (isChecked) {
+                _id_shifouyicaijishenfenzhen = 1;
+                sfhzsfz_yes.setChecked(true);
+                sfhzsfz_no.setChecked(false);
+            }
+        } else if (buttonView == sfhzsfz_no) {
+            change_sf_hc_sfz = true;
+            if (isChecked) {
+                _id_shifouyicaijishenfenzhen = 0;
+                sfhzsfz_yes.setChecked(false);
+                sfhzsfz_no.setChecked(true);
+            }
         }
     }
 
@@ -799,7 +954,6 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         showSingleChoiceDialog(strList);
         type = 12;
     }
-
 
     void on_lao_dong_neng_li() {
         List<String> strList = new ArrayList<String>();
@@ -833,6 +987,7 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         strList.add("二级残疾");
         strList.add("三级残疾");
         strList.add("四级残疾");
+        strList.add("无残疾");
         showSingleChoiceDialog(strList);
         type = 9;
     }
@@ -848,6 +1003,7 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         strList.add("精神残疾");
         strList.add("多重残疾");
         strList.add("其他残疾");
+        strList.add("无残疾");
         showSingleChoiceDialog(strList);
         type = 8;
     }
@@ -964,10 +1120,6 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         }
     }
 
-    public void updateItemIcon(ImageView image, int resid) {
-        image.setImageResource(resid);
-    }
-
     private void preview() {
         Intent intent = new Intent();
         intent.putExtra(Const.KEY_USER_INFO, local_simple_info);
@@ -1023,11 +1175,5 @@ public class CheckUserInfoActivity extends SubActivity implements OnClickListene
         intent.putExtra(Const.KEY_USER_INFO, UserInfo.getSimpleUserInfo(mUserInfo));
         intent.setClass(this, AttachmentActivity.class);
         startActivity(intent);
-    }
-
-    private void deleteUser() {
-
-        DBHelper.getInstance().deleteHCMember(local_simple_info.getIdNumber(), local_simple_info.getCheck_task_id());
-        finish();
     }
 }

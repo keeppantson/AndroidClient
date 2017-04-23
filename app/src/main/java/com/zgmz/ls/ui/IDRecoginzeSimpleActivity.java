@@ -165,7 +165,7 @@ public class IDRecoginzeSimpleActivity extends SubActivity implements OnClickLis
 	
 	private void closeIdNumberReader() {
 		if(mIdNumberReader != null) {
-			mIdNumberReader.stopReader();
+			mIdNumberReader.CloseReader();
 		}
 	}
 	

@@ -169,7 +169,7 @@ public class FingerprintActivitiy extends SubActivity implements OnClickListener
 		mFingerImage = (ImageView)view.findViewById(R.id.finger_image);
 		
 		mBtnInput = (Button)view.findViewById(R.id.btn_finger_input);
-		mBtnAgainInput = (Button)view.findViewById(R.id.btn_again_finger_input);
+		//mBtnAgainInput = (Button)view.findViewById(R.id.btn_again_finger_input);
 		mBtnOk = (Button)view.findViewById(R.id.btn_ok);
 		
 		mBtnInput.setOnClickListener(this);
@@ -201,10 +201,6 @@ public class FingerprintActivitiy extends SubActivity implements OnClickListener
 				else if(state == STATE_FOURTH_INPUT) {
 					startInputFourth();
 				}
-				break;
-			case R.id.btn_again_finger_input:
-				removeUserTouchId();
-				resetInput();
 				break;
 			case R.id.btn_ok:
 				backResult();

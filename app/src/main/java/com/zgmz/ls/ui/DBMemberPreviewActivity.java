@@ -203,6 +203,8 @@ public class DBMemberPreviewActivity extends SubActivity {
                 mTextCYCJLB.setText("多重残疾");
             } else if (mFamilyMemberInfo.getCjlb().equals("69")) {
                 mTextCYCJLB.setText("其他残疾");
+            } else {
+                mTextCYCJDJ.setText("无残疾");
             }
         }
 
@@ -215,6 +217,8 @@ public class DBMemberPreviewActivity extends SubActivity {
                 mTextCYCJDJ.setText("三级残疾");
             } else if (mFamilyMemberInfo.getCjdj().equals("04")) {
                 mTextCYCJDJ.setText("四级残疾");
+            } else {
+                mTextCYCJDJ.setText("无残疾");
             }
         }
 
