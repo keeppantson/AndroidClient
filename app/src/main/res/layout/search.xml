@@ -18,17 +18,9 @@
 		    android:layout_marginTop="@dimen/search_item_gap"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"/>
-		
-		
-		<ImageButton 
-		    android:id="@+id/fingerprint"
-		    android:background="@drawable/search_fingerprint"
-		    android:layout_marginTop="@dimen/search_item_gap"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"/>
-		
-		
-		<ImageButton 
+
+
+		<ImageButton
 		    android:id="@+id/id_number"
 		    android:background="@drawable/search_id_number"
 		    android:layout_marginTop="@dimen/search_item_gap"

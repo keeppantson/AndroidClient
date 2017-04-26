@@ -15,7 +15,7 @@
 
 		<ImageButton
 			android:id="@+id/yi_he_cha"
-			android:background="@drawable/yi_he_cha_bnt"
+			android:background="@drawable/ben_qi_dai_he_cha"
 			android:layout_marginTop="30dp"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"/>
@@ -24,7 +24,7 @@
 
 		<ImageButton
 		    android:id="@+id/wei_he_cha"
-		    android:background="@drawable/wei_he_cha_bnt"
+		    android:background="@drawable/ben_qi_yi_he_cha"
 		    android:layout_marginTop="30dp"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"/>

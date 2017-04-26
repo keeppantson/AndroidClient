@@ -43,12 +43,12 @@
 		
 	    <Button
 		    android:id="@+id/btn_finger_input"
-		    android:layout_margin="40dp"
+		    android:layout_margin="50dp"
 		    android:text="@string/fingerprint_input_first"
 		    style="@style/Button"
 		    android:layout_gravity="center_horizontal"
 		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"/>
+		    android:layout_height="50dp"/>
     
 	</LinearLayout>
 	
@@ -95,15 +95,6 @@
 	        android:layout_width="match_parent"
 	    	android:layout_height="wrap_content">
 	        
-	        <Button
-			    android:id="@+id/btn_again_finger_input"
-			    android:text="@string/fingerprint_input_again"
-			    style="@style/Button"
-			    android:layout_gravity="center_horizontal"
-			    android:layout_weight="1"
-			    android:layout_width="0dp"
-			    android:layout_height="wrap_content"/>
-	        
 	         <Button
 			    android:id="@+id/btn_ok"
 			    android:layout_marginLeft="20dp"
@@ -112,7 +103,7 @@
 			    android:layout_gravity="center_horizontal"
 			    android:layout_weight="1"
 			    android:layout_width="0dp"
-			    android:layout_height="wrap_content"/>
+			    android:layout_height="50dp"/>
 	         
 	   	</LinearLayout>
 	   	

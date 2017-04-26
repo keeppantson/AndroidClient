@@ -2,6 +2,7 @@ package com.zgmz.ls.module;
 
 import com.android.charger.EmGpio;
 import com.guoguang.jni.JniCall;
+import com.zgmz.ls.AppContext;
 import com.zgmz.ls.utils.BitmapUtils;
 import com.zz.idcard.IDCardDevice;
 import com.zgmz.ls.model.IdCard;
@@ -11,12 +12,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class IDNumberReader {
 
 //	private Context mContext;
 
-	IDCardDevice idcardDevice;
+	String Tag = "IDNumberReader";
+
+	IDCardDevice idcardDevice = null;
 	private int mStatus = 0;
 
 	private long mTimeout = 10000;
@@ -31,7 +35,13 @@ public class IDNumberReader {
 	private static final int MSG_READ_TIME = 2;
 	// 读取失败
 	private static final int MSG_READ_FAILURE = 3;
-
+    public static IDNumberReader instance = null;
+    public static synchronized IDNumberReader getInstance() {
+        if (instance == null) {
+            instance = new IDNumberReader(AppContext.getAppContext());
+        }
+        return instance;
+    }
 	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -78,26 +88,20 @@ public class IDNumberReader {
 	public long getTimeout() {
 		return mTimeout;
 	}
-
-	public void startReader() {
-
-	}
-
-	public void stopReader() {
-		mReaderThread.stopReader();
-		mReaderThread = null;
-	}
-
 	/**
 	 * 打开读卡器
 	 * 
 	 * @Title OpenReader
 	 */
 	public void OpenReader() {
-		idcardDevice = new IDCardDevice();
-		mtSetGPIOValue(95, true);
+		if (idcardDevice == null) {
+			idcardDevice = new IDCardDevice();
+		}
+		Log.v(Tag,"OpenReader -1");
 		if (bReading)
-			return;
+            return;
+		mtSetGPIOValue(95, true);
+		Log.v(Tag,"OpenReader -2");
 		mReaderThread = new ReaderThread();
 		mReaderThread.setTimeout(getTimeout());
 		mReaderThread.start();
@@ -109,9 +113,12 @@ public class IDNumberReader {
 	 * @Title CloseReader
 	 */
 	public void CloseReader() {
-		mReaderThread.stopReader();
-		mReaderThread = null;
+        if (mReaderThread != null) {
+            mReaderThread.stopReader();
+            mReaderThread = null;
+        }
 		mtSetGPIOValue(95, false);
+		// mtSetGPIOValue(95, false);
 	}
 	public void mtSetGPIOValue(int pin, boolean bHigh)
 	{
@@ -170,9 +177,15 @@ public class IDNumberReader {
 			bReading = true;
 			reading = true;
 			startTime = System.currentTimeMillis();
-
+			try {
+				Thread.sleep(1200);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			while (reading) {
 				// 判断超时
+
+				Log.v(Tag,"OpenReader -3");
 				if ((timeout + startTime) < System.currentTimeMillis()) {
 					mHandler.sendEmptyMessage(MSG_READ_FAILURE);
 					mStatus = -1;
@@ -185,6 +198,7 @@ public class IDNumberReader {
 					mHandler.sendMessage(msg);
 				}
 
+				Log.v(Tag,"OpenReader -4");
 				try {
                     int result = IDCardDevice.ReadIdCard(6,
                             "/dev/ttyMT1", textData, photoData, message);
@@ -194,6 +208,7 @@ public class IDNumberReader {
 					// appendAddress=idCardReaderModule.getAppendAddress();
 					if (result==0) {
 						mStatus = 0;
+						Log.v(Tag,"OpenReader -5");
 						mHandler.sendEmptyMessage(MSG_READ_SUCCESS);
 						break;
 					} else {
@@ -202,6 +217,7 @@ public class IDNumberReader {
 						// byte[]{retInfo.sw1,retInfo.sw2,retInfo.sw3});
 					}
 
+					Log.v(Tag,"OpenReader -6: " + result);
 					Thread.sleep(300);
 				} catch (Exception e) {
 					e.printStackTrace();

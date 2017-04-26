@@ -20,11 +20,12 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:21.0.0'
-    compile files('libs/AMap_Location_V2.5.0_20160526.jar')
+    compile files('libs/AMap_Location_V3.3.0_20170118.jar')
     compile files('libs/ElectronSwitch.jar')
     compile files('libs/EmGpio.jar')
     compile files('libs/multireaderlib.jar')
     compile files('libs/Power.jar')
     compile files('libs/SerialPort.jar')
     compile files('libs/synjoneshandsetlib.jar')
+    compile files('libs/AMap_Location_V3.3.0_20170118.jar')
 }

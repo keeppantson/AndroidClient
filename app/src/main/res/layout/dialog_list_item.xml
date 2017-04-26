@@ -4,14 +4,12 @@
   android:orientation="horizontal"
   android:layout_width="match_parent"
   android:layout_height="@dimen/dialog_list_item_height">
+
     
     <TextView
         android:id="@+id/name"
-        style="@style/Text.DialogListItem"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
+        style="@style/Text.DialogListItemNew"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="80dp"/>
     
 </LinearLayout>
