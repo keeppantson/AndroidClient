@@ -17,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.zgmz.ls.utils.FileUtils.ensureDownloadLocation;
+
 /**
  * Created by mixiang on 4/17/17.
  */
@@ -73,14 +75,12 @@ public class ConfigClient {
                 else {
                     is = conn.getInputStream();
                 }
-
+                ensureDownloadLocation();
                 //File apkFile = new File(System.getProperty("java.io.tmpdir") + "/" + apkFileName);
                 File apkFile = new File(Environment.getExternalStorageDirectory() + "/download/" + apkFileName);
-
                 System.out.println("mx: download to tmpdir:" + apkFile.getAbsolutePath());
-                if (apkFile.exists()){
-                    apkFile.delete();
-                }
+                    apkFile.deleteOnExit();
+                apkFile.createNewFile();
 
                 FileOutputStream os = new FileOutputStream(apkFile);
 

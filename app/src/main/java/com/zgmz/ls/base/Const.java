@@ -1,6 +1,7 @@
 package com.zgmz.ls.base;
 
 import android.net.Uri;
+import android.os.Environment;
 
 public interface Const {
 
@@ -27,6 +28,7 @@ public interface Const {
 	public static final String KEY_ID_NUMBER = "idnumber";
 	
 	
+	public static final String DOWNLOAD_LOCATION = Environment.getExternalStorageDirectory() + "/download/";
 	public static final String IMAGE_BASE_LOCATION = "/sdcard/.ls/image/";
 	public static final String VIDEO_BASE_LOCATION = "/sdcard/.ls/video/";
 	

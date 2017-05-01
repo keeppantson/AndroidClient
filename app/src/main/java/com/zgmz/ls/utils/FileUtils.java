@@ -13,6 +13,12 @@ import com.zgmz.ls.base.Const;
 
 public class FileUtils {
 
+	public static void ensureDownloadLocation() {
+		File file = new File(Const.DOWNLOAD_LOCATION);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+	}
 	public static void ensureImageLocation() {
 		File file = new File(Const.IMAGE_BASE_LOCATION);
 		if(!file.exists()) {
