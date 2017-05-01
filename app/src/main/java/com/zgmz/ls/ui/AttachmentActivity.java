@@ -110,17 +110,14 @@ public class AttachmentActivity extends SubActivity implements OnClickListener, 
 		mImageView.setVisibility(View.GONE);
 		mImageView.setImageDrawable(null);
 	}
-	
-	public void showImage(String path) {
-		if(TextUtils.isEmpty(path)) return;
+
+	public void showImage(Bitmap bmp) {
 		mImageView.setVisibility(View.VISIBLE);
-		Bitmap bmp = BitmapHelper.getThumbBitmap(path, mRoot.getWidth(), mRoot.getHeight());
 		if(bmp != null) {
 			mImageView.setImageBitmap(bmp);
 		}
-		else 
+		else
 			mImageView.setImageResource(R.drawable.photo_image);
-			
 	}
 
 	public void initCellContent() {
@@ -207,7 +204,7 @@ public class AttachmentActivity extends SubActivity implements OnClickListener, 
 				showAddAttachmentDialog();
 			}
 			else if(attach.getType() == Attachment.TYPE_IMAGE){
-				showImage(attach.getPath());
+				showImage(attach.getContent());
 			}
 		}
 	}

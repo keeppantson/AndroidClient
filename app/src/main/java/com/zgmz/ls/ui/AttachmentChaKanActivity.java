@@ -105,18 +105,14 @@ public class AttachmentChaKanActivity extends SubActivity implements OnClickList
 		mImageView.setVisibility(View.GONE);
 		mImageView.setImageDrawable(null);
 	}
-	
-	public void showImage(String path) {
-		if(TextUtils.isEmpty(path)) return;
-		mImageView.setVisibility(View.VISIBLE);
-		Bitmap bmp = BitmapHelper.getThumbBitmap(path, mRoot.getWidth(), mRoot.getHeight());
-		if(bmp != null) {
-			mImageView.setImageBitmap(bmp);
-		}
-		else 
-			mImageView.setImageResource(R.drawable.photo_image);
-			
-	}
+    public void showImage(Bitmap bmp) {
+        mImageView.setVisibility(View.VISIBLE);
+        if(bmp != null) {
+            mImageView.setImageBitmap(bmp);
+        }
+        else
+            mImageView.setImageResource(R.drawable.photo_image);
+    }
 
 	public void initCellContent() {
 		if (mSingleCellLayout.getSingleCellContainer().getChildCount() > 0)
@@ -203,7 +199,7 @@ public class AttachmentChaKanActivity extends SubActivity implements OnClickList
 				showAddAttachmentDialog();
 			}
 			else if(attach.getType() == Attachment.TYPE_IMAGE){
-				showImage(attach.getPath());
+				showImage(attach.getContent());
 			}
 		}
 	}
