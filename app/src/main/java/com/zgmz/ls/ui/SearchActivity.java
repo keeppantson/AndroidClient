@@ -11,6 +11,7 @@ import com.zgmz.ls.db.DBHelper;
 import com.zgmz.ls.model.IdCard;
 import com.zgmz.ls.model.UserInfo;
 import com.zgmz.ls.ui.adapter.UserInfoAdapter;
+import com.zgmz.ls.ui.adapter.UserInfoFamilyAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,19 +26,16 @@ import android.widget.TextView;
 
 public class SearchActivity extends SubActivity implements OnClickListener, OnItemClickListener{
 	
-	View mFrameSearch;
-	View mFrameResult;
+	//View mFrameSearch;
+	//View mFrameResult;
 	
 	
 	ImageButton mBtnIdRecognize;
-	
-	ImageButton mBtnFingerprint;
 	
 	ImageButton mBtnIdNumber;
 	
 	
 	ListView mListView;
-	TextView mEmptyView;
 	
 	UserInfoAdapter mAdapter;
 	
@@ -60,14 +58,7 @@ public class SearchActivity extends SubActivity implements OnClickListener, OnIt
 	
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		if(state == STATE_RESULT) {
-			clearResult();
-			showSearchView();
-		}
-		else {
-			super.onBackPressed();
-		}
+		finish();
 	}
 	
 	@Override
@@ -80,26 +71,21 @@ public class SearchActivity extends SubActivity implements OnClickListener, OnIt
 	@Override
 	protected void setupViews(View view) {
 		// TODO Auto-generated method stub
-		mFrameSearch = view.findViewById(R.id.search);
+		//mFrameSearch = view.findViewById(R.id.search);
 		mBtnIdRecognize = (ImageButton)view.findViewById(R.id.id_recoginze);
-		mBtnFingerprint = (ImageButton)view.findViewById(R.id.fingerprint);
 		mBtnIdNumber = (ImageButton)view.findViewById(R.id.id_number);
 		
 
 		
-		mListView = (ListView) mFrameResult.findViewById(R.id.list);
-		mEmptyView = (TextView) mFrameResult.findViewById(R.id.empty_text);
-		mListView.setEmptyView(mEmptyView);
+		mListView = (ListView) view.findViewById(R.id.list);
 		
 		mAdapter = new UserInfoAdapter(this, mUserInfos);
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(this);
 		
 		mBtnIdRecognize.setOnClickListener(this);
-		mBtnFingerprint.setOnClickListener(this);
 		mBtnIdNumber.setOnClickListener(this);
-		
-		showSearchView();
+		mListView.setVisibility(View.GONE);
 	}
 
 	@Override
@@ -108,9 +94,6 @@ public class SearchActivity extends SubActivity implements OnClickListener, OnIt
 		switch(v.getId()) {
 			case R.id.id_recoginze:
 				startIdRecoginzeSimpleActivity();
-				break;
-			case R.id.fingerprint:
-				startFingerpringSimpleActivity();
 				break;
 			case R.id.id_number:
 				startIdInputSimpleActivity();
@@ -128,29 +111,22 @@ public class SearchActivity extends SubActivity implements OnClickListener, OnIt
 	
 	
 	private void startUserInfoActivity(UserInfo info) {
-		Intent intent = new Intent();
-		intent.putExtra(Const.KEY_USER_INFO, info.toSimpleUserInfo());
-		intent.setClass(this,UserInfoActivity.class);
-		startActivity(intent);
+        Intent intent = new Intent();
+        intent.putExtra(Const.KEY_USER_INFO, info.toSimpleUserInfo());
+        intent.putExtra(Const.KEY_TYPE, Const.InfoType.CHECK);
+        intent.setClass(getAppContext(), CheckFamilyInfoActivity.class);
+        startActivity(intent);
 	}
 	
 	private static final int REQUEST_CODE_ID_RECOGNIZE = 0x4001;
-	
-	private static final int REQUEST_CODE_FINGER_PRINT = 0x4002;
 	
 	private static final int REQUEST_CODE_ID_INPUT = 0x4003;
 	
 	
 	private void startIdRecoginzeSimpleActivity() {
 		Intent intent = new Intent();
-		intent.setClass(this, IDRecoginzeSimpleActivity.class);
+		intent.setClass(this, IDRecoginzeActivity.class);
 		startActivityForResult(intent, REQUEST_CODE_ID_RECOGNIZE);
-	}
-	
-	private void startFingerpringSimpleActivity() {
-		Intent intent = new Intent();
-		intent.setClass(this, FingerprintSimpleActivitiy.class);
-		startActivityForResult(intent, REQUEST_CODE_FINGER_PRINT);
 	}
 	
 	private void startIdInputSimpleActivity() {
@@ -179,17 +155,6 @@ public class SearchActivity extends SubActivity implements OnClickListener, OnIt
 				}
 			}
 		}
-		else if(requestCode == REQUEST_CODE_FINGER_PRINT) {
-			if(resultCode == Activity.RESULT_OK) {
-				int userId = data.getIntExtra(Const.KEY_USER_ID, 0);
-				if(userId > 0) {
-					searchUser(userId);
-				}
-				else {
-					showResult(null);
-				}
-			}
-		}
 		else if(requestCode == REQUEST_CODE_ID_INPUT) {
 			if(resultCode == Activity.RESULT_OK) {
 				String idNumber = data.getStringExtra(Const.KEY_ID_NUMBER);
@@ -209,38 +174,36 @@ public class SearchActivity extends SubActivity implements OnClickListener, OnIt
 			mUserInfos.add(info);
 		}
 		mAdapter.notifyDataSetChanged();
-	}
-	
-	private void showSearchView() {
-		mFrameResult.setVisibility(View.GONE);
-		mFrameSearch.setVisibility(View.VISIBLE);
-		state = STATE_SEARCH;
-	}
-	
-	private void showResult() {
-		mFrameResult.setVisibility(View.VISIBLE);
-		mFrameSearch.setVisibility(View.GONE);
-		state = STATE_RESULT;
+
 	}
 	
 	private void showResult(UserInfo info) {
-		showResult();
+		mListView.setVisibility(View.VISIBLE);
 		updateUserInfo(info);
 	}
-	
-	
-	
+
 	private void searchUser(int userId) {
 		UserInfo user = DBHelper.getInstance().getUserInfo(userId);
 		showResult(user);
 	}
-	
-	
+
 	private void searchUser(String idNumber) {
-		UserInfo user = DBHelper.getInstance().getUserInfo(idNumber);
+		UserInfo user = DBHelper.getInstance().getOneUncheckedFamily(idNumber, true);
 		showResult(user);
 	}
-	
-	
-	
+
+	AdapterView.OnItemClickListener mUncheckedItemListener = new AdapterView.OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent();
+			intent.putExtra(Const.KEY_USER_INFO, mUserInfos.get(0).toSimpleUserInfo());
+			intent.putExtra(Const.KEY_TYPE, Const.InfoType.CHECK);
+			intent.setClass(getAppContext(), CheckFamilyInfoActivity.class);
+			startActivity(intent);
+		}
+	};
+
+
 }

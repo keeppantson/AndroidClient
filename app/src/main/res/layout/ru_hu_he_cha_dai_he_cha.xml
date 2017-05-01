@@ -20,7 +20,7 @@
             android:id="@+id/other"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="550dp">
+            android:layout_height="750dp">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/id_viewpager"

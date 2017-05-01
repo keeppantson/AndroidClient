@@ -224,7 +224,10 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.zgmz.ls.ui.Main_She_Zhi_Ji_Shu_Zhi_Chi_Activity"
-            android:screenOrientation="portrait"/>Ji_Shu_Zhi_Ch
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.zgmz.ls.ui.AttachmentChaKanActivity"
+            android:screenOrientation="portrait"/>
         <service 
             android:name="com.synjones.idcard.RemoteDecodeService"
             android:process=":remote"/>

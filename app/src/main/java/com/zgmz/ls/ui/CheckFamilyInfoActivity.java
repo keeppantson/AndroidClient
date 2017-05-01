@@ -7,6 +7,7 @@ import com.zgmz.ls.base.SharedDatas;
 import com.zgmz.ls.base.SubActivity;
 import com.zgmz.ls.db.DBHelper;
 import com.zgmz.ls.db.TableTools;
+import com.zgmz.ls.model.AttachmentTime;
 import com.zgmz.ls.model.FamilyBase;
 import com.zgmz.ls.model.SimpleUserInfo;
 import com.zgmz.ls.model.UserInfo;
@@ -34,7 +35,7 @@ import java.util.List;
 public class CheckFamilyInfoActivity extends SubActivity implements OnClickListener{
 
     private TextView mName;
-
+    private List<AttachmentTime> attachmentTimes;
     private TextView mIDNumber;
 
     private ImageView mAvatar;
@@ -57,6 +58,12 @@ public class CheckFamilyInfoActivity extends SubActivity implements OnClickListe
 
     private static final int STATE_UNCHECK = 1;
 
+    ImageView cha_kan_1;
+    TextView nian_yue_1;
+    ImageView cha_kan_2;
+    TextView nian_yue_2;
+    ImageView cha_kan_3;
+    TextView nian_yue_3;
 
     int mState = STATE_UNCHECK;
 
@@ -93,12 +100,36 @@ public class CheckFamilyInfoActivity extends SubActivity implements OnClickListe
             }
         }
     }
+
     public void updateUncheckedData() {
         List<UserInfo> list = DBHelper.getInstance().getUncheckedFamilyMember(100, true, LocalUserInfo.getCheck_task_id());
         if(list != null) {
             mUncheckedUserInfos.clear();
             mUncheckedUserInfos.addAll(list);
             mUncheckedAdapter.notifyDataSetChanged();
+        }
+
+        attachmentTimes = DBHelper.getInstance().getAttachTimeInfos(LocalUserInfo.getCheck_task_id());
+        nian_yue_1.setVisibility(View.GONE);
+        cha_kan_1.setVisibility(View.GONE);
+        nian_yue_2.setVisibility(View.GONE);
+        cha_kan_2.setVisibility(View.GONE);
+        nian_yue_3.setVisibility(View.GONE);
+        cha_kan_3.setVisibility(View.GONE);
+        if (attachmentTimes != null && attachmentTimes.size() >= 1) {
+            nian_yue_1.setText(attachmentTimes.get(0).getTime());
+            nian_yue_1.setVisibility(View.VISIBLE);
+            cha_kan_1.setVisibility(View.VISIBLE);
+        }
+        if (attachmentTimes != null && attachmentTimes.size() >= 2) {
+            nian_yue_2.setText(attachmentTimes.get(1).getTime());
+            nian_yue_2.setVisibility(View.VISIBLE);
+            cha_kan_2.setVisibility(View.VISIBLE);
+        }
+        if (attachmentTimes != null && attachmentTimes.size() >= 3) {
+            nian_yue_3.setText(attachmentTimes.get(2).getTime());
+            nian_yue_3.setVisibility(View.VISIBLE);
+            cha_kan_3.setVisibility(View.VISIBLE);
         }
     }
     protected void onConfigrationTitleBar() {
@@ -166,6 +197,16 @@ public class CheckFamilyInfoActivity extends SubActivity implements OnClickListe
         mUncheckedAdapter = new UserInfoMemberAdapter(this, mUncheckedUserInfos);
         mUncheckList.setOnItemClickListener(mUncheckedItemListener);
         mUncheckList.setAdapter(mUncheckedAdapter);
+
+        cha_kan_1 = (ImageView) this.findViewById(R.id.other_photo_1);
+        cha_kan_2 = (ImageView) this.findViewById(R.id.other_photo_2);
+        cha_kan_3 = (ImageView) this.findViewById(R.id.other_photo_3);
+        nian_yue_1 = (TextView) this.findViewById(R.id.miao_shu_1);
+        nian_yue_2 = (TextView) this.findViewById(R.id.miao_shu_2);
+        nian_yue_3 = (TextView) this.findViewById(R.id.miao_shu_3);
+        cha_kan_1.setOnClickListener(this);
+        cha_kan_2.setOnClickListener(this);
+        cha_kan_3.setOnClickListener(this);
         showTabUncheck();
     }
     private void showTabUncheck() {
@@ -188,8 +229,27 @@ public class CheckFamilyInfoActivity extends SubActivity implements OnClickListe
                 break;
             case R.id.commit:
                 commit();
+            case R.id.other_photo_1:
+                zhanshi(0);
+                break;
+            case R.id.other_photo_2:
+                zhanshi(1);
+                break;
+            case R.id.other_photo_3:
+                zhanshi(2);
                 break;
         }
+    }
+
+    private void zhanshi(int pos) {
+        if(attachmentTimes.size() < pos + 1) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(Const.KEY_USER_INFO, LocalUserInfo);
+        intent.putExtra(Const.KEY_TIME, attachmentTimes.get(pos).getTime());
+        intent.setClass(this,AttachmentChaKanActivity.class);
+        startActivity(intent);
     }
 
     private void commit() {

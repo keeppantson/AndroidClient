@@ -38,7 +38,8 @@ public class LoginActivity extends TitleBarActivity {
 	private static final String TEST_PASSWORD = "123456";
 	public static final String TEST_XZBM = "123456";
 	private static final String TEST_TOKEN = "88sdh2e8dhh2sdf79sdf9";
-	
+	public static final int PAGE_ITEM_NUM = 7;
+
 	EditText mUsername;
 	
 	EditText mPassword;

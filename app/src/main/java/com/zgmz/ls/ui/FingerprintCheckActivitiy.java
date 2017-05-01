@@ -157,7 +157,7 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 	private static final  int IMAGE_Y     = 288;
 	private static final  int IMAGE_SIZE  = IMAGE_X*IMAGE_Y;
 	private byte[] m_bImgBuf = new byte[IMAGE_SIZE];
-	public void Enroll() {
+	public int Enroll() {
 		int nRet = 0;
 		byte[] tzBuf1 = new byte[TZ_SIZE];
 		byte[] tzBuf2 = new byte[TZ_SIZE];
@@ -168,12 +168,12 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf1);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
-			return ;
+			return -1;
 		}
 
 		nRet = devDriver.mxGetImageDY(strDevName, iBaudRate, m_iTimeout,m_bImgBuf);
 		if (nRet != 0) {
-			return;
+			return -1;
 		}
         SendMsg(SHOW_IMG_OK_MSG,"");
         SendMsg(SHOW_PROMOT_MSG_1,"");
@@ -181,12 +181,12 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf2);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
-			return ;
+			return -1 ;
 		}
 		nRet = devDriver.mxGetImageDY(strDevName, iBaudRate, m_iTimeout,m_bImgBuf);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("获取指纹失败,nRet=" + nRet);
-			return;
+			return -1;
 		}
         SendMsg(SHOW_IMG_OK_MSG,"");
         SendMsg(SHOW_PROMOT_MSG_2,"");
@@ -195,18 +195,18 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		if(nRet!=0)
 		{
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
-			return;
+			return -1;
 		}
 
 		nRet = devDriver.mxGetComIdCardTz(strDevName, iBaudRate, m_iTimeout,tzBuf3);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
-			return ;
+			return -1;
 		}
 		nRet = devDriver.mxGetImageDY(strDevName, iBaudRate, m_iTimeout,m_bImgBuf);
 		if (nRet != 0) {
 			ToastUtils.showLongToast("获取指纹失败,nRet=" + nRet);
-			return;
+			return -1;
 		}
         SendMsg(SHOW_IMG_OK_MSG,"");
         SendMsg(SHOW_PROMOT_MSG_3,"");
@@ -216,7 +216,7 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 		if(nRet!=0)
 		{
 			ToastUtils.showLongToast("注册指纹模板失败,nRet=" + nRet);
-			return;
+			return -1;
 		}
 
 		for(int j=0;j<512;j++)
@@ -234,6 +234,8 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
 
         SendMsg(SHOW_IMG_OK_MSG,"");
         SendMsg(SHOW_PROMOT_MSG_4,"");
+
+		return 0;
 	}
 	
 	@Override
@@ -323,7 +325,11 @@ public class FingerprintCheckActivitiy extends SubActivity implements OnClickLis
         public void run() {
             Looper.prepare();
             try {
-                Enroll();
+                while (Enroll() == -1) {
+
+					ToastUtils.showLongToast("指纹读取失败，请重试");
+					continue;
+				};
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

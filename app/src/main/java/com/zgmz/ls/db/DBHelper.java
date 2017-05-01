@@ -15,6 +15,7 @@ import com.zgmz.ls.db.TableTools.IDCardColumn;
 import com.zgmz.ls.db.TableTools.SignatureColumn;
 import com.zgmz.ls.db.TableTools.UserInfoColumn;
 import com.zgmz.ls.model.Attachment;
+import com.zgmz.ls.model.AttachmentTime;
 import com.zgmz.ls.model.CheckTask;
 import com.zgmz.ls.model.District;
 import com.zgmz.ls.model.DownloadTask;
@@ -379,7 +380,7 @@ public class DBHelper {
 	}
 
 	public UserInfo getUserInfo(String idNumber) {
-		return getUserInfo(idNumber, false);
+		return getUserInfo(idNumber, true);
 	}
 
 	public UserInfo getUserInfo(String idNumber, boolean avatar) {
@@ -1348,6 +1349,27 @@ public class DBHelper {
         return null;
     }
 
+	public UserInfo getOneUncheckedFamily(String cardID, boolean avatar) {
+
+		SQLiteDatabase db = mSQLiteHelper.getReadableDatabase();
+		Cursor cursor = db.query(TableTools.TABLE_FAMILY_INFO, TableTools.SB_CHECK_FAMILY_PROJECTION, TableTools.FamilyInfo.CARD_ID + "=? and "+
+						TableTools.FamilyInfo.CHECKED + " =?", new String[] { String.valueOf(cardID), String.valueOf(0) },
+				null, null, null);
+		if (cursor != null) {
+			cursor.moveToFirst();
+			UserInfo info;
+			info = new UserInfo();
+			info.setName(cursor.getString(3));
+			info.setUserId(cursor.getInt(0));
+			info.setIdNumber(cursor.getString(4));
+			if (avatar)
+				info.setAvatar(BitmapUtils.getCircleBitmapFromByte(cursor.getBlob(8)));
+			info.setCheck_task_id(cursor.getString(1));
+			cursor.close();
+			return info;
+		}
+		return null;
+	}
 	public List<UserInfo> getUncheckedUser(boolean avatar) {
 		return getUncheckedFamily(100, avatar);
 	}
@@ -1552,6 +1574,46 @@ public class DBHelper {
         }
         return null;
     }
+
+    public int getUncheckedFamilyCount() {
+        SQLiteDatabase db = mSQLiteHelper.getReadableDatabase();
+        int count = 0;
+        Cursor cursor = db.query(TableTools.TABLE_FAMILY_INFO, TableTools.FAMILY_INFO_PROJECTION, TableTools.FamilyInfo.CHECKED + "=?",
+                new String[] { String.valueOf(0) }, null, null, TableTools.FamilyInfo._ID);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            count = cursor.getCount();
+            cursor.close();
+        }
+        return count;
+    }
+
+	public List<UserInfo> getRangeUncheckedFamily(int start, int count, boolean avatar) {
+		SQLiteDatabase db = mSQLiteHelper.getReadableDatabase();
+		if (count > 100 || count < 0)
+			count = 100;
+		Cursor cursor = db.query(TableTools.TABLE_FAMILY_INFO, TableTools.FAMILY_INFO_PROJECTION, TableTools.FamilyInfo.CHECKED + "=?",
+				new String[] { String.valueOf(0) }, null, null, TableTools.FamilyInfo._ID + " asc LIMIT " + count + " OFFSET " + String.valueOf(start));
+		if (cursor != null) {
+			List<UserInfo> list = new ArrayList<UserInfo>();
+			UserInfo info;
+			while (cursor.moveToNext() && list.size() <= count) {
+				info = new UserInfo();
+				info.setUserId(cursor.getInt(5));
+				info.setName(cursor.getString(2));
+				info.setIdNumber(cursor.getString(4));
+				if (avatar)
+					info.setAvatar(BitmapUtils.getCircleBitmapFromByte(cursor.getBlob(8)));
+				info.setType(cursor.getInt(7));
+				info.setChecked(cursor.getInt(9) > 0);
+				info.setCheck_task_id(cursor.getString(7));
+				list.add(info);
+			}
+			cursor.close();
+			return list;
+		}
+		return null;
+	}
 
 	public List<UserInfo> getUncheckedFamily(int count, boolean avatar) {
 		SQLiteDatabase db = mSQLiteHelper.getReadableDatabase();
@@ -2206,6 +2268,7 @@ public class DBHelper {
 		values.put(TableTools.Attachment.METERIAL_TYPE, TYPE_VIDEO);
 		values.put(TableTools.Attachment.METERIAL_VOD_CONTENT, content);
 		values.put(TableTools.Attachment.METERIAL_URI, attachment.getPath());
+		values.put(TableTools.Attachment.METERIAL_TIME, attachment.getTime());
 
 		long ret = db.update(TableTools.TABLE_ATTACHMENTS, values, TableTools.Attachment.CHECK_TASK_ID + "=? and "
 						+ TableTools.Attachment.CARD_ID + "=? and "+ TableTools.Attachment.METERIAL_TYPE + "=?",
@@ -2228,6 +2291,7 @@ public class DBHelper {
 		values.put(TableTools.Attachment.METERIAL_NAME, attachment.getName());
 		values.put(TableTools.Attachment.METERIAL_TYPE, TYPE_VIDEO);
 		values.put(TableTools.Attachment.METERIAL_URI, attachment.getPath());
+		values.put(TableTools.Attachment.METERIAL_TIME, attachment.getTime());
 
 		long ret = db.insert(TableTools.TABLE_ATTACHMENTS, null, values);
 		if (ret != -1) {
@@ -2273,6 +2337,7 @@ public class DBHelper {
         values.put(TableTools.Attachment.METERIAL_NAME, attachment.getName());
         values.put(TableTools.Attachment.METERIAL_TYPE, attachment.getType());
         values.put(TableTools.Attachment.METERIAL_URI, attachment.getPath());
+		values.put(TableTools.Attachment.METERIAL_TIME, attachment.getTime());
 
         long ret = db.update(TableTools.TABLE_ATTACHMENTS, values, TableTools.Attachment.CHECK_TASK_ID + "=? and "
                         + TableTools.Attachment.CARD_ID + "=? and "+ TableTools.Attachment.METERIAL_TYPE + "=?",
@@ -2296,6 +2361,7 @@ public class DBHelper {
         values.put(TableTools.Attachment.METERIAL_NAME, attachment.getName());
         values.put(TableTools.Attachment.METERIAL_TYPE, attachment.getType());
         values.put(TableTools.Attachment.METERIAL_URI, attachment.getPath());
+		values.put(TableTools.Attachment.METERIAL_TIME, attachment.getTime());
 
         long ret = db.insert(TableTools.TABLE_ATTACHMENTS, null, values);
         if (ret != -1) {
@@ -2677,5 +2743,66 @@ public class DBHelper {
 
         return false;
     }
+
+    public List<Attachment> getAttachmentsByTime(String check_task_id, String time) {
+
+		SQLiteDatabase db = mSQLiteHelper.getReadableDatabase();
+		Cursor cursor = db.query(TableTools.TABLE_ATTACHMENTS, TableTools.SB_CHECK_ATTACHMENT_PROJECTION,
+				TableTools.Attachment.METERIAL_TIME + "=? and " + TableTools.Attachment.CHECK_TASK_ID + "=?",
+				new String[] { String.valueOf(time), String.valueOf(check_task_id)}, null, null, null);
+		if (cursor != null) {
+			List<Attachment> list = new ArrayList<Attachment>();
+			Attachment info;
+			while (cursor.moveToNext()) {
+				info = new Attachment();
+				info.setType(cursor.getInt(0));
+				info.setName(cursor.getString(1));
+				info.setPath(cursor.getString(2));
+				info.setCard_id(cursor.getString(3));
+				info.setContent(BitmapUtils.getBitmapFromByte(cursor.getBlob(4)));
+				info.setCheck_task_id(cursor.getString(5));
+				list.add(info);
+			}
+			cursor.close();
+			return list;
+		}
+		return null;
+    }
+    public List<String> getStringAttachmentsTimes(String check_task_id) {
+
+        SQLiteDatabase db = mSQLiteHelper.getReadableDatabase();
+        Cursor cursor = db.query(true, TableTools.TABLE_ATTACHMENTS, TableTools.SB_CHECK_ATTACHMENT_TIME,
+                TableTools.Attachment.CHECK_TASK_ID + "=? ",
+                new String[] { String.valueOf(check_task_id)},  null, null,  TableTools.Attachment.METERIAL_TIME + " DESC ",  "3", null);
+        if (cursor != null) {
+            List<String> list = new ArrayList<String>();
+            String info;
+            while (cursor.moveToNext()) {
+                info = cursor.getString(0);
+                list.add(info);
+            }
+            cursor.close();
+            return list;
+        }
+        return null;
+    }
+    public List<AttachmentTime> getAttachTimeInfos(String check_task_id) {
+		List<String> time_list = getStringAttachmentsTimes(check_task_id);
+        if (time_list.isEmpty() == true) {
+            return null;
+        }
+
+        List<AttachmentTime> list = new ArrayList<AttachmentTime>();
+        for (int i = 0; i < time_list.size(); i++) {
+            String time = time_list.get(i);
+            List<Attachment> attachments = getAttachmentsByTime(check_task_id, time);
+            AttachmentTime attachmentTime = new AttachmentTime();
+            attachmentTime.setTime(time);
+            attachmentTime.attachments = attachments;
+            list.add(attachmentTime);
+        }
+
+        return list;
+	}
 
 }

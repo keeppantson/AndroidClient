@@ -167,6 +167,8 @@ public class TableTools {
 		public static final String METERIAL_VOD_CONTENT = "meterial_vod_content";
         // 材料路径
         public static final String METERIAL_URI = "meterial_uri";
+		// 材料年月
+		public static final String METERIAL_TIME = "meterial_time";
     }
 
 	public interface BaseColumn {
@@ -599,7 +601,12 @@ public class TableTools {
             Attachment.CARD_ID,
             Attachment.METERIAL_CONTENT,
             Attachment.CHECK_TASK_ID,
+			Attachment.METERIAL_TIME,
 	};
+
+    public static String[] SB_CHECK_ATTACHMENT_TIME = {
+            Attachment.METERIAL_TIME,
+    };
     public static String[] QU_HUA_MA_PROJECTION = {
             QuHuaMa._ID,
             QuHuaMa.FATHER_ID,
@@ -678,7 +685,8 @@ public class TableTools {
 				Attachment.METERIAL_VOD_CONTENT + " BLOB, " +
                 Attachment.METERIAL_TYPE + " TEXT, " +
                 Attachment.CARD_ID + " TEXT, " +
-                Attachment.METERIAL_URI + " TEXT, " +
+				Attachment.METERIAL_URI + " TEXT, " +
+				Attachment.METERIAL_TIME + " TEXT, " +
                 Attachment.METERIAL_NAME + " TEXT); " );
     }
     public static void createTableCheckTask(SQLiteDatabase db) {

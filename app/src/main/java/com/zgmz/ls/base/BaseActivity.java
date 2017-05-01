@@ -13,6 +13,7 @@ import com.zgmz.ls.AppManager;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 
 /**
@@ -22,7 +23,7 @@ import android.view.Window;
  * @date 2015年9月23日 上午11:45:20
  *
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 
 	
 	public AppContext getAppContext() {

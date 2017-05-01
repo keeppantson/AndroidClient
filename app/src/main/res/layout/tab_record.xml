@@ -33,26 +33,26 @@
     </LinearLayout>
 
     <FrameLayout
-        android:layout_marginTop="4dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp">
+
         <ListView
             android:id="@+id/list"
-            android:listSelector="@null"
-            android:cacheColorHint="@color/transparent"
             android:layout_width="match_parent"
-        	android:layout_height="match_parent"/>
-        
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/transparent"
+            android:listSelector="@null" />
+
         <TextView
             android:id="@+id/empty_text"
-            android:textSize="24sp"
-            android:textColor="@color/gray"
-            android:text="@string/no_record_data"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/no_record_data"
+            android:textColor="@color/gray"
+            android:textSize="24sp" />
+
     </FrameLayout>
 
 </LinearLayout>

@@ -32,22 +32,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-   <LinearLayout
+   <FrameLayout
+       android:orientation="horizontal"
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:gravity="bottom"
-       android:orientation="horizontal">
-   <ListView 
-       android:id="@+id/mylistview"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       />
+       android:layout_height="600dp">
+       <ListView
+           android:id="@+id/mylistview"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:cacheColorHint="@color/transparent"
+           android:listSelector="@null" />
 
-</LinearLayout>
+    </FrameLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="30dp"/>
    <LinearLayout
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:gravity="bottom"
        android:orientation="horizontal">
 
       <ImageButton
@@ -56,11 +60,11 @@
           android:layout_height="wrap_content"
           android:background="@drawable/he_cha_bottom" />
 
-      <ImageButton
-          android:id="@+id/shan_chu"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="@drawable/shanchu_bottom" />
+       <ImageButton
+           android:id="@+id/shan_chu"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="@drawable/shanchu_bottom" />
 
 
    </LinearLayout>

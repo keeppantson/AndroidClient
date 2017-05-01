@@ -63,7 +63,100 @@
                 android:background="@drawable/bt_jia_ting_xin_xi" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/jiancha_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/zui_jin_san_ci"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zui_jin_san_ci" />
 
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/jiancha_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/jiancha_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/other_photo_1"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/other_photo"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+
+                <TextView
+                    android:id="@+id/miao_shu_1"
+                    android:text="年-月-1"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/jiancha_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/other_photo_2"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/other_photo"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+
+                <TextView
+                    android:id="@+id/miao_shu_2"
+                    android:text="年-月-2"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/jiancha_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/other_photo_3"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/other_photo"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+
+                <TextView
+                    android:id="@+id/miao_shu_3"
+                    android:text="年-月-3"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/other"
             android:orientation="horizontal"
@@ -76,16 +169,6 @@
                 android:layout_height="match_parent"
                 android:cacheColorHint="@color/transparent"
                 android:listSelector="@null" />
-
-            <TextView
-                android:id="@+id/empty_text"
-                android:textSize="24sp"
-                android:textColor="@color/gray"
-                android:text="@string/no_record_data"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
 
         </LinearLayout>
     </LinearLayout>

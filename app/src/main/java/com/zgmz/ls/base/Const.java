@@ -16,8 +16,9 @@ public interface Const {
 	public static final String KEY_BITMAP = "bmp";
 	
 	public static final String KEY_USER_ID = "userId";
-	
+
 	public static final String KEY_USER_INFO = "userInfo";
+	public static final String KEY_TIME = "time";
 
 	public static final String KEY_ATTACHMENT_TYPE = "attachmentType";
 	

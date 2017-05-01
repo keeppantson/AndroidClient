@@ -32,7 +32,7 @@ public class WorkerThread extends Thread {
 
     private static final int ACTION_WORKER_THREAD_QUIT = 0X1010; // quit this thread
 
-    private static final int TIME_INETRVAL = 1;
+    private static final int TIME_INETRVAL_MS = 10000;
 
     private boolean mReady = true;
 
@@ -45,7 +45,7 @@ public class WorkerThread extends Thread {
     public void run() {
         while(true) {
             try {
-                Thread.sleep(TIME_INETRVAL);
+                Thread.sleep(TIME_INETRVAL_MS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -191,6 +191,8 @@ public class WorkerThread extends Thread {
                             attachment.setContent(getBitmapFromByte(content));
                             attachment.setType(TYPE_BEFORE_CHECKED_IMAGE);
                             attachment.setCheck_task_id(Long.toString(time));
+                            // TODO: Just set a fake time
+                            attachment.setTime("2017-04");
                             String card_id = familyObj.getString("sqrsfzh");
                             String id = attobj.getString("clid");
                             if (id.indexOf("-") != -1) {
@@ -341,6 +343,8 @@ public class WorkerThread extends Thread {
                     attachment.setContent(BitmapUtils.getBitmapFromByte(content));
                     attachment.setType(TYPE_BEFORE_CHECKED_IMAGE);
                     attachment.setCheck_task_id(Long.toString(time));
+                    // TODO: Just set a fake time
+                    attachment.setTime("2017-04");
                     String card_id = obj.getString("sqrsfzh");
                     String id = attobj.getString("clid");
                     if (id.indexOf("-") != -1) {
@@ -417,6 +421,7 @@ public class WorkerThread extends Thread {
                 status = restResult.body.getInt("status");
             } catch(Exception e) {
                 e.printStackTrace();
+                return true;
             }
             // 如果上传不成功或者没有上传过，那么就需要重新上传
             if (restResult.statusCode != status_ok || status != 1) {

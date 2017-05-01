@@ -2,8 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 17
-    buildToolsVersion '25.0.2'
-
+    buildToolsVersion '25.0.0'
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'androiddebugkey'
+            keyPassword '811111'
+            storeFile file('D:/keystore/debug.keystore')
+            storePassword '811111'
+        }
+    }
     defaultConfig {
         applicationId "com.zgmz.ls"
         minSdkVersion 17
@@ -16,11 +23,16 @@ android {
             proguardFiles 'proguard-project.txt'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
 }
 
 dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'src/main/jniLibs')
     compile 'com.android.support:support-v4:21.0.0'
-    compile files('libs/AMap_Location_V3.3.0_20170118.jar')
     compile files('libs/ElectronSwitch.jar')
     compile files('libs/EmGpio.jar')
     compile files('libs/multireaderlib.jar')

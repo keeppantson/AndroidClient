@@ -68,6 +68,16 @@ public class Attachment extends BaseData {
 
 	private String path;
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	private String time;
+
 	public String ToJSONString() {
 		return String.format("{\"clmc\":\"%s\", \"cllx\":\"%d\"}",
 				name, type);

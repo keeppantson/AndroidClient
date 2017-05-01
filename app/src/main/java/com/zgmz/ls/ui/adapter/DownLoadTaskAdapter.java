@@ -41,7 +41,6 @@ public class DownLoadTaskAdapter extends BaseAdapter {
 		if(mItems != null) return mItems.get(position);
 		return null;
 	}
-
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
@@ -56,19 +55,24 @@ public class DownLoadTaskAdapter extends BaseAdapter {
 			view = convertView;
 		}
 		else {
-			view = mInflater.inflate(R.layout.list_item_user_info, parent, false);
+			view = mInflater.inflate(R.layout.list_item_user_info_download, parent, false);
 		}
-		ImageView avatar = (ImageView)view.findViewById(R.id.avatar);
 		TextView name = (TextView)view.findViewById(R.id.name);
-		TextView idNumber = (TextView)view.findViewById(R.id.id_number);
+		TextView idNumber = (TextView)view.findViewById(R.id.number);
+		TextView ratio = (TextView)view.findViewById(R.id.ratio);
 		DownloadTask info = mItems.get(position);
 		if(info != null) {
 			if(info.getQu_hua_ma() != null) {
-                name.setText("地区批量下载");
-                idNumber.setText(info.getQu_hua_ma());
+                name.setText("区划码：" + info.getQu_hua_ma());
+				int total = Integer.valueOf(info.getTotal_number());
+				int now = Integer.valueOf(info.getPage_id());
+				if (total == 0) {
+					idNumber.setText("下载进度：" + "0%" );
+				} else {
+					idNumber.setText("下载进度：" + (now * 100 / total) +"%" );
+				}
             } else {
-                name.setText("单家庭下载");
-                idNumber.setText(info.getNow_work_target());
+                name.setText("身份证号码：" + info.getNow_work_target());
             }
 
 		}

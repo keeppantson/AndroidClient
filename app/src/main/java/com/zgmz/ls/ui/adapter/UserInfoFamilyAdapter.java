@@ -61,6 +61,15 @@ public class UserInfoFamilyAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
+		int count;
+		if (parent.getChildCount() == position)
+		{
+			count = parent.getChildCount();
+		}
+		else
+		{
+			count = position;
+		}
 		View view = null;
 		if(convertView != null) {
 			view = convertView;

@@ -233,9 +233,15 @@ public class Main_Shu_Ju_Xia_Zai_Pi_Liang_Activity extends SubActivity implement
 
     private void updateUncheckedData() {
         List<DownloadTask> list = DBHelper.getInstance().getDownloadTask(20);
-        if(list != null) {
+        List<DownloadTask> validlist = new ArrayList<DownloadTask>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getQu_hua_ma() != null) {
+                validlist.add(list.get(i));
+            }
+        }
+        if(!validlist.isEmpty()) {
             mDownLoadTasks.clear();
-            mDownLoadTasks.addAll(list);
+            mDownLoadTasks.addAll(validlist);
             mUncheckedAdapter.notifyDataSetChanged();
         }
     }

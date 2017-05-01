@@ -2,166 +2,193 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/mixiang/.android/build-cache/b34d0a895af58f5a5c8f89b835c0ec8023c7e011/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/classes_2e5a5b0f8aba5a68dd5249fd7b0c5f87db5288d0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/Power.jar"
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\SerialPort.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
-        sha1="8586dbb77236e184c1d627e1baff9efdfa0c3586">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/Power_77d32a9b0c4665082569a561542df67c5acfbd15.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/EmGpio.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="585d15ab23761ff7b21787ade22b87fcf8aba128">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/EmGpio_ea93277dc68e41804b00401758049205542d171f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/ElectronSwitch.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f472221654c57b4dd63a7e7cd4fd3d6d067fdbb0">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/ElectronSwitch_09d85998cf42195aa27a4688f12c67cad297430d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/EmGpio.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="585d15ab23761ff7b21787ade22b87fcf8aba128">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/EmGpio_ea93277dc68e41804b00401758049205542d171f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/SerialPort.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
+        revision="25.0.0"
         sha1="ede1c39904d4ee9784a188b6b664702443552df5">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/SerialPort_c22669d378e29157832516da9200bf8fa9c199ab.jar" />
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\SerialPort_c4a597461feec06f19ab0840cdeb16fb0ee6e04f\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/ElectronSwitch.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f472221654c57b4dd63a7e7cd4fd3d6d067fdbb0">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/ElectronSwitch_09d85998cf42195aa27a4688f12c67cad297430d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/SerialPort.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ede1c39904d4ee9784a188b6b664702443552df5">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/SerialPort_c22669d378e29157832516da9200bf8fa9c199ab.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/Power.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8586dbb77236e184c1d627e1baff9efdfa0c3586">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/Power_77d32a9b0c4665082569a561542df67c5acfbd15.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/synjoneshandsetlib.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e3b7ebe7a288caf55c056c753f4df754594087c7">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/synjoneshandsetlib_ed98778badf3a74d12a15cf64a93e2b079175413.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/AMap_Location_V2.5.0_20160526.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e40dff75c4b37eca9eea22c450369b0e09518e1d">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/AMap_Location_V2.5.0_20160526_0ffddedd41d62213155df8f16a3ab99fe3338b35.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/multireaderlib.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a835f1c47222c20b028aa7ce7599c58acf5487b9">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/multireaderlib_f60c40b1c37503d0ee6891ce74fb22d772488c87.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0_33308d178ccdd0fab68356f9d9adaefbad050ea1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/multireaderlib.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a835f1c47222c20b028aa7ce7599c58acf5487b9">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/multireaderlib_f60c40b1c37503d0ee6891ce74fb22d772488c87.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/AMap_Location_V2.5.0_20160526.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e40dff75c4b37eca9eea22c450369b0e09518e1d">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/AMap_Location_V2.5.0_20160526_0ffddedd41d62213155df8f16a3ab99fe3338b35.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/mixiang/Desktop/LowestSecurity/app/libs/synjoneshandsetlib.jar"
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\synjoneshandsetlib.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="e3b7ebe7a288caf55c056c753f4df754594087c7">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/synjoneshandsetlib_ed98778badf3a74d12a15cf64a93e2b079175413.jar" />
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\synjoneshandsetlib_4434e7d4a76751fd3996ada5db6eb9896fb45d70\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/mixiang/.android/build-cache/b34d0a895af58f5a5c8f89b835c0ec8023c7e011/output/jars/libs/internal_impl-21.0.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\ElectronSwitch.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f472221654c57b4dd63a7e7cd4fd3d6d067fdbb0">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\ElectronSwitch_2c49722288e34855a83d9dca10c23726004a06d4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\.android\build-cache\560a4f34e5658ef9b2a3ebfecbff2bc2557f8110\output\jars\libs\internal_impl-21.0.0.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0_0322c5308f3c8e57f211022cd1dfb19570c951d9.jar" />
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-21.0.0_a1db97629072e4ba4aa98ff7bd1d335e7e0f4684\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/mixiang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\EmGpio.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="585d15ab23761ff7b21787ade22b87fcf8aba128">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\EmGpio_d804fe08c3719ad0ea5423b3aaf436779f772f7d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\synjoneshandsetlib.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e3b7ebe7a288caf55c056c753f4df754594087c7">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\synjoneshandsetlib_4434e7d4a76751fd3996ada5db6eb9896fb45d70\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\Power.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8586dbb77236e184c1d627e1baff9efdfa0c3586">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\Power_82215ebded744eb0578c5a0dbbd206fc45066ba5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\multireaderlib.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a835f1c47222c20b028aa7ce7599c58acf5487b9">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\multireaderlib_0920d9bb8773d8eb6f6850a3cda1868071cdd407\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_405d655e52c89953de9924950df670e07addf47f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="773c8b8fcbc511d7c6d2f8b100731ddba0bda4e5">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_75642242cb7f26a377450cf61d2dcaab0ac3d0d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.0\support-annotations-21.0.0.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
-        <dex dex="/Users/mixiang/Desktop/LowestSecurity/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0_33308d178ccdd0fab68356f9d9adaefbad050ea1.jar" />
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-21.0.0_aae36e8b60fbab6c31fc00a92b3e56fdf99fe433\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\EmGpio.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="585d15ab23761ff7b21787ade22b87fcf8aba128">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\EmGpio_d804fe08c3719ad0ea5423b3aaf436779f772f7d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\Power.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8586dbb77236e184c1d627e1baff9efdfa0c3586">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\Power_82215ebded744eb0578c5a0dbbd206fc45066ba5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\AMap_Location_V3.3.0_20170118.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="299ccce875c1bbd5eb2802923ae89946e22b7ee6">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\AMap_Location_V3.3.0_20170118_c9cb452b8a2667431c66dbbf0e1e919f2af555e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\.android\build-cache\560a4f34e5658ef9b2a3ebfecbff2bc2557f8110\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2ba0ba940f228b96366df93a4252cc8a4a091eea\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\SerialPort.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ede1c39904d4ee9784a188b6b664702443552df5">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\SerialPort_c4a597461feec06f19ab0840cdeb16fb0ee6e04f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5fabe27181b52a52abf2057db5fd9196e67bac31">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_75642242cb7f26a377450cf61d2dcaab0ac3d0d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\AMap_Location_V3.3.0_20170118.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="299ccce875c1bbd5eb2802923ae89946e22b7ee6">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\AMap_Location_V3.3.0_20170118_c9cb452b8a2667431c66dbbf0e1e919f2af555e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\multireaderlib.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a835f1c47222c20b028aa7ce7599c58acf5487b9">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\multireaderlib_0920d9bb8773d8eb6f6850a3cda1868071cdd407\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\libs\ElectronSwitch.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f472221654c57b4dd63a7e7cd4fd3d6d067fdbb0">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\2\ElectronSwitch_2c49722288e34855a83d9dca10c23726004a06d4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\robert\Desktop\Code\AndroidClient\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_405d655e52c89953de9924950df670e07addf47f\classes.dex" />
     </item>
 
 </items>
