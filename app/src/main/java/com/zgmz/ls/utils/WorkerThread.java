@@ -400,6 +400,15 @@ public class WorkerThread extends Thread {
         }
         return  true;
     }
+    public static int appearNumber(String srcText, String findText) {
+        int count = 0;
+        int index = 0;
+        while ((index = srcText.indexOf(findText, index)) != -1) {
+            index = index + findText.length();
+            count++;
+        }
+        return count;
+    }
     private boolean check_upload_task() throws JSONException {
         List<FamilyBase> familyBases = DBHelper.getInstance().getAllUploadingamily(1000);
         for (int i = 0; i < familyBases.size(); i++) {
@@ -417,11 +426,13 @@ public class WorkerThread extends Thread {
                 }
             }
             int status =  0;
-            try {
-                status = restResult.body.getInt("status");
-            } catch(Exception e) {
-                e.printStackTrace();
-                return true;
+            if (restResult.body != null) {
+                try {
+                    status = restResult.body.getInt("status");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return true;
+                }
             }
             // 如果上传不成功或者没有上传过，那么就需要重新上传
             if (restResult.statusCode != status_ok || status != 1) {
@@ -433,34 +444,86 @@ public class WorkerThread extends Thread {
                     e.printStackTrace();
                     continue;
                 }
-                if (restResult.body.has("token")) {
+                if (restResult.body != null && restResult.body.has("token")) {
                     familyBase.setReqid(restResult.body.getString("token"));
                     DBHelper.getInstance().insertOrUpdateFamilyBase(familyBase);
                     checkTask.setRpc(restResult.rpc);
                     checkTask.setServer(restResult.server);
                     DBHelper.getInstance().insertOrUpdateCheckTask(checkTask);
                 } else {
-                    continue;
+                    return true;
                 }
                 List<Attachment> atts = DBHelper.getInstance().getAllAttachments(familyBase.getSqrsfzh(), familyBase.getCheck_task_id());
-
+                boolean can_continue = true;
                 for (int idx = 0; idx < atts.size(); idx++) {
                     Attachment attachment = atts.get(idx);
+                    if (appearNumber(attachment.getPath(), "/") < 4) {
+                        continue;
+                    }
+                    // if exit app here, just reminder
+                    can_continue = false;
                     try {
-                        AppContext.getAppContext().getRestClient().
-                                UploadFile(attachment.getPath(),
-                                        BitmapUtils.getBitmapByte(attachment.getContent()),
-                                        checkTask.getServer(), checkTask.getRpc());
+                        while (true) {
+                            RestResult res = AppContext.getAppContext().getRestClient().
+                                    UploadFile(attachment.getPath(),
+                                            BitmapUtils.getBitmapByte(attachment.getContent()),
+                                            checkTask.getServer(), checkTask.getRpc());
+                            if (res.statusCode == 200) {
+                                break;
+                            }
+                            Thread.sleep(TIME_INETRVAL_MS);
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    // 已经上传完，设置path为空
+                    attachment.setPath("");
+                    DBHelper.getInstance().insertOrUpdateAttachment(attachment);
+
+                    can_continue = true;
+                }
+
+                if (can_continue == true) {
+                    // 已经成功上传，删除所有信息
+                    DBHelper.getInstance().deleteAllTasks(familyBase.getCheck_task_id());
                 }
             } else {
-                // 已经成功上传，删除所有信息
-                DBHelper.getInstance().deleteAllTasks(familyBase.getCheck_task_id());
+                // 检查所有附件也已经上传成功
+                List<Attachment> atts = DBHelper.getInstance().getAllAttachments(familyBase.getSqrsfzh(), familyBase.getCheck_task_id());
+                boolean can_continue = true;
+                for (int idx = 0; idx < atts.size(); idx++) {
+                    Attachment attachment = atts.get(idx);
+                    if (appearNumber(attachment.getPath(), "/") < 4) {
+                        continue;
+                    }
+                    // if exit app here, just reminder
+                    can_continue = false;
+                    try {
+                        while (true) {
+                            RestResult res = AppContext.getAppContext().getRestClient().
+                                    UploadFile(attachment.getPath(),
+                                            BitmapUtils.getBitmapByte(attachment.getContent()),
+                                            checkTask.getServer(), checkTask.getRpc());
+                            if (res.body != null && res.body.getInt("status") == 0) {
+                                break;
+                            }
+
+                            Thread.sleep(TIME_INETRVAL_MS);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    // 已经上传完，设置path为空
+                    attachment.setPath("");
+                    DBHelper.getInstance().insertOrUpdateAttachment(attachment);
+
+                    can_continue = true;
+                }
+                if (can_continue == true) {
+                    // 已经成功上传，删除所有信息
+                    DBHelper.getInstance().deleteAllTasks(familyBase.getCheck_task_id());
+                }
             }
-
-
         }
         return  true;
     }

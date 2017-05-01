@@ -38,8 +38,8 @@ public class FileUtils {
 			file.mkdirs();
 		}
 		file = new File(pathandname);
-		if(!file.exists()) {
-			return;
+		if(file.exists()) {
+			deleteFile(pathandname);
 		}
 		try {
 			FileOutputStream out = new FileOutputStream(file, false);

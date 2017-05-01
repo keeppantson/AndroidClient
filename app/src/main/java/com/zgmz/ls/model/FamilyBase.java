@@ -456,7 +456,7 @@ public class FamilyBase {
             attJsonStr = attJsonStr + atts.get(idx).ToJSONString();
             idx++;
             if (idx != atts.size()) {
-                attJsonStr = memJsonStr + ",";
+                attJsonStr = attJsonStr + ",";
             }
         }
         attJsonStr = attJsonStr + "]";

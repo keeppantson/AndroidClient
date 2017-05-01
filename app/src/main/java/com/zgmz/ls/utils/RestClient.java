@@ -1,11 +1,21 @@
 package com.zgmz.ls.utils;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -77,7 +87,7 @@ public class RestClient {
         builder.append("[");
 
         builder.append("{");
-        byte[] encode = Base64.encode(fileContent, Base64.DEFAULT);
+        byte[] encode = Base64.encode(fileContent, Base64.NO_WRAP);
         builder.append(String.format("\"path\" : \"%s\", \"content\" : \"%s\"", filePath, new String(encode, "UTF-8")));
         builder.append("},");
 
@@ -89,8 +99,113 @@ public class RestClient {
         //String tmp = "[{\"content\": \"d2Vxd2UxZXF3ZXdxZXE=\", \"path\": \"/2017-11-12/441502001001/231512198109118873/101/231512198109118873-01.jpg\"}]";
         return DoPost("files", input, server, rpc);
     }
+    private RestResult DoPost_content_new(String urlPostfix, String jsonStr, String server, String rpc) throws Exception {
+        RestResult result = new RestResult();
+        try {
+            String url = null;
+            if (server == null) {
+                url = new String("http://" + servers.get(this.currentServerIndex) + "/" + versionString + "/" + urlPostfix);
+            }
+            else {
+                url = new String("http://" + server + "/" + versionString + "/" + urlPostfix);
+            }
 
+            String input = DecorateJson(jsonStr);
+            HttpPost httpPost = new HttpPost(url);
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            StringEntity s = new StringEntity(input.toString());
+            s.setContentEncoding("UTF-8");
+            s.setContentType("application/json");
+            httpPost.setHeader("rpc", rpc);
+            httpPost.setEntity(s);
+            HttpResponse res = httpClient.execute(httpPost);
 
+            if(res.getStatusLine().getStatusCode() == 200) {
+                HttpEntity entity = res.getEntity();
+                String charset = EntityUtils.getContentCharSet(entity);
+                result.statusCode = 200;
+            }
+        } catch (Exception e) {
+        }
+        return result;
+    }
+
+    private RestResult DoPost_content(String urlPostfix, String jsonStr, String server, String rpc) throws Exception {
+        int retry = 6;
+        //jsonStr = "[{\"path\" : \"2016-02-03/430702001001/430702195901091213/103/430702195901091213-103.jpg\", \"content\" : \"/9j/4AAQND//Z\"}]";
+        while (retry > 0) {
+            try {
+                URL url = null;
+                if (server == null) {
+                    url = new URL("http://" + servers.get(this.currentServerIndex) + "/" + versionString + "/" + urlPostfix);
+                }
+                else {
+                    url = new URL("http://" + server + "/" + versionString + "/" + urlPostfix);
+                }
+
+                System.out.println("try connect to " + url);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                //设置该连接允许读取
+                conn.setDoOutput(true);
+                //设置该连接允许写入
+                conn.setDoInput(true);
+                //设置不能适用缓存
+                conn.setUseCaches(false);
+                //设置连接超时时间
+                conn.setConnectTimeout(3000);   //设置连接超时时间
+                //设置读取时间
+                conn.setReadTimeout(4000);   //读取超时
+                //设置维持长连接
+                conn.setRequestProperty("connection", "Keep-Alive");
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                this.SetHeader(conn);
+
+                if (rpc != null) {
+                    conn.setRequestProperty("rpc", rpc);
+                }
+
+                String input = DecorateJson(jsonStr);
+                System.out.println("mx:before send:" + input);
+                DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+                int start_len = 0;
+                int sent_len = input.length();
+                byte[] bytes = input.getBytes();
+                while (start_len < sent_len) {
+                    int len = sent_len - start_len;
+                    if (len > 10000)
+                        len = 10000;
+                    dos.write(bytes, start_len, len);
+                    start_len += len;
+                }
+                dos.flush();
+                dos.close();
+
+                RestResult res = BuildResultFromConnection(conn);
+                conn.disconnect();
+
+                //record last server
+                res.server = servers.get(this.currentServerIndex);
+
+                return res;
+            } catch (Exception e) {
+                if (IsRetryableException(e)) {
+                    retry--;
+
+                    // if server not specified, try next one
+                    if (server == null) {
+                        this.currentServerIndex = (this.currentServerIndex + 1) % this.servers.size(); // try next server
+                    }
+                } else {
+                    e.printStackTrace();
+                    throw e;
+                }
+            }
+        }
+
+        throw new Exception("retry for 6 times but all failed");
+    }
     /*
     查询上传进度
     param@requestId : UploadFamily返回结果中,后端提供的本次上传唯一标示
@@ -179,9 +294,11 @@ public class RestClient {
         return DoPost(urlPostfix, jsonStr, null, null);
     }
 
+
     private RestResult DoPost(String urlPostfix, String jsonStr, String server, String rpc) throws Exception {
         int retry = 6;
-
+        // TODO: Error Fakeing
+        //jsonStr = "[{\"path\" : \"2016-02-03/430702001001/430702195901091213/103/430702195901091213-103.jpg\", \"content\" : \"/9j/4AAQND//Z\"}]";
         while (retry > 0) {
             try {
                 URL url = null;
@@ -204,8 +321,6 @@ public class RestClient {
                 }
 
                 String input = DecorateJson(jsonStr);
-                System.out.println("mx:before send:" + input);
-
                 OutputStream os = conn.getOutputStream();
                 os.write(input.getBytes());
                 os.flush();

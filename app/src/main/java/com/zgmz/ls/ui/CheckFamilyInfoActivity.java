@@ -229,6 +229,7 @@ public class CheckFamilyInfoActivity extends SubActivity implements OnClickListe
                 break;
             case R.id.commit:
                 commit();
+                break;
             case R.id.other_photo_1:
                 zhanshi(0);
                 break;

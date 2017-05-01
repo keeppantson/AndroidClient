@@ -1250,6 +1250,7 @@ public class DBHelper {
             info.setCard_id(cursor.getString(3));
             info.setContent(BitmapUtils.getBitmapFromByte(cursor.getBlob(4)));
             info.setCheck_task_id(cursor.getString(5));
+			info.setTime(cursor.getString(6));
 			cursor.close();
 			return info;
 		}
@@ -1274,6 +1275,7 @@ public class DBHelper {
                 info.setCard_id(cursor.getString(3));
                 info.setContent(BitmapUtils.getBitmapFromByte(cursor.getBlob(4)));
                 info.setCheck_task_id(cursor.getString(5));
+				info.setTime(cursor.getString(6));
                 list.add(info);
             }
             cursor.close();
@@ -2761,6 +2763,7 @@ public class DBHelper {
 				info.setCard_id(cursor.getString(3));
 				info.setContent(BitmapUtils.getBitmapFromByte(cursor.getBlob(4)));
 				info.setCheck_task_id(cursor.getString(5));
+				info.setTime(cursor.getString(6));
 				list.add(info);
 			}
 			cursor.close();

@@ -5,6 +5,7 @@ import com.zgmz.ls.R;
 import com.zgmz.ls.base.BaseSplashActivity;
 import com.zgmz.ls.helper.AccountHelper;
 import com.zgmz.ls.utils.ConfigClient;
+import com.zgmz.ls.utils.ToastUtils;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -15,6 +16,7 @@ import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -57,7 +59,13 @@ public class SplashActivity extends BaseSplashActivity {
 				return;
 			}
 		} catch (Exception e) {
-			throw new RuntimeException("upgrade apk failed with exception:" + e.toString());
+            ToastUtils.showLongToast("网络异常导致升级检查失败，不影响其它功能");
+            if(AccountHelper.getInstance().isLogined()) {
+                super.gotoTargetActivity();
+            }
+            else {
+                AccountHelper.startLoginUI();
+            }
 		}
 
 		if(AccountHelper.getInstance().isLogined()) {
@@ -86,12 +94,13 @@ public class SplashActivity extends BaseSplashActivity {
 				try {
 					client.Init();
 				} catch (IOException e) {
-					throw new RuntimeException(e.toString());
+                    return;
 				} catch (JSONException e) {
 					throw new RuntimeException(e.toString());
 				} catch (Exception e) {
 					throw new RuntimeException(e.toString());
 				}
+				return;
 
 			}
 		});
