@@ -57,7 +57,9 @@ public class TaijiClient {
     public void setZoneCode(String zoneCode) {
         this.zoneCode = zoneCode;
     }
-
+    public void setAppKey(String appkey) {
+        this.appKey = appkey;
+    }
     private String zoneCode = null;
 
     public TaijiClient(String userName, String passWord, String imei) {
@@ -161,6 +163,8 @@ public class TaijiClient {
             this.appKey = res.body.getString("appKey");
             this.zoneName = res.body.getString("zoneName");
             this.zoneCode = res.body.getString("zoneCode");
+            PreferencesUtils.getInstance().setAppKey(this.appKey);
+            PreferencesUtils.getInstance().setQHM(this.zoneCode);
             loginSucc = true;
         }
         else {

@@ -76,8 +76,16 @@ public class AppContext extends BaseApplication{
         if (userPassword == null || userPassword.equals("")) {
             userPassword = "abcd1234";
         }
-		taijiClient = new TaijiClient(userName, userPassword, imei);
+        String appKey = PreferencesUtils.getInstance().getAppKey();
+		String quhuama = PreferencesUtils.getInstance().getQHM();
 
+		taijiClient = new TaijiClient(userName, userPassword, imei);
+		if (quhuama != null) {
+			taijiClient.setZoneCode(quhuama);
+		}
+		if (appKey != null) {
+			taijiClient.setAppKey(appKey);
+		}
         Thread thread=new Thread(new Runnable()
         {
             @Override
@@ -119,8 +127,6 @@ public class AppContext extends BaseApplication{
 		imei = "12345";
         String userName = PreferencesUtils.getInstance().getUsername();
         String userPassword= PreferencesUtils.getInstance().getPassword();
-        userName = "quxian1";
-        userPassword = "abcd1234";
 		MessageDigest md = null;
 		try {
 			md = MessageDigest.getInstance("MD5");

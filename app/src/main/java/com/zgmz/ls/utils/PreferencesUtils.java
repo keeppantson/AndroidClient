@@ -18,6 +18,7 @@ public class PreferencesUtils {
 	
 	private static final String USERNAME = "username";
 	private static final String QHM = "qhm";
+	private static final String APPKEY = "appkey";
 	
 	private static final String PASSWORD = "password";
 
@@ -114,9 +115,16 @@ public class PreferencesUtils {
 	public void setPassword(String password) {
 		putString(PASSWORD, password);
 	}
-	
+
 	public String getPassword() {
 		return getString(PASSWORD, null);
+	}
+	public void setAppKey(String appKey) {
+		putString(APPKEY, appKey);
+	}
+
+	public String getAppKey() {
+		return getString(APPKEY, null);
 	}
 	
 	public void putString(String key, String value) {
