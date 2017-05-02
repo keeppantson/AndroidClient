@@ -102,7 +102,8 @@ public class LoginActivity extends TitleBarActivity {
 	
 	private void offlineLogin(String username, String password) {
 		// TODO: 判断传入参数和本地存储的用户名密码
-		if(false) {
+		if(!username.equals(PreferencesUtils.getInstance().getUsername()) ||
+				!password.equals(PreferencesUtils.getInstance().getPassword())) {
 			ToastUtils.showLongToast("用户名或密码不正确！");
 		}
 		else {
@@ -117,13 +118,17 @@ public class LoginActivity extends TitleBarActivity {
 
 	private void onlineLogin(String username, String password) {
 		AppContext.getAppContext().initTaijiClient(username, password);
-		try {
-			AppContext.getAppContext().getTaijiClient().LogIn();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-		PreferencesUtils.getInstance().setUsername(username);
+        try {
+            if (AppContext.getAppContext().getTaijiClient().LogIn() == false) {
+                ToastUtils.showLongToast("无法在线登陆，请查看网络连接，若仍旧无法登陆，请联系管理员");
+                return;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            ToastUtils.showLongToast("无法在线登陆，请查看网络连接，若仍旧无法登陆，请联系管理员");
+            return;
+        }
+        PreferencesUtils.getInstance().setUsername(username);
 		PreferencesUtils.getInstance().setPassword(password);
 		PreferencesUtils.getInstance().setToken(TEST_TOKEN);
 		gotoMainActivity();

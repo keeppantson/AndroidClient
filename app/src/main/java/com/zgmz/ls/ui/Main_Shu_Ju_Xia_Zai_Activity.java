@@ -72,12 +72,12 @@ public class Main_Shu_Ju_Xia_Zai_Activity extends SubActivity implements OnClick
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (buttonView == zui_di) {
             if (isChecked) {
-                download_task_type = "01";
+                download_task_type = "110";
                 te_kun.setChecked(false);
             }
         } else if (buttonView == te_kun) {
             if (isChecked) {
-                download_task_type = "02";
+                download_task_type = "130";
                 zui_di.setChecked(false);
             }
         }
@@ -199,10 +199,14 @@ public class Main_Shu_Ju_Xia_Zai_Activity extends SubActivity implements OnClick
     private static final int PI_LIANG_XIA_ZAI = 1003;
     private void startXiaZai() {
         DownloadTask noraml_task = new DownloadTask();
-        noraml_task.setApply_type(download_task_type);
-        noraml_task.setNow_work_target(shengfenzheng);
 
-        noraml_task.setNow_work_target_apply_time(ri_qi_xuanze.getText().toString());
+        //noraml_task.setApply_type(download_task_type);
+        //noraml_task.setNow_work_target(shengfenzheng);
+        //noraml_task.setNow_work_target_apply_time(ri_qi_xuanze.getText().toString());
+        // TODO: Fake
+        noraml_task.setNow_work_target("430611198401091512");
+        noraml_task.setApply_type("110");
+        noraml_task.setNow_work_target_apply_time("201704");
         DBHelper.getInstance().insertOrUpdateDownloadTask(noraml_task);
 
 

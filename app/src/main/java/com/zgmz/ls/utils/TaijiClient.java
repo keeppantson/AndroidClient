@@ -86,10 +86,38 @@ public class TaijiClient {
         return result.toString();
     }
 
+    boolean loginExit = false;
+    boolean loginSucc = false;
+    public  boolean LogIn() throws InterruptedException {
+        loginExit = false;
+        loginSucc = false;
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    LogInInternel();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    loginExit = true;
+                }
+            }
+        }).start();
+        while(true) {
+            if (loginExit == false) {
+                Thread.sleep(1000);
+            } else {
+                break;
+            }
+        }
+
+        return loginSucc;
+    }
     /*初始化TaijiClient
     初始化失败将直接报exception
      */
-    public void LogIn() throws Exception {
+    public void LogInInternel() throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(this.passWord.getBytes());
         String pwd = new BigInteger(1, md.digest()).toString(16);
@@ -133,6 +161,7 @@ public class TaijiClient {
             this.appKey = res.body.getString("appKey");
             this.zoneName = res.body.getString("zoneName");
             this.zoneCode = res.body.getString("zoneCode");
+            loginSucc = true;
         }
         else {
             throw new Exception(String.format("Unable to login with username:%s password:%s imei:%s, failed to init TaijiClient", this.userName, this.passWord, this.imei));
@@ -164,7 +193,7 @@ public class TaijiClient {
     jzny : jzny
      */
     public RestResult GetFamily(String sqrsfzh, String jzywlx, String jzny) throws Exception {
-        return DoGet(this.taijiUri + "queryFamilyList", String.format("{\"sqrsfzh\":\"%s\",\"jzywlx\":\"%s\",\"jzny\":\"%s\"}", sqrsfzh, jzywlx, jzny));
+        return DoGet(this.taijiUri + "queryFamily", String.format("{\"sqrsfzh\":\"%s\",\"jzywlx\":\"%s\",\"jzny\":\"%s\"}", sqrsfzh, jzywlx, jzny));
     }
 
     /* 获取材料

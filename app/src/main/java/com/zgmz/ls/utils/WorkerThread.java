@@ -23,6 +23,8 @@ import java.util.List;
 
 import static com.zgmz.ls.db.TableTools.TABLE_QUHUAMA;
 import static com.zgmz.ls.model.Attachment.TYPE_BEFORE_CHECKED_IMAGE;
+import static com.zgmz.ls.model.Attachment.TYPE_IMAGE_HUKOUBEN;
+import static com.zgmz.ls.model.Attachment.TYPE_IMAGE_SHENGFENZHEN;
 import static com.zgmz.ls.model.CheckTask.STATUS_DOWNLOADING;
 import static com.zgmz.ls.utils.BitmapUtils.getBitmapFromByte;
 
@@ -189,10 +191,15 @@ public class WorkerThread extends Thread {
                             attachment.setName(attobj.getString("clmc"));
                             attachment.setPath(path);
                             attachment.setContent(getBitmapFromByte(content));
-                            attachment.setType(TYPE_BEFORE_CHECKED_IMAGE);
+                            if (attachment.getName().equals("sfz")) {
+                                attachment.setType(TYPE_IMAGE_SHENGFENZHEN);
+                            } else if (attachment.getName().equals("hkb")) {
+                                attachment.setType(TYPE_IMAGE_HUKOUBEN);
+                            } else {
+                                attachment.setType(TYPE_BEFORE_CHECKED_IMAGE);
+                            }
                             attachment.setCheck_task_id(Long.toString(time));
-                            // TODO: Just set a fake time
-                            attachment.setTime("2017-04");
+                            attachment.setTime(attobj.getString("hcrq"));
                             String card_id = familyObj.getString("sqrsfzh");
                             String id = attobj.getString("clid");
                             if (id.indexOf("-") != -1) {
@@ -341,10 +348,15 @@ public class WorkerThread extends Thread {
                     attachment.setName(attobj.getString("clmc"));
                     attachment.setPath(path);
                     attachment.setContent(BitmapUtils.getBitmapFromByte(content));
-                    attachment.setType(TYPE_BEFORE_CHECKED_IMAGE);
+                    if (attachment.getName().equals("sfz")) {
+                        attachment.setType(TYPE_IMAGE_SHENGFENZHEN);
+                    } else if (attachment.getName().equals("hkb")) {
+                        attachment.setType(TYPE_IMAGE_HUKOUBEN);
+                    } else {
+                        attachment.setType(TYPE_BEFORE_CHECKED_IMAGE);
+                    }
                     attachment.setCheck_task_id(Long.toString(time));
-                    // TODO: Just set a fake time
-                    attachment.setTime("2017-04");
+                    attachment.setTime(attobj.getString("hcrq"));
                     String card_id = obj.getString("sqrsfzh");
                     String id = attobj.getString("clid");
                     if (id.indexOf("-") != -1) {
@@ -552,8 +564,7 @@ public class WorkerThread extends Thread {
         if (download) {
             RestResult restResult = null;
             try {
-                // TODO 3->6
-                restResult = AppContext.getAppContext().getTaijiClient().GetZoneInfo(hunan_qu_hua_ma, 3);
+                restResult = AppContext.getAppContext().getTaijiClient().GetZoneInfo(hunan_qu_hua_ma, 6);
             } catch (Exception e) {
                 e.printStackTrace();
             }

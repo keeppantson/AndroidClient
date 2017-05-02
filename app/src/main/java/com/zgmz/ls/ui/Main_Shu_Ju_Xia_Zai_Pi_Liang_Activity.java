@@ -100,12 +100,12 @@ public class Main_Shu_Ju_Xia_Zai_Pi_Liang_Activity extends SubActivity implement
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (buttonView == zui_di) {
             if (isChecked) {
-                download_task_type = "01";
+                download_task_type = "110";
                 te_kun.setChecked(false);
             }
         } else if (buttonView == te_kun) {
             if (isChecked) {
-                download_task_type = "02";
+                download_task_type = "130";
                 zui_di.setChecked(false);
             }
         }
@@ -259,7 +259,7 @@ public class Main_Shu_Ju_Xia_Zai_Pi_Liang_Activity extends SubActivity implement
             ToastUtils.showShortToast("请确认选择正确的救助类型");
             return;
         }
-        ToastUtils.showShortToast("Commit QuHuaMa You chose: " + yourChoiceQuHuaMa.getName());
+        ToastUtils.showShortToast("您选择的批量下载区域为: " + yourChoiceQuHuaMa.getName());
         DownloadTask quhuama_task = new DownloadTask();
         quhuama_task.setApply_type(download_task_type);
         quhuama_task.setQu_hua_ma(yourChoiceQuHuaMa.getId());
